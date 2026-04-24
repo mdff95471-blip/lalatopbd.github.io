@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hacker Dashboard</title>
+<style>
+  /* Basic reset */
+  body, html { margin: 0; padding: 0; font-family: monospace; background: black; color: #00ffcc; overflow-x: hidden; }
+  
+  /* Matrix effect background */
+  canvas { position: fixed; top: 0; left: 0; z-index: 0; }
+
+  /* Main container */
+  .dashboard { position: relative; z-index: 1; padding: 50px; text-align: center; }
+
+  h1 { font-size: 40px; margin-bottom: 10px; text-shadow: 0 0 10px #00ffcc; }
+  p { color: #0f0; margin-bottom: 40px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 25px;
+    color: #00ffcc;
+    border: 1px solid #00ffcc;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 0 10px #00ffcc;
+  }
+  .btn:hover {
+    background: #00ffcc;
+    color: black;
+    box-shadow: 0 0 25px #00ffcc;
+  }
+
+  /* Terminal style */
+  .terminal {
+    background: rgba(0,0,0,0.7);
+    border: 1px solid #0f0;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+    height: 200px;
+    overflow-y: auto;
+  }
+
+  /* Typing effect */
+  .typing { display: inline; border-right: 2px solid #0f0; animation: blink 0.7s infinite; }
+  @keyframes blink { 0%, 50%, 100% { border-color: #0f0; } 25%, 75% { border-color: transparent; } }
+
+</style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="dashboard">
+  <h1>Hacker Dashboard 😎</h1>
+  <p id="status">Initializing <span class="typing"></span></p>
+
+  <a href="https://www.facebook.com/LaLaGamer16k" class="btn">📘 Facebook</a>
+  <a href="https://www.tiktok.com/@lalagamer10k?_r=1&_t=ZS-95nE34FT1us" class="btn">🎵 TikTok</a>
+  <a href="https://www.youtube.com/@LaLagamer100" class="btn">▶️ YouTube</a>
+
+  <div class="terminal" id="terminal">
+    > Welcome to the Hacker Dashboard<br>
+  </div>
+</div>
+
+<script>
+/* Typing effect */
+const text = "System check... OK.";
+let i = 0;
+const typingEl = document.querySelector('.typing');
+function type() {
+  if(i < text.length){
+    typingEl.textContent += text[i];
+    i++;
+    setTimeout(type, 100);
+  } else {
+    typingEl.textContent = "";
+    document.getElementById("status").textContent = "Hacker Mode Activated... 😎";
+  }
+}
+type();
+
+/* Terminal simulation */
+const terminal = document.getElementById('terminal');
+let terminalLines = [
+  "> Connecting to server...",
+  "> Access Granted",
+  "> Fetching data...",
+  "> User profile loaded",
+];
+let tIndex = 0;
+function addLine() {
+  if(tIndex < terminalLines.length){
+    terminal.innerHTML += terminalLines[tIndex] + "<br>";
+    terminal.scrollTop = terminal.scrollHeight;
+    tIndex++;
+    setTimeout(addLine, 1200);
+  }
+}
+setTimeout(addLine, 2000);
+
+/* Matrix background effect */
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%";
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(1);
+
+function draw() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#0f0";
+  ctx.font = fontSize + "px monospace";
+
+  for(let x = 0; x < drops.length; x++){
+    const text = letters.charAt(Math.floor(Math.random() * letters.length));
+    ctx.fillText(text, x * fontSize, drops[x] * fontSize);
+    if(drops[x] * fontSize > canvas.height && Math.random() > 0.975){
+      drops[x] = 0;
+    }
+    drops[x]++;
+  }
+}
+setInterval(draw, 50);
+
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+
+</body>
+</html>
