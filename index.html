@@ -9,12 +9,12 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
         body { background-color: #f5f6fa; padding-bottom: 80px; }
 
-        /* Header - নাম এবং টাকা বাম দিকে */
+        /* Header */
         .header { 
             background: #ffffff; 
             padding: 15px 20px; 
             display: flex; 
-            justify-content: flex-start; /* সবকিছু বামে থাকবে */
+            justify-content: flex-start; 
             align-items: center; 
             gap: 15px;
             position: sticky; 
@@ -23,12 +23,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
         }
         .profile-info { display: flex; flex-direction: column; }
-        .user-name { 
-            font-size: 20px; 
-            font-weight: 800; 
-            color: #5c2d91; 
-            text-transform: uppercase;
-        }
+        .user-name { font-size: 20px; font-weight: 800; color: #5c2d91; text-transform: uppercase; }
         .balance-box { 
             background: #5c2d91; 
             color: #fff; 
@@ -40,61 +35,34 @@
             width: fit-content;
         }
 
-        /* Banner */
+        /* ১. ব্যানার স্টাইল (এখানে ছবি বসানোর জন্য কোড করা হয়েছে) */
         .banner { 
             width: 92%; 
             margin: 15px auto; 
-            height: 150px; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            height: 160px; /* ব্যানারের উচ্চতা */
             border-radius: 20px; 
-            color: white; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            padding-left: 25px;
-            box-shadow: 0 10px 20px rgba(118, 75, 162, 0.2); 
+            overflow: hidden; 
+            position: relative; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+        }
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* ছবি যাতে ফেটে না যায় বা চ্যাপ্টা না হয় */
         }
 
         /* Section Title */
-        .section-title { 
-            padding: 20px 15px 10px; 
-            font-size: 16px; 
-            font-weight: bold; 
-            color: #2f3640;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .section-title { padding: 20px 15px 10px; font-size: 16px; font-weight: bold; color: #2f3640; display: flex; align-items: center; gap: 8px; }
         .section-title::before { content: ""; width: 4px; height: 16px; background: #5c2d91; border-radius: 2px; }
 
         /* Grid System */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 15px; }
-        .card { 
-            background: #fff; 
-            border-radius: 18px; 
-            padding: 10px; 
-            text-align: center; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
-            cursor: pointer; 
-            transition: transform 0.2s;
-            border: 1px solid #f1f2f6;
-        }
-        .card:active { transform: scale(0.95); }
+        .card { background: #fff; border-radius: 18px; padding: 10px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); cursor: pointer; transition: transform 0.2s; border: 1px solid #f1f2f6; }
         .card img { width: 100%; border-radius: 12px; margin-bottom: 8px; }
         .card p { font-size: 11px; font-weight: 700; color: #333; }
 
         /* Bottom Nav */
-        .bottom-nav { 
-            position: fixed; 
-            bottom: 0; 
-            width: 100%; 
-            background: #fff; 
-            display: flex; 
-            justify-content: space-around; 
-            padding: 12px 0; 
-            border-top: 1px solid #eee; 
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
-        }
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #eee; box-shadow: 0 -5px 15px rgba(0,0,0,0.05); }
         .nav-item { text-align: center; font-size: 11px; color: #a4b0be; text-decoration: none; }
         .nav-item b { font-size: 20px; display: block; margin-bottom: 2px; }
         .active-nav { color: #5c2d91; font-weight: bold; }
@@ -110,8 +78,7 @@
     </div>
 
     <div class="banner">
-        <h2 style="font-size: 22px;">LALA STORE</h2>
-        <p style="font-size: 12px; opacity: 0.9; margin-top: 5px;">সেরা দামে গেম টপ-আপ</p>
+        <img src="my_banner.jpg" alt="LALA STORE BANNER">
     </div>
 
     <div class="section-title">SPECIAL OFFER</div>
@@ -155,9 +122,8 @@
 
     <script>
         function placeOrder(product) {
-            // আপনার হোয়াটসঅ্যাপ নাম্বার দিন (যেমন: 88017XXXXXXXX)
             const myNumber = "8801794327542"; 
-            const text = `হ্যালো LALA TOPUP,\nআমি আপনার ওয়েবসাইট থেকে "${product}" নিতে চাই। পেমেন্ট ডিটেইলস দিন।`;
+            const text = `হ্যালো LALA TOPUP,\nআমি আপনার ওয়েবসাইট থেকে "${product}" নিতে চাই। পেমেন্ট ডিটেইলস দিন।`;
             window.open(`https://wa.me/${myNumber}?text=${encodeURIComponent(text)}`, '_blank');
         }
     </script>
