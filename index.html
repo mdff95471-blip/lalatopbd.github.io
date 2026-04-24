@@ -19,24 +19,21 @@
         .section-title { padding: 20px 15px 10px; font-size: 16px; font-weight: bold; color: #2f3640; display: flex; align-items: center; gap: 8px; }
         .section-title::before { content: ""; width: 4px; height: 16px; background: #5c2d91; border-radius: 2px; }
 
-        /* গ্রিড এবং কার্ড ডিজাইন */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 0 15px; }
 
         .card { background: #fff; border-radius: 18px; padding: 10px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); cursor: pointer; transition: transform 0.2s; border: 1px solid #f1f2f6; display: flex; flex-direction: column; align-items: center; overflow: hidden; }
         .card:active { transform: scale(0.95); }
 
-        /* ছবির সাইজ টাইট করার জন্য এই অংশটি আপডেট করা হয়েছে */
         .card img { 
             width: 100%; 
-            aspect-ratio: 1 / 1; /* বর্গাকার সাইজ নিশ্চিত করবে */
-            object-fit: cover; /* ছবিকে ফ্রেমের সাথে টাইট করে বসাবে */
+            aspect-ratio: 1 / 1; 
+            object-fit: cover; 
             border-radius: 12px; 
             margin-bottom: 8px; 
         }
 
         .card p { font-size: 11px; font-weight: 700; color: #333; line-height: 1.2; }
 
-        /* Modal / Pop-up ঠিক রাখা হয়েছে */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
         .modal-content { background-color: #fff; margin: 10% auto; padding: 20px; width: 90%; max-width: 500px; border-radius: 20px; position: relative; }
         .modal-header { font-size: 18px; font-weight: bold; color: #5c2d91; margin-bottom: 15px; text-align: center; border-bottom: 1px solid #eee; padding-bottom: 10px; }
@@ -47,19 +44,18 @@
         .recharge-item h4 { font-size: 12px; color: #2f3640; font-weight: 800; margin-bottom: 4px; }
         .recharge-item p { font-size: 14px; color: #5c2d91; font-weight: 900; }
 
-        /* নতুন Modal স্টাইল */
-        .package-list { display: flex; flex-direction: column; gap: 10px; }
+        .package-list { display: flex; flex-direction: column; gap: 10px; max-height: 300px; overflow-y: auto; }
         .package-item { border: 1px solid #e0e0e0; border-radius: 10px; padding: 12px; text-align: left; cursor: pointer; }
+        .package-item.selected { border: 2px solid #5c2d91; background: #f0e6ff; }
         .package-item h4 { font-size: 14px; color: #2f3640; font-weight: 800; }
         .package-item p { font-size: 12px; color: #5c2d91; font-weight: 900; }
 
-        .quantity-control { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
-        .quantity-btn { background: #e0e0e0; color: #333; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
-        .quantity-input { width: 40px; text-align: center; }
+        .quantity-control { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 15px; padding: 10px; background: #f9f9f9; border-radius: 10px; }
+        .quantity-btn { background: #5c2d91; color: #fff; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; }
+        .quantity-input { width: 50px; text-align: center; border: none; background: transparent; font-size: 18px; font-weight: bold; }
 
-        .continue-btn { background: #1ab394; color: #fff; padding: 10px 20px; border-radius: 5px; cursor: pointer; border: none; font-weight: bold; margin-top: 15px; width: 100%; }
+        .continue-btn { background: #1ab394; color: #fff; padding: 12px; border-radius: 10px; cursor: pointer; border: none; font-weight: bold; margin-top: 15px; width: 100%; font-size: 16px; }
 
-        /* Bottom Nav ঠিক রাখা হয়েছে */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #eee; box-shadow: 0 -5px 15px rgba(0,0,0,0.05); }
         .nav-item { text-align: center; font-size: 11px; color: #a4b0be; text-decoration: none; }
         .nav-item b { font-size: 20px; display: block; margin-bottom: 2px; }
@@ -81,9 +77,9 @@
 
     <div class="section-title">FREE FIRE TOPUP</div>
     <div class="grid">
-        <div class="card" onclick="openPackages()">
+        <div class="card" onclick="openPackages('FF Guild glory')">
             <img src="ff_uid.jpg" alt="FF">
-            <p>UID TOPUP</p>
+            <p>FF Guild glory</p>
         </div>
 
         <div class="card" onclick="openOffers()">
@@ -91,10 +87,11 @@
             <p>Weekly/Monthly Offer</p>
         </div>
 
-        <div class="card" onclick="placeOrder('Level Up Pass')">
+        <div class="card" onclick="openPackages('Level Up Pass')">
             <img src="levelup.jpg" alt="Lvl">
-            <p>LEVEL UP</p>
+            <p>Free Fire - 200 Like প্রতিদিন</p>
         </div>
+
         <div class="card" onclick="placeOrder('Evo Access')">
             <img src="evo.jpg" alt="Evo">
             <p>EVO ACCESS</p>
@@ -104,17 +101,12 @@
     <div id="packageModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closePackages()">&times;</span>
-            <div class="modal-header">Select Package</div>
-            <div class="package-list">
-                <div class="package-item" onclick="selectPackage('1 BASIC', 1.30)"><h4>1 BASIC</h4><p>$1.30</p></div>
-                <div class="package-item" onclick="selectPackage('2 BASIC', 2.50)"><h4>2 BASIC</h4><p>$2.50</p></div>
-                <div class="package-item" onclick="selectPackage('5 BASIC', 6.00)"><h4>5 BASIC</h4><p>$6.00</p></div>
-                <div class="package-item" onclick="selectPackage('10 BASIC', 11.50)"><h4>10 BASIC</h4><p>$11.50</p></div>
-                <div class="package-item" onclick="selectPackage('20 BASIC', 21.00)"><h4>20 BASIC</h4><p>$21.00</p></div>
-            </div>
+            <div id="modalTitle" class="modal-header">Select Package</div>
+            <div id="packageContainer" class="package-list">
+                </div>
             <div class="quantity-control">
                 <span class="quantity-btn" onclick="decrementQuantity()">-</span>
-                <input type="number" class="quantity-input" id="quantityInput" value="1">
+                <input type="number" class="quantity-input" id="quantityInput" value="1" readonly>
                 <span class="quantity-btn" onclick="incrementQuantity()">+</span>
             </div>
             <button class="continue-btn" onclick="continueToOrder()">Continue</button>
@@ -145,55 +137,79 @@
     </div>
 
     <script>
-        // প্যাকেজ Modal এর জন্য ফাংশন
-        function openPackages() { document.getElementById("packageModal").style.display = "block"; }
-        function closePackages() { document.getElementById("packageModal").style.display = "none"; }
+        var selectedPackageName = "";
+        var currentCategory = "";
 
-        // রিচার্জ Modal এর জন্য ফাংশন
+        // প্যাকেজ ডাটা
+        const packages = {
+            'FF Guild glory': [
+                { name: '1 BASIC', price: '$1.30' },
+                { name: '2 BASIC', price: '$2.50' },
+                { name: '5 BASIC', price: '$6.00' },
+                { name: '10 BASIC', price: '$11.50' },
+                { name: '20 BASIC', price: '$21.00' }
+            ],
+            'Level Up Pass': [
+                { name: 'LEVEL UP PASS (UID)', price: 'BDT 160' },
+                { name: '2X LEVEL UP PASS', price: 'BDT 320' },
+                { name: 'EVO LEVEL UP PASS', price: 'BDT 450' }
+            ]
+        };
+
+        function openPackages(category) {
+            currentCategory = category;
+            selectedPackageName = "";
+            document.getElementById("modalTitle").innerText = category;
+            document.getElementById("quantityInput").value = 1;
+            
+            const container = document.getElementById("packageContainer");
+            container.innerHTML = "";
+            
+            packages[category].forEach(pkg => {
+                const div = document.createElement("div");
+                div.className = "package-item";
+                div.innerHTML = `<h4>${pkg.name}</h4><p>${pkg.price}</p>`;
+                div.onclick = function() {
+                    document.querySelectorAll('.package-item').forEach(el => el.classList.remove('selected'));
+                    div.classList.add('selected');
+                    selectedPackageName = pkg.name;
+                };
+                container.appendChild(div);
+            });
+            
+            document.getElementById("packageModal").style.display = "block";
+        }
+
+        function closePackages() { document.getElementById("packageModal").style.display = "none"; }
         function openOffers() { document.getElementById("offerModal").style.display = "block"; }
         function closeOffers() { document.getElementById("offerModal").style.display = "none"; }
 
-        // Modal বন্ধ করার জন্য ফাংশন
         window.onclick = function(event) { 
             if (event.target == document.getElementById("packageModal")) { closePackages(); } 
             else if (event.target == document.getElementById("offerModal")) { closeOffers(); } 
         }
 
-        // প্যাকেজ এবং পরিমাণ নির্বাচনের জন্য ফাংশন
-        var selectedPackageName = "";
-        var selectedPackagePrice = 0;
-
-        function selectPackage(name, price) {
-            selectedPackageName = name;
-            selectedPackagePrice = price;
-        }
-
         function incrementQuantity() {
-            var quantityInput = document.getElementById("quantityInput");
-            quantityInput.value = parseInt(quantityInput.value) + 1;
+            var input = document.getElementById("quantityInput");
+            input.value = parseInt(input.value) + 1;
         }
 
         function decrementQuantity() {
-            var quantityInput = document.getElementById("quantityInput");
-            if (parseInt(quantityInput.value) > 1) {
-                quantityInput.value = parseInt(quantityInput.value) - 1;
-            }
+            var input = document.getElementById("quantityInput");
+            if (parseInt(input.value) > 1) { input.value = parseInt(input.value) - 1; }
         }
 
-        // হোয়াটসঅ্যাপে অর্ডার দেওয়ার জন্য ফাংশন
         function continueToOrder() {
-            var quantityInput = document.getElementById("quantityInput");
-            var quantity = quantityInput.value;
+            var quantity = document.getElementById("quantityInput").value;
             if (selectedPackageName != "") {
                 const myNumber = "8801794327542"; 
-                const text = `হ্যালো LALA TOPUP,\nআমি আপনার ওয়েবসাইট থেকে ${quantity} টি "${selectedPackageName}" প্যাকেজ নিতে চাই। পেমেন্ট ডিটেইলস দিন।`;
+                const text = `হ্যালো LALA TOPUP,\nআমি আপনার ওয়েবসাইট থেকে ${quantity} টি "${selectedPackageName}" (${currentCategory}) নিতে চাই। পেমেন্ট ডিটেইলস দিন।`;
                 window.open(`https://wa.me/${myNumber}?text=${encodeURIComponent(text)}`, '_blank');
             } else {
-                alert("দয়া করে একটি প্যাকেজ নির্বাচন করুন।");
+                alert("দয়া করে একটি প্যাকেজ নির্বাচন করুন।");
             }
         }
 
-        // রিচার্জ অর্ডারের জন্য ফাংশন ঠিক রাখা হয়েছে
         function placeOrder(product) {
             const myNumber = "8801794327542"; 
             const text = `হ্যালো LALA TOPUP,\nআমি আপনার ওয়েবসাইট থেকে "${product}" নিতে চাই। পেমেন্ট ডিটেইলস দিন।`;
