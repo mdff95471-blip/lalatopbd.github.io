@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LALA TOPUP - Gaming Store</title>
     <style>
-        /* মূল স্টাইল ঠিক রাখা হয়েছে */
+        /* আগের সব স্টাইল ঠিক রাখা হয়েছে */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
         body { background-color: #f5f6fa; padding-bottom: 80px; }
 
@@ -23,28 +23,26 @@
 
         .card { background: #fff; border-radius: 18px; padding: 10px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); cursor: pointer; transition: transform 0.2s; border: 1px solid #f1f2f6; display: flex; flex-direction: column; align-items: center; overflow: hidden; }
         .card:active { transform: scale(0.95); }
-
-        .card img { 
-            width: 100%; 
-            aspect-ratio: 1 / 1; 
-            object-fit: cover; 
-            border-radius: 12px; 
-            margin-bottom: 8px; 
-        }
-
+        .card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; margin-bottom: 8px; }
         .card p { font-size: 11px; font-weight: 700; color: #333; line-height: 1.2; }
 
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
         .modal-content { background-color: #fff; margin: 10% auto; padding: 20px; width: 90%; max-width: 500px; border-radius: 20px; position: relative; }
         .modal-header { font-size: 18px; font-weight: bold; color: #5c2d91; margin-bottom: 15px; text-align: center; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         .close { position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; color: #999; }
-        
-        /* আপনার ৩ নম্বর স্ক্রিনশটের মতো ২ কলামের প্যাকেজ ডিজাইন */
-        .recharge-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .recharge-item { border: 1px solid #e0e0e0; border-radius: 10px; padding: 12px; text-align: center; cursor: pointer; }
-        .recharge-item.selected { border: 2px solid #5c2d91; background: #f0e6ff; }
-        .recharge-item h4 { font-size: 12px; color: #2f3640; font-weight: 800; margin-bottom: 4px; }
-        .recharge-item p { font-size: 14px; color: #5c2d91; font-weight: 900; }
+
+        /* আপনার স্ক্রিনশটের মতো সিঙ্গেল প্যাকেজ ডিজাইন */
+        .single-package { 
+            border: 1px solid #5c2d91; 
+            background: #f8f0ff; 
+            border-radius: 12px; 
+            padding: 20px; 
+            text-align: center; 
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .single-package h4 { font-size: 15px; color: #2f3640; font-weight: 800; margin-bottom: 5px; }
+        .single-package p { font-size: 16px; color: #5c2d91; font-weight: 900; }
 
         .quantity-control { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 15px; padding: 10px; background: #f9f9f9; border-radius: 10px; }
         .quantity-btn { background: #5c2d91; color: #fff; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; }
@@ -83,7 +81,7 @@
             <p>Weekly/Monthly Offer</p>
         </div>
 
-        <div class="card" onclick="openPackages('Free Fire - 200 Like প্রতিদিন')">
+        <div class="card" onclick="openSinglePackage()">
             <img src="levelup.jpg" alt="Lvl">
             <p>Free Fire - 200 Like প্রতিদিন</p>
         </div>
@@ -94,34 +92,20 @@
         </div>
     </div>
 
-    <div id="packageModal" class="modal">
+    <div id="singleModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closePackages()">&times;</span>
-            <div id="modalTitle" class="modal-header">Select Package</div>
-            <div id="packageContainer" class="recharge-list">
-                </div>
+            <span class="close" onclick="closeSingle()">&times;</span>
+            <div class="modal-header">Select Recharge</div>
+            <div class="single-package">
+                <h4>200 FF LIKE- প্রতিদিন ১ আইডিতে ১বার</h4>
+                <p>BDT 35</p>
+            </div>
             <div class="quantity-control">
                 <span class="quantity-btn" onclick="decrementQuantity()">-</span>
-                <input type="number" class="quantity-input" id="quantityInput" value="1" readonly>
+                <input type="number" class="quantity-input" id="singleQty" value="1" readonly>
                 <span class="quantity-btn" onclick="incrementQuantity()">+</span>
             </div>
-            <button class="continue-btn" onclick="continueToOrder()">Continue</button>
-        </div>
-    </div>
-
-    <div id="offerModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeOffers()">&times;</span>
-            <div class="modal-header">Select Recharge</div>
-            <div class="recharge-list">
-                <div class="recharge-item" onclick="placeOrder('WEEKLY - BDT 160')"><h4>WEEKLY</h4><p>BDT 160</p></div>
-                <div class="recharge-item" onclick="placeOrder('2X WEEKLY - BDT 320')"><h4>2X WEEKLY</h4><p>BDT 320</p></div>
-                <div class="recharge-item" onclick="placeOrder('3X WEEKLY - BDT 480')"><h4>3X WEEKLY</h4><p>BDT 480</p></div>
-                <div class="recharge-item" onclick="placeOrder('MONTHLY - BDT 770')"><h4>MONTHLY</h4><p>BDT 770</p></div>
-                <div class="recharge-item" onclick="placeOrder('2X MONTHLY - BDT 1540')"><h4>2X MONTHLY</h4><p>BDT 1540</p></div>
-                <div class="recharge-item" onclick="placeOrder('1W + 1M - BDT 925')"><h4>1W + 1M</h4><p>BDT 925</p></div>
-                <div class="recharge-item" onclick="placeOrder('3W + 1M - BDT 1245')"><h4>3W + 1M</h4><p>BDT 1245</p></div>
-            </div>
+            <button class="continue-btn" onclick="orderSingle()">Continue</button>
         </div>
     </div>
 
@@ -133,84 +117,33 @@
     </div>
 
     <script>
-        var selectedPackageName = "";
-        var currentCategory = "";
-
-        // আপনার ৩ নম্বর স্ক্রিনশটের মতো ২ কলামের প্যাকেজ ডাটা
-        const packages = {
-            'FF Guild glory': [
-                { name: '1 BASIC', price: '$1.30' },
-                { name: '2 BASIC', price: '$2.50' },
-                { name: '5 BASIC', price: '$6.00' },
-                { name: '10 BASIC', price: '$11.50' },
-                { name: '20 BASIC', price: '$21.00' }
-            ],
-            'Free Fire - 200 Like প্রতিদিন': [
-                { name: '200 Like (1 Day)', price: 'BDT 20' },
-                { name: '200 Like (7 Days)', price: 'BDT 130' },
-                { name: '200 Like (30 Days)', price: 'BDT 550' },
-                { name: 'Custom Pack', price: 'Contact' }
-            ]
-        };
-
-        function openPackages(category) {
-            currentCategory = category;
-            selectedPackageName = "";
-            document.getElementById("modalTitle").innerText = category;
-            document.getElementById("quantityInput").value = 1;
-            
-            const container = document.getElementById("packageContainer");
-            container.innerHTML = "";
-            
-            packages[category].forEach(pkg => {
-                const div = document.createElement("div");
-                div.className = "recharge-item"; // স্ক্রিনশটের মতো বক্স ক্লাস
-                div.innerHTML = `<h4>${pkg.name}</h4><p>${pkg.price}</p>`;
-                div.onclick = function() {
-                    document.querySelectorAll('.recharge-item').forEach(el => el.classList.remove('selected'));
-                    div.classList.add('selected');
-                    selectedPackageName = pkg.name;
-                };
-                container.appendChild(div);
-            });
-            
-            document.getElementById("packageModal").style.display = "block";
+        // ৩ নম্বর কার্ডের জন্য ফাংশন
+        function openSinglePackage() {
+            document.getElementById("singleModal").style.display = "block";
         }
-
-        function closePackages() { document.getElementById("packageModal").style.display = "none"; }
-        function openOffers() { document.getElementById("offerModal").style.display = "block"; }
-        function closeOffers() { document.getElementById("offerModal").style.display = "none"; }
-
-        window.onclick = function(event) { 
-            if (event.target == document.getElementById("packageModal")) { closePackages(); } 
-            else if (event.target == document.getElementById("offerModal")) { closeOffers(); } 
+        function closeSingle() {
+            document.getElementById("singleModal").style.display = "none";
         }
 
         function incrementQuantity() {
-            var input = document.getElementById("quantityInput");
+            var input = document.getElementById("singleQty");
             input.value = parseInt(input.value) + 1;
         }
-
         function decrementQuantity() {
-            var input = document.getElementById("quantityInput");
+            var input = document.getElementById("singleQty");
             if (parseInt(input.value) > 1) { input.value = parseInt(input.value) - 1; }
         }
 
-        function continueToOrder() {
-            var quantity = document.getElementById("quantityInput").value;
-            if (selectedPackageName != "") {
-                const myNumber = "8801794327542"; 
-                const text = `হ্যালো LALA TOPUP,\nআমি আপনার ওয়েবসাইট থেকে ${quantity} টি "${selectedPackageName}" (${currentCategory}) নিতে চাই। পেমেন্ট ডিটেইলস দিন।`;
-                window.open(`https://wa.me/${myNumber}?text=${encodeURIComponent(text)}`, '_blank');
-            } else {
-                alert("দয়া করে একটি প্যাকেজ নির্বাচন করুন।");
-            }
+        function orderSingle() {
+            var qty = document.getElementById("singleQty").value;
+            const myNumber = "8801794327542"; 
+            const text = `হ্যালো LALA TOPUP,\nআমি ওয়েবসাইট থেকে ${qty} টি "200 FF LIKE- প্রতিদিন ১ আইডিতে ১বার" প্যাকেজটি নিতে চাই।`;
+            window.open(`https://wa.me/${myNumber}?text=${encodeURIComponent(text)}`, '_blank');
         }
 
-        function placeOrder(product) {
-            const myNumber = "8801794327542"; 
-            const text = `হ্যালো LALA TOPUP,\nআমি আপনার ওয়েবসাইট থেকে "${product}" নিতে চাই। পেমেন্ট ডিটেইলস দিন।`;
-            window.open(`https://wa.me/${myNumber}?text=${encodeURIComponent(text)}`, '_blank');
+        // উইন্ডো ক্লিক ক্লোজ
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("singleModal")) { closeSingle(); }
         }
     </script>
 </body>
