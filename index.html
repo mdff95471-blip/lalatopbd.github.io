@@ -9,23 +9,14 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
         body { background-color: #f5f6fa; padding-bottom: 80px; }
 
-        /* Header */
+        /* Header - ব্যালেন্স জিরো করা হয়েছে */
         .header { background: #ffffff; padding: 15px 20px; display: flex; justify-content: flex-start; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .profile-info { display: flex; flex-direction: column; }
         .user-name { font-size: 20px; font-weight: 800; color: #5c2d91; text-transform: uppercase; }
         .balance-box { background: #5c2d91; color: #fff; padding: 3px 12px; border-radius: 15px; font-size: 13px; font-weight: 600; margin-top: 4px; width: fit-content; }
 
-        /* ব্যানার - YouTube সাইজ (16:9 Ratio) */
-        .banner { 
-            width: 94%; 
-            margin: 15px auto; 
-            aspect-ratio: 16 / 9; /* এটি ফ্রেমটিকে ইউটিউব ভিডিওর মতো সাইজ দিবে */
-            max-height: 200px; /* মোবাইলে যেন খুব বেশি বড় না হয় */
-            border-radius: 15px; 
-            overflow: hidden; 
-            position: relative; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-        }
+        /* ব্যানার - YouTube সাইজ */
+        .banner { width: 94%; margin: 15px auto; aspect-ratio: 16 / 9; max-height: 200px; border-radius: 15px; overflow: hidden; position: relative; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
         .banner img { width: 100%; height: 100%; object-fit: cover; }
 
         /* সেকশন টাইটেল */
@@ -35,34 +26,21 @@
         /* গ্রিড সিস্টেম */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 0 15px; }
 
-        /* কার্ড ফ্রেম - বড় করা হয়েছে */
-        .card { 
-            background: #fff; 
-            border-radius: 18px; 
-            padding: 16px; 
-            text-align: center; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
-            cursor: pointer; 
-            transition: transform 0.2s; 
-            border: 1px solid #f1f2f6; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-        }
+        /* কার্ড ফ্রেম */
+        .card { background: #fff; border-radius: 18px; padding: 16px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); cursor: pointer; transition: transform 0.2s; border: 1px solid #f1f2f6; display: flex; flex-direction: column; align-items: center; }
         .card:active { transform: scale(0.95); }
         .card img { width: 100%; max-width: 85px; height: auto; border-radius: 12px; margin-bottom: 8px; }
         .card p { font-size: 11px; font-weight: 700; color: #333; line-height: 1.2; }
 
-        /* লিস্ট মেনু (Modal) */
+        /* পপ-আপ মেনু */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
-        .modal-content { background-color: #fff; margin: 15% auto; padding: 20px; width: 90%; max-width: 500px; border-radius: 20px; position: relative; }
+        .modal-content { background-color: #fff; margin: 10% auto; padding: 20px; width: 90%; max-width: 500px; border-radius: 20px; position: relative; }
         .modal-header { font-size: 18px; font-weight: bold; color: #5c2d91; margin-bottom: 15px; text-align: center; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         .close { position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; color: #999; }
         .recharge-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .recharge-item { border: 1px solid #e0e0e0; border-radius: 10px; padding: 12px; text-align: center; cursor: pointer; transition: 0.2s; }
-        .recharge-item:hover { border-color: #5c2d91; background: #f9f0ff; }
-        .recharge-item h4 { font-size: 12px; color: #2f3640; margin-bottom: 4px; }
-        .recharge-item p { font-size: 14px; color: #5c2d91; font-weight: bold; }
+        .recharge-item h4 { font-size: 13px; color: #2f3640; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; }
+        .recharge-item p { font-size: 15px; color: #5c2d91; font-weight: 900; }
 
         /* Bottom Nav */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #eee; box-shadow: 0 -5px 15px rgba(0,0,0,0.05); }
@@ -76,7 +54,7 @@
     <div class="header">
         <div class="profile-info">
             <div class="user-name">LALA TOPUP</div>
-            <div class="balance-box">৳ 187.00</div>
+            <div class="balance-box">৳ 0.00</div>
         </div>
     </div>
 
@@ -90,12 +68,10 @@
             <img src="ff_uid.jpg" alt="FF">
             <p>UID TOPUP</p>
         </div>
-
         <div class="card" onclick="openOffers()">
             <img src="weekly.jpg" alt="Weekly">
             <p>WEEKLY/MONTHLY OFFER</p>
         </div>
-
         <div class="card" onclick="placeOrder('Level Up Pass')">
             <img src="levelup.jpg" alt="Lvl">
             <p>LEVEL UP</p>
@@ -111,12 +87,13 @@
             <span class="close" onclick="closeOffers()">&times;</span>
             <div class="modal-header">Select Recharge</div>
             <div class="recharge-list">
-                <div class="recharge-item" onclick="placeOrder('Weekly - BDT 154')"><h4>WEEKLY</h4><p>BDT 154</p></div>
-                <div class="recharge-item" onclick="placeOrder('2X Weekly - BDT 308')"><h4>2X WEEKLY</h4><p>BDT 308</p></div>
-                <div class="recharge-item" onclick="placeOrder('3X Weekly - BDT 460')"><h4>3X WEEKLY</h4><p>BDT 460</p></div>
-                <div class="recharge-item" onclick="placeOrder('Monthly - BDT 765')"><h4>MONTHLY</h4><p>BDT 765</p></div>
-                <div class="recharge-item" onclick="placeOrder('2X Monthly - BDT 1530')"><h4>2X MONTHLY</h4><p>BDT 1530</p></div>
-                <div class="recharge-item" onclick="placeOrder('1 Weekly + 1 Monthly')"><h4>1W + 1M</h4><p>BDT 915</p></div>
+                <div class="recharge-item" onclick="placeOrder('WEEKLY - BDT 160')"><h4>WEEKLY</h4><p>BDT 160</p></div>
+                <div class="recharge-item" onclick="placeOrder('2X WEEKLY - BDT 320')"><h4>2X WEEKLY</h4><p>BDT 320</p></div>
+                <div class="recharge-item" onclick="placeOrder('3X WEEKLY - BDT 480')"><h4>3X WEEKLY</h4><p>BDT 480</p></div>
+                <div class="recharge-item" onclick="placeOrder('MONTHLY - BDT 770')"><h4>MONTHLY</h4><p>BDT 770</p></div>
+                <div class="recharge-item" onclick="placeOrder('2X MONTHLY - BDT 1540')"><h4>2X MONTHLY</h4><p>BDT 1540</p></div>
+                <div class="recharge-item" onclick="placeOrder('1 WEEKLY + 1 MONTHLY - BDT 925')"><h4>1W + 1M</h4><p>BDT 925</p></div>
+                <div class="recharge-item" onclick="placeOrder('3 WEEKLY + 1 MONTHLY - BDT 1245')"><h4>3W + 1M</h4><p>BDT 1245</p></div>
             </div>
         </div>
     </div>
