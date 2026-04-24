@@ -1,108 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RDX LALA - Hacker Dashboard</title>
-<style>
-  body, html { margin:0; padding:0; font-family: monospace; background:black; color:#00ffcc; overflow-x:hidden; }
-  canvas { position:fixed; top:0; left:0; z-index:0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDX LALA TOPUP STORE</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #f0f2f5; padding-bottom: 80px; }
 
-  .dashboard { position: relative; z-index:1; padding:50px; text-align:center; }
+        /* Header */
+        .header { background: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .logo { font-size: 20px; font-weight: bold; color: #5c2d91; }
+        .balance-box { background: #5c2d91; color: #fff; padding: 6px 15px; border-radius: 20px; font-size: 14px; display: flex; align-items: center; gap: 5px; }
 
-  /* Circular profile picture */
-  .profile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid #00ffcc;
-    object-fit: cover;
-    box-shadow: 0 0 15px #00ffcc;
-    margin-bottom: 10px;
-  }
+        /* Banner Slider Style */
+        .banner { width: 92%; margin: 15px auto; height: 160px; background: linear-gradient(45deg, #5c2d91, #8e44ad); border-radius: 15px; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: 0 4px 10px rgba(92, 45, 145, 0.3); }
 
-  /* Buttons */
-  .btn-wrapper { display: inline-block; text-align:center; margin:15px; }
-  .btn {
-    display:inline-block; padding:12px 25px; color:#00ffcc; border:1px solid #00ffcc;
-    border-radius:8px; text-decoration:none; transition:0.3s; box-shadow:0 0 10px #00ffcc; margin-top:10px;
-  }
-  .btn:hover { background:#00ffcc; color:black; box-shadow:0 0 25px #00ffcc; }
+        /* Section Title */
+        .section-title { padding: 15px; font-size: 16px; font-weight: bold; color: #333; display: flex; align-items: center; gap: 10px; }
+        .section-title::before { content: ""; width: 4px; height: 18px; background: #5c2d91; border-radius: 2px; }
 
-  /* Terminal */
-  .terminal {
-    background: rgba(0,0,0,0.7);
-    border:1px solid #0f0;
-    padding:20px;
-    margin:30px auto;
-    width:80%;
-    max-width:600px;
-    text-align:left;
-    height:150px;
-    overflow-y:auto;
-  }
+        /* Grid System */
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 15px; }
+        .card { background: #fff; border-radius: 12px; padding: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: 0.3s; cursor: pointer; }
+        .card:active { transform: scale(0.95); }
+        .card img { width: 100%; border-radius: 10px; margin-bottom: 8px; }
+        .card p { font-size: 11px; font-weight: 600; color: #444; height: 30px; overflow: hidden; }
 
-</style>
+        /* Bottom Nav */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #ddd; }
+        .nav-item { text-align: center; font-size: 11px; color: #666; text-decoration: none; }
+        .nav-item span { font-size: 20px; display: block; margin-bottom: 2px; }
+        .active-nav { color: #5c2d91; font-weight: bold; }
+
+        /* Custom Alert */
+        #orderAlert { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.2); z-index: 1000; text-align: center; width: 80%; }
+    </style>
 </head>
 <body>
 
-<canvas id="matrix"></canvas>
+    <div class="header">
+        <div class="logo">OFFER TOPUP</div>
+        <div class="balance-box"><span>💰</span> 187৳</div>
+    </div>
 
-<div class="dashboard">
+    <div class="banner">
+        <h2 style="margin-bottom: 5px;">গিবওয়ে ও সকল অফার</h2>
+        <p style="font-size: 12px; opacity: 0.9;">সবচেয়ে দ্রুত এবং নিরাপদ টপআপ!</p>
+        <button style="margin-top: 10px; padding: 5px 15px; border-radius: 15px; border: none; background: #fff; color: #5c2d91; font-weight: bold; font-size: 12px;">জয়েন করুন</button>
+    </div>
 
-  <!-- Facebook -->
-  <div class="btn-wrapper">
-    <img src="profile.jpg" class="profile-pic">
-    <a href="https://www.facebook.com/" class="btn">📘 Facebook</a>
-</div>
+    <div class="section-title">FREE FIRE</div>
+    <div class="grid">
+        <div class="card" onclick="placeOrder('UID TOPUP (BD)')">
+            <img src="https://via.placeholder.com/150" alt="UID">
+            <p>UID TOPUP (BD)</p>
+        </div>
+        <div class="card" onclick="placeOrder('Weekly/Monthly Offer')">
+            <img src="https://via.placeholder.com/150" alt="Weekly">
+            <p>Weekly/Monthly</p>
+        </div>
+        <div class="card" onclick="placeOrder('Level Up Pass')">
+            <img src="https://via.placeholder.com/150" alt="Level Up">
+            <p>LEVEL UP PASS</p>
+        </div>
+        <div class="card" onclick="placeOrder('E-Badge/Evo Access')">
+            <img src="https://via.placeholder.com/150" alt="Evo">
+            <p>E-Badge/Evo</p>
+        </div>
+        <div class="card" onclick="placeOrder('Indonesia Server UID')">
+            <img src="https://via.placeholder.com/150" alt="Indo">
+            <p>Indonesia Server</p>
+        </div>
+    </div>
 
-<div class="btn-wrapper">
-    <img src="tiktok_pic.jpg" class="profile-pic">
-    <a href="https://www.tiktok.com/@আপনার_ইউজারনেম" class="btn">🎵 TikTok</a>
-</div>
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active-nav"><span>🏠</span>Home</a>
+        <a href="#" class="nav-item"><span>➕</span>Add Money</a>
+        <a href="#" class="nav-item"><span>📋</span>My Orders</a>
+        <a href="#" class="nav-item"><span>👤</span>Account</a>
+    </div>
 
-<div class="btn-wrapper">
-    <img src="profile.jpg" class="profile-pic">
-    <a href="https://www.youtube.com/" class="btn">▶️ YouTube</a>
-</div>
-
-  <!-- Terminal -->
-  <div class="terminal" id="terminal">
-    > Welcome to RDX LALA<br>
-  </div>
-</div>
-
-<script>
-/* Matrix background */
-const canvas = document.getElementById('matrix');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%";
-const fontSize = 16;
-const columns = canvas.width / fontSize;
-const drops = Array(Math.floor(columns)).fill(1);
-
-function draw() {
-  ctx.fillStyle = "rgba(0,0,0,0.05)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle = "#0f0";
-  ctx.font = fontSize + "px monospace";
-  for(let x = 0; x<drops.length; x++){
-    const text = letters.charAt(Math.floor(Math.random()*letters.length));
-    ctx.fillText(text, x*fontSize, drops[x]*fontSize);
-    if(drops[x]*fontSize > canvas.height && Math.random() > 0.975) drops[x] = 0;
-    drops[x]++;
-  }
-}
-setInterval(draw, 50);
-
-window.addEventListener('resize', () => { 
-  canvas.width = window.innerWidth; 
-  canvas.height = window.innerHeight; 
-});
-</script>
+    <script>
+        function placeOrder(product) {
+            // আপনার হোয়াটসঅ্যাপ নাম্বার দিন (88 সহ)
+            const myNumber = "8801794327542"; 
+            
+            const text = `হ্যালো আরডিএক্স লালা ভাই,\nআমি আপনার ওয়েবসাইট থেকে এই অফারটি নিতে চাই:\n📦 অফার: ${product}\n\nআমাকে পেমেন্ট ডিটেইলস দিন।`;
+            
+            const encodedText = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/${myNumber}?text=${encodedText}`;
+            
+            // সরাসরি হোয়াটসঅ্যাপে নিয়ে যাবে
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
 
 </body>
 </html>
