@@ -10,8 +10,17 @@
         .header { background: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
         .brand { color: #6c5ce7; font-weight: bold; font-size: 1.1rem; }
         .balance-badge { background: #6c5ce7; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; }
+        
+        /* ব্যানার ইউটিউব সাইজ (১৬:৯) করার কোড */
         .banner { width: 95%; margin: 15px auto; border-radius: 12px; overflow: hidden; display: block; }
-        .banner img { width: 100%; display: block; border-radius: 12px; }
+        .banner img { 
+            width: 100%; 
+            aspect-ratio: 16 / 9; 
+            object-fit: cover; 
+            display: block; 
+            border-radius: 12px; 
+        }
+
         .section-header { padding: 0 15px; margin: 20px 0 10px; font-size: 0.9rem; font-weight: bold; color: #444; border-left: 4px solid #6c5ce7; margin-left: 15px; }
         .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 15px; }
         .product-card { background: #fff; border-radius: 12px; border: 1px solid #eee; overflow: hidden; text-align: center; padding-bottom: 8px; cursor: pointer; }
@@ -87,7 +96,6 @@
                 { name: "10 BASIC - $12.00", price: "৳ 1400" },
                 { name: "20 BASIC - $22.00", price: "৳ 2500" }
             ],
-            // আপনার দেওয়া নতুন তালিকা অনুযায়ী ২ নম্বর কার্ড আপডেট করা হয়েছে
             offers: [
                 { name: "WEEKLY", price: "BDT 160" },
                 { name: "2X WEEKLY", price: "BDT 320" },
