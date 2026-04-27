@@ -20,42 +20,61 @@
         .banner img { width: 100%; aspect-ratio: 1000 / 398; object-fit: cover; display: block; }
 
         .section-header { padding: 0 15px; margin: 20px 0 10px; font-size: 0.9rem; font-weight: bold; color: #444; border-left: 4px solid #6c5ce7; margin-left: 15px; }
-        .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 15px; }
-        .product-card { background: #fff; border-radius: 12px; border: 1px solid #eee; overflow: hidden; text-align: center; padding-bottom: 10px; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        
+        /* হোমপেজ গ্রিড: এক লাইনে ৩টি কার্ড (ছবির মতো সাইজ) */
+        .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 10px; }
+        .product-card { background: #fff; border-radius: 10px; border: 1px solid #eee; overflow: hidden; text-align: center; padding-bottom: 8px; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
         .product-card:active { transform: scale(0.95); }
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
-        .product-name { font-size: 0.8rem; color: #333; margin-top: 8px; padding: 0 5px; font-weight: bold; }
+        .product-name { font-size: 0.65rem; color: #333; margin-top: 5px; padding: 0 3px; font-weight: 600; line-height: 1.2; height: 1.5em; overflow: hidden; }
         
-        /* Modal Design */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); overflow-y: auto; }
-        .modal-content { background: white; margin: 10% auto; width: 92%; max-width: 450px; border-radius: 15px; overflow: hidden; position: relative; animation: slideIn 0.3s; }
+        /* মোডাল ডিজাইন আপডেট */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); overflow-y: auto; padding-top: 50px; }
+        .modal-content { background: white; margin: 0 auto; width: 92%; max-width: 450px; border-radius: 15px; overflow: hidden; position: relative; animation: slideIn 0.3s; padding-bottom: 20px; }
         @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .modal-header { background: #fff; padding: 15px; text-align: center; font-weight: bold; color: #6c5ce7; border-bottom: 1px solid #eee; }
-        .close-btn { position: absolute; right: 15px; top: 15px; cursor: pointer; color: #888; font-size: 1.5rem; border: none; background: none; }
         
-        /* Footer Styles */
+        /* মোডাল হেডার: ছবির মতো লোগো এবং নাম */
+        .modal-header-wp { background: #fff; padding: 15px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee; position: relative; }
+        .modal-header-logo { width: 50px; height: 50px; border-radius: 8px; overflow: hidden; border: 1px solid #eee; }
+        .modal-header-logo img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-header-title-Area { flex: 1; }
+        .modal-header-title { font-size: 1rem; font-weight: bold; color: #333; margin: 0; }
+        .modal-header-subtitle { font-size: 0.75rem; color: #888; margin: 2px 0 0 0; }
+        .close-btn { position: absolute; right: 10px; top: 10px; cursor: pointer; color: #aaa; font-size: 1.4rem; border: none; background: none; padding: 0; z-index: 10; }
+        .close-btn:hover { color: #333; }
+        
+        /* প্যাকেজ লিস্ট এবং অর্ডার ফর্ম */
+        .package-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
+        .package-item { border: 1px solid #e0e0e0; padding: 12px 5px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; background: #fff; }
+        .package-item:hover { background: #f0edff; border-color: #6c5ce7; }
+        .pkg-name { font-size: 0.8rem; color: #333; font-weight: 600; text-align: center; }
+        .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.75rem; }
+        
+        .order-form-container { padding: 0 15px 15px 15px; }
+        .payment-info { background: #fff4f4; padding: 12px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; border: 1px dashed #d63031; text-align: center; }
+        .copy-box { background: white; border: 1px solid #eee; padding: 6px 12px; border-radius: 6px; margin-top: 8px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1.1rem; }
+        .copy-box:active { transform: scale(0.95); }
+        .copy-icon { font-size: 0.9rem; color: #888; }
+        
+        input { width: 100%; padding: 10px; margin: 6px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 0.85rem; }
+        input:focus { border-color: #6c5ce7; outline: none; }
+        .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 8px; font-size: 0.9rem; }
+        .submit-btn:disabled { background: #ccc; cursor: not-allowed; }
+        
+        /* ফুটার এবং সোশ্যাল মিডিয়া */
         .footer-dark { background: #0a1128; color: white; padding: 40px 20px; text-align: left; margin-top: 30px; }
         .footer-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: #6c5ce7; font-weight: bold; }
         .social-links { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 35px; }
         .social-links a { color: white; border: 1px solid rgba(108, 92, 231, 0.3); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; text-decoration: none; font-size: 1.1rem; background: rgba(255,255,255,0.05); }
-        
         .support-box { background: rgba(108, 92, 231, 0.1); border: 1px solid rgba(108, 92, 231, 0.3); border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
         .support-icon { background: #6c5ce7; color: white; width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
-
+        
+        /* বটম নেভিগেশন */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #eee; z-index: 1000; }
         .nav-item { text-align: center; color: #888; font-size: 0.7rem; text-decoration: none; flex: 1; }
         .nav-item i { display: block; font-size: 1.3rem; margin-bottom: 4px; }
         .nav-item.active { color: #6c5ce7; }
-
         .float-call { position: fixed; bottom: 85px; right: 20px; background: #d63031; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 999; text-decoration: none; }
-        
-        .package-item { border: 1px solid #e0e0e0; padding: 15px 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; background: #fff; }
-        .package-item:hover { background: #f0edff; border-color: #6c5ce7; }
-        .pkg-name { font-size: 0.8rem; color: #333; font-weight: 600; text-align: center; }
-        .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.8rem; }
-        .copy-box { background: white; border: 1px solid #eee; padding: 8px 15px; border-radius: 6px; margin-top: 10px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1.2rem; }
-        .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 14px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
     </style>
 </head>
 <body>
@@ -78,19 +97,19 @@
     <div class="section-header">FREE FIRE TOPUP</div>
 
     <div class="card-grid">
-        <div class="product-card" onclick="openPkgModal('FF Guild glory', 'guild')">
+        <div class="product-card" onclick="openPkgModal('FF Guild glory', 'guild', 'glory.jpg')">
             <img src="glory.jpg" alt="Guild">
             <div class="product-name">FF Guild glory</div>
         </div>
-        <div class="product-card" onclick="openPkgModal('UID TOPUP (BD)', 'offers')">
+        <div class="product-card" onclick="openPkgModal('UID TOPUP (BD)', 'offers', 'offer.jpg')">
             <img src="offer.jpg" alt="Offer">
             <div class="product-name">UID Diamond Topup</div>
         </div>
-        <div class="product-card" onclick="openPkgModal('Free Fire - 200 Like', 'likes')">
+        <div class="product-card" onclick="openPkgModal('Free Fire - 200 Like', 'likes', 'like.jpg')">
             <img src="like.jpg" alt="Like">
-            <div class="product-name">Free Fire - 200 Like</div>
+            <div class="product-name">Free Fire - 200 Like প্রতিদিন</div>
         </div>
-        <div class="product-card" onclick="openPkgModal('Weekly/Monthly Offer', 'weekly_monthly')">
+        <div class="product-card" onclick="openPkgModal('Weekly/Monthly Offer', 'weekly_monthly', 'offer.jpg')">
             <img src="offer.jpg" alt="Weekly Monthly">
             <div class="product-name">Weekly/Monthly Offer</div>
         </div>
@@ -104,7 +123,6 @@
             <a href="https://youtube.com/@lalagamer100?si=ytHaM4-RPMm06QPK" target="_blank"><i class="fab fa-youtube"></i></a>
             <a href="https://www.instagram.com/mrkuddusofficial" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
-
         <div class="footer-title">Support Center</div>
         <a href="https://t.me/your_telegram" class="support-box">
             <div class="support-icon"><i class="fab fa-telegram-plane"></i></div>
@@ -113,7 +131,6 @@
                 <div style="font-size: 0.95rem; font-weight: bold;">টেলিগ্রামে সাপোর্ট</div>
             </div>
         </a>
-
         <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; font-size: 0.75rem; opacity: 0.5;">
             © LALA TOPUP 2026 | All Rights Reserved | Developed By <span style="color: #6c5ce7; font-weight: bold;">LALA</span>
         </div>
@@ -132,11 +149,17 @@
 
     <div id="pkgModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <span id="modalTitle">Selection</span>
-                <button class="close-btn" onclick="closeAllModals()">&times;</button>
+            <button class="close-btn" onclick="closeAllModals()">&times;</button>
+            <div class="modal-header-wp">
+                <div class="modal-header-logo" id="modalLogoArea">
+                    <img src="" alt="Game Logo" id="modalLogoImg">
+                </div>
+                <div class="modal-header-title-Area">
+                    <h2 class="modal-header-title" id="modalTitle">Selection</h2>
+                    <p class="modal-header-subtitle">Game / Top up</p>
+                </div>
             </div>
-            <div class="package-list" id="listContent" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px;"></div>
+            <div class="package-list" id="listContent"></div>
         </div>
     </div>
 
@@ -146,21 +169,23 @@
                 <span>অর্ডার সম্পন্ন করুন</span>
                 <button class="close-btn" onclick="closeAllModals()">&times;</button>
             </div>
-            <div style="padding: 20px;">
-                <div style="background: #fff4f4; padding: 15px; border-radius: 10px; text-align: center; border: 1px dashed #d63031; margin-bottom: 15px;">
-                    বিকাশ পার্সোনাল<br>
-                    <div class="copy-box" onclick="copyNumber('01794327542')">
-                        <span>01794327542</span>
-                        <i class="fas fa-copy"></i>
+            <div class="order-form-container">
+                <div style="margin-top: 15px;">
+                    <div style="background: #fff4f4; padding: 12px; border-radius: 10px; text-align: center; border: 1px dashed #d63031; margin-bottom: 15px;">
+                        বিকাশ পার্সোনাল<br>
+                        <div class="copy-box" onclick="copyNumber('01794327542')">
+                            <span>01794327542</span>
+                            <i class="fas fa-copy copy-icon"></i>
+                        </div>
                     </div>
+                    <form id="topupForm">
+                        <input type="hidden" id="selectedPackage">
+                        <input type="number" name="player_id" placeholder="প্লেয়ার UID (আইডি কোড)" required>
+                        <input type="tel" name="phone" placeholder="আপনার মোবাইল নাম্বার" required>
+                        <input type="text" name="payment" placeholder="বিকাশ Transaction ID (TrxID)" required>
+                        <button type="submit" class="submit-btn" id="submitBtn">অর্ডার কনফার্ম করুন</button>
+                    </form>
                 </div>
-                <form id="topupForm">
-                    <input type="hidden" id="selectedPackage">
-                    <input type="number" name="player_id" placeholder="প্লেয়ার UID (আইডি কোড)" required>
-                    <input type="tel" name="phone" placeholder="আপনার মোবাইল নাম্বার" required>
-                    <input type="text" name="payment" placeholder="বিকাশ Transaction ID (TrxID)" required>
-                    <button type="submit" class="submit-btn" id="submitBtn">অর্ডার কনফার্ম করুন</button>
-                </form>
             </div>
         </div>
     </div>
@@ -171,27 +196,9 @@
         let usedTrxIDs = JSON.parse(localStorage.getItem('lala_used_trx')) || [];
 
         const products = {
-            guild: [
-                {name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, 
-                {name:"5 BASIC", price:"৳ 800"}, {name:"10 BASIC", price:"৳ 1400"}
-            ],
-            offers: [
-                {name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 43"},
-                {name:"115 Diamond", price:"BDT 85"}, {name:"240 Diamond", price:"BDT 165"},
-                {name:"355 Diamond", price:"BDT 244"}, {name:"480 Diamond", price:"BDT 321"},
-                {name:"610 Diamond", price:"BDT 410"}, {name:"850 Diamond", price:"BDT 566"},
-                {name:"1240 Diamond", price:"BDT 805"}, {name:"2530 Diamond", price:"BDT 1600"},
-                {name:"5060 Diamond", price:"BDT 3200"}, {name:"10120 Diamond", price:"BDT 6399"}
-            ],
-            weekly_monthly: [
-                {name:"WEEKLY", price:"BDT 160"},
-                {name:"2X WEEKLY", price:"BDT 320"},
-                {name:"3X WEEKLY", price:"BDT 480"},
-                {name:"MONTHLY", price:"BDT 770"},
-                {name:"2X MONTHLY", price:"BDT 1540"},
-                {name:"1WEEKLY+1MONTHLY", price:"BDT 930"},
-                {name:"3WEEKLY+1MONTHLY", price:"BDT 1250"}
-            ],
+            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, {name:"5 BASIC", price:"৳ 800"}, {name:"10 BASIC", price:"৳ 1400"}],
+            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 43"}, {name:"115 Diamond", price:"BDT 85"}, {name:"240 Diamond", price:"BDT 165"}, {name:"355 Diamond", price:"BDT 244"}, {name:"480 Diamond", price:"BDT 321"}, {name:"610 Diamond", price:"BDT 410"}, {name:"850 Diamond", price:"BDT 566"}, {name:"1240 Diamond", price:"BDT 805"}, {name:"2530 Diamond", price:"BDT 1600"}, {name:"5060 Diamond", price:"BDT 3200"}, {name:"10120 Diamond", price:"BDT 6399"}],
+            weekly_monthly: [{name:"WEEKLY", price:"BDT 160"}, {name:"2X WEEKLY", price:"BDT 320"}, {name:"3X WEEKLY", price:"BDT 480"}, {name:"MONTHLY", price:"BDT 770"}, {name:"2X MONTHLY", price:"BDT 1540"}, {name:"1WEEKLY+1MONTHLY", price:"BDT 930"}, {name:"3WEEKLY+1MONTHLY", price:"BDT 1250"}],
             likes: [{ name: "200 FF LIKE", price: "BDT 45" }]
         };
 
@@ -199,8 +206,11 @@
             navigator.clipboard.writeText(num).then(() => alert("বিকাশ নাম্বার কপি হয়েছে!"));
         }
 
-        function openPkgModal(title, key) {
+        function openPkgModal(title, key, logoSrc) {
+            // পপ-আপের হেডার আপডেট
             document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalLogoImg').src = logoSrc;
+            
             const list = document.getElementById('listContent');
             list.innerHTML = '';
             products[key].forEach(item => {
