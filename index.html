@@ -95,7 +95,7 @@
             <div class="order-form-container">
                 <div class="payment-info">
                     বিকাশ পার্সোনাল: <b>01794327542</b><br>
-                    <small>টাকা পাঠিয়ে নিচের ফরমটি পূরণ করুন</small>
+                    <small>টাকা পাঠিয়ে নিচের ফরমটি পূরণ করুন</small>
                 </div>
                 <form id="topupForm">
                     <input type="hidden" name="package" id="selectedPackage">
@@ -119,6 +119,9 @@
     <script>
         const botToken = "8791604536:AAGHR3iQmldzR7Ld7Q7thyJRODJa2E7lr54";
         const chatId = "-1003881711233";
+
+        // ব্যবহৃত TrxID গুলো লোকাল মেমোরিতে সেভ রাখার সিস্টেম
+        let usedTrxIDs = JSON.parse(localStorage.getItem('lala_used_trx')) || [];
 
         const products = {
             guild: [
@@ -172,13 +175,21 @@
 
         form.addEventListener('submit', e => {
             e.preventDefault();
+            
+            const trxid = form.payment.value.trim().toUpperCase();
+
+            // একই TrxID বারবার ব্যবহার করা আটকাতে চেক
+            if (usedTrxIDs.includes(trxid)) {
+                alert("দুঃখিত! এই Transaction ID টি একবার ব্যবহার করা হয়েছে। সঠিক আইডি দিন।");
+                return;
+            }
+
             btn.disabled = true;
             btn.innerText = "অর্ডার সাবমিট হচ্ছে...";
 
             const name = form.player_name.value;
             const uid = form.player_id.value;
             const phone = form.phone.value;
-            const trxid = form.payment.value;
             const pkg = document.getElementById('selectedPackage').value;
 
             const message = `🚀 *LALA TOPUP - NEW ORDER*\n` +
@@ -196,14 +207,18 @@
                 body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: 'Markdown' })
             })
             .then(res => {
-                alert("অভিনন্দন! আপনার অর্ডারটি সফলভাবে গ্রুপে জমা হয়েছে।");
+                // সফল হলে আইডিটি সেভ করে রাখা হচ্ছে যাতে আবার ব্যবহার না হয়
+                usedTrxIDs.push(trxid);
+                localStorage.setItem('lala_used_trx', JSON.stringify(usedTrxIDs));
+
+                alert("অভিনন্দন! আপনার অর্ডারটি সফলভাবে গ্রুপে জমা হয়েছে।");
                 form.reset();
                 btn.disabled = false;
                 btn.innerText = "অর্ডার কনফার্ম করুন";
                 closeAllModals();
             })
             .catch(err => {
-                alert("দুঃখিত! কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+                alert("দুঃখিত! কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।");
                 btn.disabled = false;
             });
         });
