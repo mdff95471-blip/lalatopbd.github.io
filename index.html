@@ -6,6 +6,7 @@
     <title>LALA TOPUP - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* বেসিক স্টাইল */
         body { background-color: #f8f9fa; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 70px; }
         .header { background: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
         .brand { color: #6c5ce7; font-weight: bold; font-size: 1.1rem; }
@@ -20,7 +21,7 @@
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
         .product-name { font-size: 0.75rem; color: #333; margin-top: 5px; padding: 0 5px; font-weight: 500; }
         
-        /* Modal Styles */
+        /* মডেল (পপ-আপ) স্টাইল */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); overflow-y: auto; }
         .modal-content { background: white; margin: 10% auto; width: 92%; max-width: 450px; border-radius: 15px; overflow: hidden; position: relative; animation: slideIn 0.3s; }
         @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
@@ -28,13 +29,35 @@
         .modal-header { background: #fff; padding: 15px; text-align: center; font-weight: bold; color: #6c5ce7; border-bottom: 1px solid #eee; }
         .close-btn { position: absolute; right: 15px; top: 15px; cursor: pointer; color: #888; font-size: 1.5rem; border: none; background: none; }
         
-        /* ডায়মন্ড গ্রিড ডিজাইন (আপনার স্ক্রিনশটের মতো) */
-        .package-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
-        .package-item { border: 1px solid #eee; padding: 15px 10px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; background: #fff; text-align: center; }
-        .package-item:hover { background: #f0edff; border-color: #6c5ce7; }
-        .pkg-name { font-size: 0.85rem; color: #333; font-weight: bold; margin-bottom: 4px; }
+        /* ডায়মন্ড গ্রিড ডিজাইন (২টি কলাম) */
+        .package-list { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 12px; 
+            padding: 15px; 
+        }
+        .package-item { 
+            border: 1px solid #e0e0e0; 
+            padding: 15px 5px; 
+            border-radius: 10px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .package-item:hover { 
+            background: #f0edff; 
+            border-color: #6c5ce7; 
+            transform: translateY(-2px);
+        }
+        .pkg-name { font-size: 0.85rem; color: #333; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; }
         .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.8rem; }
 
+        /* অর্ডার ফরম */
         .order-form-container { padding: 20px; }
         .payment-info { background: #fff4f4; padding: 12px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; border: 1px dashed #d63031; text-align: center; }
         .payment-info b { color: #d63031; font-size: 1.1rem; }
@@ -44,6 +67,7 @@
         .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 14px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem; }
         .submit-btn:disabled { background: #ccc; cursor: not-allowed; }
 
+        /* বটম নেভিগেশন */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #eee; }
         .nav-item { text-align: center; color: #888; font-size: 0.65rem; text-decoration: none; }
         .nav-item i { display: block; font-size: 1.2rem; margin-bottom: 3px; }
@@ -102,7 +126,7 @@
                 <form id="topupForm">
                     <input type="hidden" name="package" id="selectedPackage">
                     <input type="text" name="player_name" placeholder="আপনার নাম" required>
-                    <input type="number" name="player_id" placeholder="প্লেয়ার UID (আইডি কোড)" required>
+                    <input type="number" name="player_id" placeholder="플레이য়ার UID (আইডি কোড)" required>
                     <input type="tel" name="phone" placeholder="আপনার মোবাইল নাম্বার" required>
                     <input type="text" name="payment" placeholder="বিকাশ Transaction ID (TrxID)" required>
                     <button type="submit" class="submit-btn" id="submitBtn">অর্ডার কনফার্ম করুন</button>
@@ -119,6 +143,7 @@
     </div>
 
     <script>
+        // আপনার টেলিগ্রাম বোট ডিটেইলস
         const botToken = "8791604536:AAGHR3iQmldzR7Ld7Q7thyJRODJa2E7lr54";
         const chatId = "-1003881711233";
 
@@ -132,7 +157,6 @@
                 { name: "10 BASIC", price: "৳ 1400" }
             ],
             offers: [
-                // আপনার স্ক্রিনশটের মতো ডায়মন্ড প্যাকেজ
                 { name: "25 Diamond", price: "BDT 24" },
                 { name: "50 Diamond", price: "BDT 38" },
                 { name: "115 Diamond", price: "BDT 79" },
@@ -154,7 +178,6 @@
             const list = document.getElementById('listContent');
             list.innerHTML = '';
             
-            // গ্রিড ডিজাইন এপ্লাই করা হচ্ছে
             products[key].forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'package-item';
@@ -183,6 +206,7 @@
             e.preventDefault();
             const trxid = form.payment.value.trim().toUpperCase();
 
+            // ট্রানজেকশন আইডি চেক
             if (usedTrxIDs.includes(trxid)) {
                 alert("দুঃখিত! এই Transaction ID টি একবার ব্যবহার করা হয়েছে।");
                 return;
@@ -225,6 +249,7 @@
             });
         });
 
+        // পপ-আপের বাইরে ক্লিক করলে বন্ধ হবে
         window.onclick = function(event) {
             if (event.target.className === 'modal') closeAllModals();
         }
