@@ -20,18 +20,20 @@
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
         .product-name { font-size: 0.75rem; color: #333; margin-top: 5px; padding: 0 5px; font-weight: 500; }
         
+        /* Modal Styles */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); overflow-y: auto; }
-        .modal-content { background: white; margin: 10% auto; width: 90%; max-width: 450px; border-radius: 15px; overflow: hidden; position: relative; animation: slideIn 0.3s; }
+        .modal-content { background: white; margin: 10% auto; width: 92%; max-width: 450px; border-radius: 15px; overflow: hidden; position: relative; animation: slideIn 0.3s; }
         @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
         .modal-header { background: #fff; padding: 15px; text-align: center; font-weight: bold; color: #6c5ce7; border-bottom: 1px solid #eee; }
         .close-btn { position: absolute; right: 15px; top: 15px; cursor: pointer; color: #888; font-size: 1.5rem; border: none; background: none; }
         
-        .package-list { padding: 15px; }
-        .package-item { border: 1px solid #eee; margin-bottom: 10px; padding: 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s; }
+        /* ডায়মন্ড গ্রিড ডিজাইন (আপনার স্ক্রিনশটের মতো) */
+        .package-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
+        .package-item { border: 1px solid #eee; padding: 15px 10px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; background: #fff; text-align: center; }
         .package-item:hover { background: #f0edff; border-color: #6c5ce7; }
-        .pkg-name { font-size: 0.85rem; color: #444; font-weight: 500; }
-        .pkg-price { color: #6c5ce7; font-weight: bold; }
+        .pkg-name { font-size: 0.85rem; color: #333; font-weight: bold; margin-bottom: 4px; }
+        .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.8rem; }
 
         .order-form-container { padding: 20px; }
         .payment-info { background: #fff4f4; padding: 12px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; border: 1px dashed #d63031; text-align: center; }
@@ -66,13 +68,13 @@
             <img src="glory.jpg" alt="Guild">
             <div class="product-name">FF Guild glory</div>
         </div>
-        <div class="product-card" onclick="openPkgModal('Weekly/Monthly Offer', 'offers')">
+        <div class="product-card" onclick="openPkgModal('UID TOPUP (BD)', 'offers')">
             <img src="offer.jpg" alt="Offer">
-            <div class="product-name">Weekly/Monthly Offer</div>
+            <div class="product-name">UID Diamond Topup</div>
         </div>
         <div class="product-card" onclick="openPkgModal('Free Fire - 200 Like', 'likes')">
             <img src="like.jpg" alt="Like">
-            <div class="product-name">Free Fire - 200 Like প্রতিদিন</div>
+            <div class="product-name">Free Fire - 200 Like</div>
         </div>
     </div>
 
@@ -120,28 +122,30 @@
         const botToken = "8791604536:AAGHR3iQmldzR7Ld7Q7thyJRODJa2E7lr54";
         const chatId = "-1003881711233";
 
-        // ব্যবহৃত TrxID গুলো লোকাল মেমোরিতে সেভ রাখার সিস্টেম
         let usedTrxIDs = JSON.parse(localStorage.getItem('lala_used_trx')) || [];
 
         const products = {
             guild: [
-                { name: "1 BASIC - $2.30", price: "৳ 250" },
-                { name: "2 BASIC - $3.00", price: "৳ 420" },
-                { name: "5 BASIC - $7.00", price: "৳ 800" },
-                { name: "10 BASIC - $12.00", price: "৳ 1400" },
-                { name: "20 BASIC - $22.00", price: "৳ 2500" }
+                { name: "1 BASIC", price: "৳ 250" },
+                { name: "2 BASIC", price: "৳ 420" },
+                { name: "5 BASIC", price: "৳ 800" },
+                { name: "10 BASIC", price: "৳ 1400" }
             ],
             offers: [
-                { name: "WEEKLY", price: "BDT 160" },
-                { name: "2X WEEKLY", price: "BDT 320" },
-                { name: "3X WEEKLY", price: "BDT 480" },
-                { name: "MONTHLY", price: "BDT 770" },
-                { name: "2X MONTHLY", price: "BDT 1540" },
-                { name: "1WEEKLY+1MONTHLY", price: "BDT 925" },
-                { name: "3WEEKLY+1MONTHLY", price: "BDT 1245" }
+                // আপনার স্ক্রিনশটের মতো ডায়মন্ড প্যাকেজ
+                { name: "25 Diamond", price: "BDT 24" },
+                { name: "50 Diamond", price: "BDT 38" },
+                { name: "115 Diamond", price: "BDT 79" },
+                { name: "240 Diamond", price: "BDT 158" },
+                { name: "355 Diamond", price: "BDT 238" },
+                { name: "480 Diamond", price: "BDT 316" },
+                { name: "610 Diamond", price: "BDT 405" },
+                { name: "850 Diamond", price: "BDT 560" },
+                { name: "WEEKLY", price: "BDT 154" },
+                { name: "MONTHLY", price: "BDT 765" }
             ],
             likes: [
-                { name: "200 FF LIKE (প্রতিদিন ১বার)", price: "BDT 45" }
+                { name: "200 FF LIKE", price: "BDT 45" }
             ]
         };
 
@@ -149,6 +153,8 @@
             document.getElementById('modalTitle').innerText = title;
             const list = document.getElementById('listContent');
             list.innerHTML = '';
+            
+            // গ্রিড ডিজাইন এপ্লাই করা হচ্ছে
             products[key].forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'package-item';
@@ -175,12 +181,10 @@
 
         form.addEventListener('submit', e => {
             e.preventDefault();
-            
             const trxid = form.payment.value.trim().toUpperCase();
 
-            // একই TrxID বারবার ব্যবহার করা আটকাতে চেক
             if (usedTrxIDs.includes(trxid)) {
-                alert("দুঃখিত! এই Transaction ID টি একবার ব্যবহার করা হয়েছে। সঠিক আইডি দিন।");
+                alert("দুঃখিত! এই Transaction ID টি একবার ব্যবহার করা হয়েছে।");
                 return;
             }
 
@@ -207,18 +211,16 @@
                 body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: 'Markdown' })
             })
             .then(res => {
-                // সফল হলে আইডিটি সেভ করে রাখা হচ্ছে যাতে আবার ব্যবহার না হয়
                 usedTrxIDs.push(trxid);
                 localStorage.setItem('lala_used_trx', JSON.stringify(usedTrxIDs));
-
-                alert("অভিনন্দন! আপনার অর্ডারটি সফলভাবে গ্রুপে জমা হয়েছে।");
+                alert("অভিনন্দন! আপনার অর্ডারটি সফলভাবে জমা হয়েছে।");
                 form.reset();
                 btn.disabled = false;
                 btn.innerText = "অর্ডার কনফার্ম করুন";
                 closeAllModals();
             })
             .catch(err => {
-                alert("দুঃখিত! কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+                alert("ভুল হয়েছে। আবার চেষ্টা করুন।");
                 btn.disabled = false;
             });
         });
