@@ -20,11 +20,11 @@
         .banner img { width: 100%; aspect-ratio: 1000 / 398; object-fit: cover; display: block; }
 
         .section-header { padding: 0 15px; margin: 20px 0 10px; font-size: 0.9rem; font-weight: bold; color: #444; border-left: 4px solid #6c5ce7; margin-left: 15px; }
-        .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 15px; }
-        .product-card { background: #fff; border-radius: 12px; border: 1px solid #eee; overflow: hidden; text-align: center; padding-bottom: 8px; cursor: pointer; transition: 0.2s; }
+        .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 15px; }
+        .product-card { background: #fff; border-radius: 12px; border: 1px solid #eee; overflow: hidden; text-align: center; padding-bottom: 10px; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
         .product-card:active { transform: scale(0.95); }
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
-        .product-name { font-size: 0.75rem; color: #333; margin-top: 5px; padding: 0 5px; font-weight: 500; }
+        .product-name { font-size: 0.8rem; color: #333; margin-top: 8px; padding: 0 5px; font-weight: bold; }
         
         /* Modal Design */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); overflow-y: auto; }
@@ -37,8 +37,7 @@
         .footer-dark { background: #0a1128; color: white; padding: 40px 20px; text-align: left; margin-top: 30px; }
         .footer-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: #6c5ce7; font-weight: bold; }
         .social-links { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 35px; }
-        .social-links a { color: white; border: 1px solid rgba(108, 92, 231, 0.3); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; text-decoration: none; font-size: 1.1rem; background: rgba(255,255,255,0.05); transition: 0.3s; }
-        .social-links a:hover { background: #6c5ce7; border-color: #6c5ce7; }
+        .social-links a { color: white; border: 1px solid rgba(108, 92, 231, 0.3); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; text-decoration: none; font-size: 1.1rem; background: rgba(255,255,255,0.05); }
         
         .support-box { background: rgba(108, 92, 231, 0.1); border: 1px solid rgba(108, 92, 231, 0.3); border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
         .support-icon { background: #6c5ce7; color: white; width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
@@ -52,7 +51,7 @@
         
         .package-item { border: 1px solid #e0e0e0; padding: 15px 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; background: #fff; }
         .package-item:hover { background: #f0edff; border-color: #6c5ce7; }
-        .pkg-name { font-size: 0.85rem; color: #333; font-weight: 600; text-align: center; }
+        .pkg-name { font-size: 0.8rem; color: #333; font-weight: 600; text-align: center; }
         .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.8rem; }
         .copy-box { background: white; border: 1px solid #eee; padding: 8px 15px; border-radius: 6px; margin-top: 10px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1.2rem; }
         .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 14px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; }
@@ -90,6 +89,10 @@
         <div class="product-card" onclick="openPkgModal('Free Fire - 200 Like', 'likes')">
             <img src="like.jpg" alt="Like">
             <div class="product-name">Free Fire - 200 Like</div>
+        </div>
+        <div class="product-card" onclick="openPkgModal('Weekly/Monthly Offer', 'weekly_monthly')">
+            <img src="offer.jpg" alt="Weekly Monthly">
+            <div class="product-name">Weekly/Monthly Offer</div>
         </div>
     </div>
 
@@ -169,26 +172,25 @@
 
         const products = {
             guild: [
-                {name:"1 BASIC", price:"৳ 250"}, 
-                {name:"2 BASIC", price:"৳ 420"}, 
-                {name:"5 BASIC", price:"৳ 800"}, 
-                {name:"10 BASIC", price:"৳ 1400"}
+                {name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, 
+                {name:"5 BASIC", price:"৳ 800"}, {name:"10 BASIC", price:"৳ 1400"}
             ],
             offers: [
+                {name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 43"},
+                {name:"115 Diamond", price:"BDT 85"}, {name:"240 Diamond", price:"BDT 165"},
+                {name:"355 Diamond", price:"BDT 244"}, {name:"480 Diamond", price:"BDT 321"},
+                {name:"610 Diamond", price:"BDT 410"}, {name:"850 Diamond", price:"BDT 566"},
+                {name:"1240 Diamond", price:"BDT 805"}, {name:"2530 Diamond", price:"BDT 1600"},
+                {name:"5060 Diamond", price:"BDT 3200"}, {name:"10120 Diamond", price:"BDT 6399"}
+            ],
+            weekly_monthly: [
                 {name:"WEEKLY", price:"BDT 160"},
+                {name:"2X WEEKLY", price:"BDT 320"},
+                {name:"3X WEEKLY", price:"BDT 480"},
                 {name:"MONTHLY", price:"BDT 770"},
-                {name:"25 Diamond", price:"BDT 24"},
-                {name:"50 Diamond", price:"BDT 43"},
-                {name:"115 Diamond", price:"BDT 85"},
-                {name:"240 Diamond", price:"BDT 165"},
-                {name:"355 Diamond", price:"BDT 244"},
-                {name:"480 Diamond", price:"BDT 321"},
-                {name:"610 Diamond", price:"BDT 410"},
-                {name:"850 Diamond", price:"BDT 566"},
-                {name:"1240 Diamond", price:"BDT 805"},
-                {name:"2530 Diamond", price:"BDT 1600"},
-                {name:"5060 Diamond", price:"BDT 3200"},
-                {name:"10120 Diamond", price:"BDT 6399"}
+                {name:"2X MONTHLY", price:"BDT 1540"},
+                {name:"1WEEKLY+1MONTHLY", price:"BDT 930"},
+                {name:"3WEEKLY+1MONTHLY", price:"BDT 1250"}
             ],
             likes: [{ name: "200 FF LIKE", price: "BDT 45" }]
         };
