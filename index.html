@@ -6,7 +6,6 @@
     <title>LALA TOPUP - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* বেসিক স্টাইল */
         body { background-color: #f8f9fa; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 70px; }
         .header { background: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
         .brand { color: #6c5ce7; font-weight: bold; font-size: 1.1rem; }
@@ -21,7 +20,6 @@
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
         .product-name { font-size: 0.75rem; color: #333; margin-top: 5px; padding: 0 5px; font-weight: 500; }
         
-        /* মডেল (পপ-আপ) স্টাইল */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); overflow-y: auto; }
         .modal-content { background: white; margin: 10% auto; width: 92%; max-width: 450px; border-radius: 15px; overflow: hidden; position: relative; animation: slideIn 0.3s; }
         @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
@@ -29,45 +27,25 @@
         .modal-header { background: #fff; padding: 15px; text-align: center; font-weight: bold; color: #6c5ce7; border-bottom: 1px solid #eee; }
         .close-btn { position: absolute; right: 15px; top: 15px; cursor: pointer; color: #888; font-size: 1.5rem; border: none; background: none; }
         
-        /* ডায়মন্ড গ্রিড ডিজাইন (২টি কলাম) */
-        .package-list { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 12px; 
-            padding: 15px; 
-        }
-        .package-item { 
-            border: 1px solid #e0e0e0; 
-            padding: 15px 5px; 
-            border-radius: 10px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-            background: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-        .package-item:hover { 
-            background: #f0edff; 
-            border-color: #6c5ce7; 
-            transform: translateY(-2px);
-        }
-        .pkg-name { font-size: 0.85rem; color: #333; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; }
+        .package-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px; }
+        .package-item { border: 1px solid #e0e0e0; padding: 15px 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; background: #fff; }
+        .package-item:hover { background: #f0edff; border-color: #6c5ce7; }
+        .pkg-name { font-size: 0.85rem; color: #333; font-weight: 600; margin-bottom: 4px; }
         .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.8rem; }
 
-        /* অর্ডার ফরম */
         .order-form-container { padding: 20px; }
-        .payment-info { background: #fff4f4; padding: 12px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; border: 1px dashed #d63031; text-align: center; }
-        .payment-info b { color: #d63031; font-size: 1.1rem; }
+        
+        /* কপি করার জন্য স্পেশাল ডিজাইন */
+        .payment-info { background: #fff4f4; padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 0.9rem; border: 1px dashed #d63031; text-align: center; }
+        .copy-box { background: white; border: 1px solid #eee; padding: 8px; border-radius: 6px; margin-top: 10px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1.1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .copy-box:active { transform: scale(0.95); }
+        .copy-icon { font-size: 0.9rem; color: #888; }
 
         input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 0.9rem; }
         input:focus { border-color: #6c5ce7; outline: none; }
         .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 14px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem; }
         .submit-btn:disabled { background: #ccc; cursor: not-allowed; }
 
-        /* বটম নেভিগেশন */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #eee; }
         .nav-item { text-align: center; color: #888; font-size: 0.65rem; text-decoration: none; }
         .nav-item i { display: block; font-size: 1.2rem; margin-bottom: 3px; }
@@ -120,13 +98,16 @@
             </div>
             <div class="order-form-container">
                 <div class="payment-info">
-                    বিকাশ পার্সোনাল: <b>01794327542</b><br>
-                    <small>টাকা পাঠিয়ে নিচের ফরমটি পূরণ করুন</small>
+                    বিকাশ পার্সোনাল<br>
+                    <div class="copy-box" onclick="copyNumber('01794327542')">
+                        <span id="targetNum">01794327542</span>
+                        <i class="fas fa-copy copy-icon"></i>
+                    </div><br>
+                    <small style="margin-top: 8px; display: block; color: #666;">নাম্বারে ক্লিক করে কপি করুন এবং টাকা পাঠিয়ে নিচের ফরমটি পূরণ করুন</small>
                 </div>
                 <form id="topupForm">
                     <input type="hidden" name="package" id="selectedPackage">
-                    <input type="text" name="player_name" placeholder="আপনার নাম" required>
-                    <input type="number" name="player_id" placeholder="플레이য়ার UID (আইডি কোড)" required>
+                    <input type="number" name="player_id" placeholder="প্লেয়ার UID (আইডি কোড)" required>
                     <input type="tel" name="phone" placeholder="আপনার মোবাইল নাম্বার" required>
                     <input type="text" name="payment" placeholder="বিকাশ Transaction ID (TrxID)" required>
                     <button type="submit" class="submit-btn" id="submitBtn">অর্ডার কনফার্ম করুন</button>
@@ -143,7 +124,6 @@
     </div>
 
     <script>
-        // আপনার টেলিগ্রাম বোট ডিটেইলস
         const botToken = "8791604536:AAGHR3iQmldzR7Ld7Q7thyJRODJa2E7lr54";
         const chatId = "-1003881711233";
 
@@ -151,33 +131,28 @@
 
         const products = {
             guild: [
-                { name: "1 BASIC", price: "৳ 250" },
-                { name: "2 BASIC", price: "৳ 420" },
-                { name: "5 BASIC", price: "৳ 800" },
-                { name: "10 BASIC", price: "৳ 1400" }
+                { name: "1 BASIC", price: "৳ 250" }, { name: "2 BASIC", price: "৳ 420" },
+                { name: "5 BASIC", price: "৳ 800" }, { name: "10 BASIC", price: "৳ 1400" }
             ],
             offers: [
-                { name: "25 Diamond", price: "BDT 24" },
-                { name: "50 Diamond", price: "BDT 38" },
-                { name: "115 Diamond", price: "BDT 79" },
-                { name: "240 Diamond", price: "BDT 158" },
-                { name: "355 Diamond", price: "BDT 238" },
-                { name: "480 Diamond", price: "BDT 316" },
-                { name: "610 Diamond", price: "BDT 405" },
-                { name: "850 Diamond", price: "BDT 560" },
-                { name: "WEEKLY", price: "BDT 154" },
-                { name: "MONTHLY", price: "BDT 765" }
+                { name: "25 Diamond", price: "BDT 24" }, { name: "50 Diamond", price: "BDT 38" },
+                { name: "115 Diamond", price: "BDT 79" }, { name: "240 Diamond", price: "BDT 158" },
+                { name: "355 Diamond", price: "BDT 238" }, { name: "480 Diamond", price: "BDT 316" },
+                { name: "610 Diamond", price: "BDT 405" }, { name: "850 Diamond", price: "BDT 560" },
+                { name: "WEEKLY", price: "BDT 154" }, { name: "MONTHLY", price: "BDT 765" }
             ],
-            likes: [
-                { name: "200 FF LIKE", price: "BDT 45" }
-            ]
+            likes: [{ name: "200 FF LIKE", price: "BDT 45" }]
         };
+
+        function copyNumber(num) {
+            navigator.clipboard.writeText(num);
+            alert("নাম্বার কপি হয়েছে: " + num);
+        }
 
         function openPkgModal(title, key) {
             document.getElementById('modalTitle').innerText = title;
             const list = document.getElementById('listContent');
             list.innerHTML = '';
-            
             products[key].forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'package-item';
@@ -205,17 +180,11 @@
         form.addEventListener('submit', e => {
             e.preventDefault();
             const trxid = form.payment.value.trim().toUpperCase();
-
-            // ট্রানজেকশন আইডি চেক
-            if (usedTrxIDs.includes(trxid)) {
-                alert("দুঃখিত! এই Transaction ID টি একবার ব্যবহার করা হয়েছে।");
-                return;
-            }
+            if (usedTrxIDs.includes(trxid)) { alert("দুঃখিত! এই TrxID টি ব্যবহার করা হয়েছে।"); return; }
 
             btn.disabled = true;
             btn.innerText = "অর্ডার সাবমিট হচ্ছে...";
 
-            const name = form.player_name.value;
             const uid = form.player_id.value;
             const phone = form.phone.value;
             const pkg = document.getElementById('selectedPackage').value;
@@ -223,7 +192,6 @@
             const message = `🚀 *LALA TOPUP - NEW ORDER*\n` +
                             `━━━━━━━━━━━━━━━━━━\n` +
                             `📦 *Package:* ${pkg}\n` +
-                            `👤 *Name:* ${name}\n` +
                             `🆔 *Player UID:* ${uid}\n` +
                             `📞 *Phone:* ${phone}\n` +
                             `💳 *TrxID:* ${trxid}\n` +
@@ -234,25 +202,22 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: 'Markdown' })
             })
-            .then(res => {
+            .then(() => {
                 usedTrxIDs.push(trxid);
                 localStorage.setItem('lala_used_trx', JSON.stringify(usedTrxIDs));
-                alert("অভিনন্দন! আপনার অর্ডারটি সফলভাবে জমা হয়েছে।");
+                alert("অভিনন্দন! আপনার অর্ডারটি সফলভাবে জমা হয়েছে।");
                 form.reset();
                 btn.disabled = false;
                 btn.innerText = "অর্ডার কনফার্ম করুন";
                 closeAllModals();
             })
-            .catch(err => {
-                alert("ভুল হয়েছে। আবার চেষ্টা করুন।");
+            .catch(() => {
+                alert("ভুল হয়েছে। আবার চেষ্টা করুন।");
                 btn.disabled = false;
             });
         });
 
-        // পপ-আপের বাইরে ক্লিক করলে বন্ধ হবে
-        window.onclick = function(event) {
-            if (event.target.className === 'modal') closeAllModals();
-        }
+        window.onclick = function(event) { if (event.target.className === 'modal') closeAllModals(); }
     </script>
 </body>
 </html>
