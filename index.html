@@ -11,7 +11,6 @@
         .brand { color: #6c5ce7; font-weight: bold; font-size: 1.1rem; }
         .balance-badge { background: #6c5ce7; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; }
         
-        /* নোটিশ বার */
         .notice-bar { background-color: #6c5ce7; color: white; padding: 10px 15px; font-size: 0.85rem; display: flex; align-items: flex-start; position: relative; line-height: 1.4; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .notice-bar b { margin-right: 8px; white-space: nowrap; color: #ffeb3b; }
         .notice-text { flex: 1; }
@@ -49,11 +48,11 @@
         .nav-item i { display: block; font-size: 1.3rem; margin-bottom: 4px; }
         .nav-item.active { color: #6c5ce7; }
 
-        /* Floating Button */
         .float-call { position: fixed; bottom: 85px; right: 20px; background: #d63031; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 999; text-decoration: none; }
         
         .package-item { border: 1px solid #e0e0e0; padding: 15px 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; background: #fff; }
-        .pkg-name { font-size: 0.85rem; color: #333; font-weight: 600; }
+        .package-item:hover { background: #f0edff; border-color: #6c5ce7; }
+        .pkg-name { font-size: 0.85rem; color: #333; font-weight: 600; text-align: center; }
         .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.8rem; }
         .copy-box { background: white; border: 1px solid #eee; padding: 8px 15px; border-radius: 6px; margin-top: 10px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1.2rem; }
         .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 14px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; }
@@ -169,8 +168,28 @@
         let usedTrxIDs = JSON.parse(localStorage.getItem('lala_used_trx')) || [];
 
         const products = {
-            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, {name:"5 BASIC", price:"৳ 800"}, {name:"10 BASIC", price:"৳ 1400"}],
-            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 38"}, {name:"115 Diamond", price:"BDT 79"}, {name:"240 Diamond", price:"BDT 158"}, {name:"WEEKLY", price:"BDT 154"}, {name:"MONTHLY", price:"BDT 765"}],
+            guild: [
+                {name:"1 BASIC", price:"৳ 250"}, 
+                {name:"2 BASIC", price:"৳ 420"}, 
+                {name:"5 BASIC", price:"৳ 800"}, 
+                {name:"10 BASIC", price:"৳ 1400"}
+            ],
+            offers: [
+                {name:"WEEKLY", price:"BDT 160"},
+                {name:"MONTHLY", price:"BDT 770"},
+                {name:"25 Diamond", price:"BDT 24"},
+                {name:"50 Diamond", price:"BDT 43"},
+                {name:"115 Diamond", price:"BDT 85"},
+                {name:"240 Diamond", price:"BDT 165"},
+                {name:"355 Diamond", price:"BDT 244"},
+                {name:"480 Diamond", price:"BDT 321"},
+                {name:"610 Diamond", price:"BDT 410"},
+                {name:"850 Diamond", price:"BDT 566"},
+                {name:"1240 Diamond", price:"BDT 805"},
+                {name:"2530 Diamond", price:"BDT 1600"},
+                {name:"5060 Diamond", price:"BDT 3200"},
+                {name:"10120 Diamond", price:"BDT 6399"}
+            ],
             likes: [{ name: "200 FF LIKE", price: "BDT 45" }]
         };
 
