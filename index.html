@@ -21,13 +21,14 @@
 
         .section-header { padding: 0 15px; margin: 20px 0 10px; font-size: 0.9rem; font-weight: bold; color: #444; border-left: 4px solid #6c5ce7; margin-left: 15px; }
         
+        /* হোমপেজ গ্রিড: ৩টি কার্ড */
         .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 10px; }
         .product-card { background: #fff; border-radius: 10px; border: 1px solid #eee; overflow: hidden; text-align: center; padding-bottom: 8px; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
         .product-card:active { transform: scale(0.95); }
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
         .product-name { font-size: 0.65rem; color: #333; margin-top: 5px; padding: 0 3px; font-weight: 600; line-height: 1.2; height: 1.5em; overflow: hidden; }
         
-        /* Modal Design Update */
+        /* মোডাল ডিজাইন */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); overflow-y: auto; }
         .modal-content { background: white; margin: 2% auto; width: 95%; max-width: 450px; border-radius: 15px; overflow: hidden; position: relative; animation: slideIn 0.3s; padding-bottom: 20px; }
         @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
@@ -38,34 +39,38 @@
         .modal-header-title-Area { flex: 1; }
         .modal-header-title { font-size: 1rem; font-weight: bold; color: #333; margin: 0; }
         .modal-header-subtitle { font-size: 0.75rem; color: #888; margin: 2px 0 0 0; }
-        .close-btn { position: absolute; right: 10px; top: 10px; cursor: pointer; color: #aaa; font-size: 1.4rem; border: none; background: none; }
+        .close-btn { position: absolute; right: 10px; top: 10px; cursor: pointer; color: #aaa; font-size: 1.4rem; border: none; background: none; z-index: 10; }
 
-        /* Step Styles */
-        .step-title { background: #f1f1f1; padding: 8px 15px; font-size: 0.85rem; font-weight: bold; display: flex; align-items: center; gap: 8px; margin-top: 10px; color: #333; }
+        /* স্টেপ ডিজাইন */
+        .step-title { background: #f1f1f1; padding: 8px 15px; font-size: 0.85rem; font-weight: bold; display: flex; align-items: center; gap: 8px; margin-top: 10px; }
         .step-num { background: #6c5ce7; color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; }
         
         .package-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
-        .package-item { border: 1px solid #e0e0e0; padding: 12px 5px; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .package-item { border: 1px solid #e0e0e0; padding: 12px 5px; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.2s; background: #fff; }
         .package-item.selected { border-color: #6c5ce7; background: #f0edff; box-shadow: 0 0 0 1px #6c5ce7; }
         .pkg-name { font-size: 0.8rem; color: #333; font-weight: 600; display: block; }
-        .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.75rem; display: block; margin-top: 2px; }
+        .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.75rem; display: block; }
         
         .order-form-container { padding: 0 15px; }
-        .payment-info { background: #fff4f4; padding: 12px; border-radius: 8px; margin: 10px 0; font-size: 0.8rem; border: 1px dashed #d63031; text-align: center; }
-        .copy-box { background: white; border: 1px solid #eee; padding: 5px 12px; border-radius: 6px; margin-top: 5px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; color: #d63031; font-weight: bold; }
+        .payment-info { background: #fff4f4; padding: 12px; border-radius: 8px; border: 1px dashed #d63031; text-align: center; margin: 10px 0; }
+        .copy-box { background: white; border: 1px solid #eee; padding: 5px 12px; border-radius: 6px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; color: #d63031; font-weight: bold; margin-top: 5px; }
         
         input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 0.85rem; }
-        .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 14px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem; }
+        .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 14px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+
+        /* তোমার আগের ফুটার ডিজাইন */
+        .footer-dark { background: #0a1128; color: white; padding: 40px 20px; text-align: left; margin-top: 30px; }
+        .footer-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: #6c5ce7; font-weight: bold; }
+        .social-links { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 35px; }
+        .social-links a { color: white; border: 1px solid rgba(108, 92, 231, 0.3); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; text-decoration: none; font-size: 1.1rem; background: rgba(255,255,255,0.05); }
+        .support-box { background: rgba(108, 92, 231, 0.1); border: 1px solid rgba(108, 92, 231, 0.3); border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
+        .support-icon { background: #6c5ce7; color: white; width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
         
-        /* Footer & Bottom Nav */
-        .footer-dark { background: #0a1128; color: white; padding: 40px 20px; margin-top: 30px; }
-        .social-links { display: flex; gap: 12px; margin-bottom: 30px; }
-        .social-links a { color: white; border: 1px solid rgba(108, 92, 231, 0.3); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; text-decoration: none; }
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #eee; z-index: 1000; }
         .nav-item { text-align: center; color: #888; font-size: 0.7rem; text-decoration: none; flex: 1; }
         .nav-item i { display: block; font-size: 1.3rem; margin-bottom: 4px; }
         .nav-item.active { color: #6c5ce7; }
-        .float-call { position: fixed; bottom: 85px; right: 20px; background: #d63031; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 999; text-decoration: none; }
+        .float-call { position: fixed; bottom: 85px; right: 20px; background: #d63031; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; z-index: 999; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -87,27 +92,50 @@
 
     <div class="card-grid">
         <div class="product-card" onclick="openCombinedModal('FF Guild glory', 'guild', 'glory.jpg')">
-            <img src="glory.jpg">
-            <div class="product-name">FF Guild glory</div>
+            <img src="glory.jpg"><div class="product-name">FF Guild glory</div>
         </div>
         <div class="product-card" onclick="openCombinedModal('UID TOPUP (BD)', 'offers', 'offer.jpg')">
-            <img src="offer.jpg">
-            <div class="product-name">UID Diamond Topup</div>
+            <img src="offer.jpg"><div class="product-name">UID Diamond Topup</div>
         </div>
         <div class="product-card" onclick="openCombinedModal('Free Fire - 200 Like', 'likes', 'like.jpg')">
-            <img src="like.jpg">
-            <div class="product-name">Free Fire - 200 Like</div>
+            <img src="like.jpg"><div class="product-name">Free Fire - 200 Like</div>
         </div>
         <div class="product-card" onclick="openCombinedModal('Weekly/Monthly Offer', 'weekly_monthly', 'offer.jpg')">
-            <img src="weekly.jpg">
-            <div class="product-name">Weekly/Monthly Offer</div>
+            <img src="weekly.jpg"><div class="product-name">Weekly/Monthly Offer</div>
         </div>
+    </div>
+
+    <footer class="footer-dark">
+        <div class="footer-title">Stay Connected</div>
+        <div class="social-links">
+            <a href="https://www.facebook.com/LxChanchal100" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@lalagamer10k?_r=1&_t=ZS-95tNX8fppEg" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://youtube.com/@lalagamer100?si=ytHaM4-RPMm06QPK" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/mrkuddusofficial" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="footer-title">Support Center</div>
+        <a href="https://t.me/your_telegram" class="support-box">
+            <div class="support-icon"><i class="fab fa-telegram-plane"></i></div>
+            <div>
+                <div style="font-size: 0.8rem; opacity: 0.7;">Help line [9AM-12PM]</div>
+                <div style="font-size: 0.95rem; font-weight: bold;">টেলিগ্রামে সাপোর্ট</div>
+            </div>
+        </a>
+        <p style="text-align:center; margin-top:50px; font-size:0.75rem; opacity:0.5;">© LALA TOPUP 2026 | Developed By LALA</p>
+    </footer>
+
+    <a href="tel:01794327542" class="float-call"><i class="fas fa-phone-alt"></i></a>
+
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active"><i class="fas fa-home"></i>Home</a>
+        <a href="#" class="nav-item"><i class="fas fa-play-circle"></i>Tutorial</a>
+        <a href="#" class="nav-item"><i class="fas fa-bolt"></i>TopUp</a>
+        <a href="#" class="nav-item"><i class="fas fa-th-large"></i>Contact</a>
     </div>
 
     <div id="mainModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">&times;</button>
-            
             <div class="modal-header-wp">
                 <div class="modal-header-logo"><img src="" id="modalLogoImg"></div>
                 <div class="modal-header-title-Area">
@@ -127,13 +155,11 @@
             <div class="step-title"><span class="step-num">3</span> Select Payment Option</div>
             <div class="order-form-container">
                 <div class="payment-info">
-                    বিকাশ পার্সোনাল<br>
+                    বিকাশ পার্সোনাল: <br>
                     <div class="copy-box" onclick="copyNumber('01794327542')">
-                        <span id="targetNum">01794327542</span> <i class="fas fa-copy"></i>
+                        01794327542 <i class="fas fa-copy"></i>
                     </div>
-                    <p style="margin-top:5px; font-size:0.7rem;">টাকা পাঠিয়ে নিচের বক্সে TrxID দিন</p>
                 </div>
-
                 <form id="combinedForm">
                     <input type="tel" id="userPhone" placeholder="আপনার মোবাইল নাম্বার" required>
                     <input type="text" id="userTrxID" placeholder="বিকাশ Transaction ID (TrxID)" required>
@@ -143,22 +169,6 @@
         </div>
     </div>
 
-    <footer class="footer-dark">
-        <div class="social-links">
-            <a href="https://www.facebook.com/LxChanchal100"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://youtube.com/@lalagamer100"><i class="fab fa-youtube"></i></a>
-        </div>
-        <p style="text-align:center; font-size:0.7rem; opacity:0.5;">© LALA TOPUP 2026 | All Rights Reserved</p>
-    </footer>
-
-    <a href="tel:01794327542" class="float-call"><i class="fas fa-phone-alt"></i></a>
-
-    <div class="bottom-nav">
-        <a href="#" class="nav-item active"><i class="fas fa-home"></i>Home</a>
-        <a href="#" class="nav-item"><i class="fas fa-bolt"></i>TopUp</a>
-        <a href="#" class="nav-item"><i class="fas fa-th-large"></i>Contact</a>
-    </div>
-
     <script>
         const botToken = "8791604536:AAGHR3iQmldzR7Ld7Q7thyJRODJa2E7lr54";
         const chatId = "-1003881711233";
@@ -166,17 +176,16 @@
         let currentPackage = null;
 
         const products = {
-            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"5 BASIC", price:"৳ 800"}],
-            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 43"}, {name:"115 Diamond", price:"BDT 85"}, {name:"240 Diamond", price:"BDT 165"}, {name:"480 Diamond", price:"BDT 321"}],
-            weekly_monthly: [{name:"WEEKLY", price:"BDT 160"}, {name:"MONTHLY", price:"BDT 770"}],
+            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, {name:"5 BASIC", price:"৳ 800"}, {name:"10 BASIC", price:"৳ 1400"}],
+            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 43"}, {name:"115 Diamond", price:"BDT 85"}, {name:"240 Diamond", price:"BDT 165"}, {name:"480 Diamond", price:"BDT 321"}, {name:"10120 Diamond", price:"BDT 6399"}],
+            weekly_monthly: [{name:"WEEKLY", price:"BDT 160"}, {name:"MONTHLY", price:"BDT 770"}, {name:"1WEEKLY+1MONTHLY", price:"BDT 930"}],
             likes: [{ name: "200 FF LIKE", price: "BDT 45" }]
         };
 
         function openCombinedModal(title, key, logoSrc) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalLogoImg').src = logoSrc;
-            currentPackage = null; // Reset selection
-
+            currentPackage = null;
             const list = document.getElementById('listContent');
             list.innerHTML = '';
             products[key].forEach(item => {
@@ -194,10 +203,7 @@
         }
 
         function closeModal() { document.getElementById('mainModal').style.display = 'none'; }
-        
-        function copyNumber(num) {
-            navigator.clipboard.writeText(num).then(() => alert("নাম্বার কপি হয়েছে!"));
-        }
+        function copyNumber(num) { navigator.clipboard.writeText(num).then(() => alert("কপি হয়েছে!")); }
 
         document.getElementById('combinedForm').addEventListener('submit', e => {
             e.preventDefault();
@@ -205,8 +211,8 @@
             const phone = document.getElementById('userPhone').value;
             const trx = document.getElementById('userTrxID').value.trim().toUpperCase();
 
-            if (!currentPackage) { alert("দয়া করে একটি প্যাকেজ সিলেক্ট করুন!"); return; }
-            if (usedTrxIDs.includes(trx)) { alert("এই TrxID টি আগে ব্যবহার করা হয়েছে!"); return; }
+            if (!currentPackage) { alert("প্যাকেজ সিলেক্ট করুন!"); return; }
+            if (usedTrxIDs.includes(trx)) { alert("TrxID টি ব্যবহৃত!"); return; }
 
             const btn = document.getElementById('submitBtn');
             btn.disabled = true; btn.innerText = "অর্ডার হচ্ছে...";
@@ -219,10 +225,7 @@
                 body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'Markdown' })
             }).then(() => {
                 usedTrxIDs.push(trx); localStorage.setItem('lala_used_trx', JSON.stringify(usedTrxIDs));
-                alert("অর্ডার সফলভাবে জমা হয়েছে!"); location.reload();
-            }).catch(() => {
-                alert("সমস্যা হয়েছে! আবার চেষ্টা করুন।");
-                btn.disabled = false; btn.innerText = "অর্ডার কনফার্ম করুন";
+                alert("অর্ডার সফল!"); location.reload();
             });
         });
     </script>
