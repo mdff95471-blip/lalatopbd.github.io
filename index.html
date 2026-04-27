@@ -11,29 +11,34 @@
         .brand { color: #6c5ce7; font-weight: bold; font-size: 1.1rem; }
         .balance-badge { background: #6c5ce7; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; }
         
-        /* ব্যানার সাইজ ১০০০:৩৯৮ রেশিওতে সেট করা হয়েছে */
         .banner { width: 95%; margin: 15px auto; border-radius: 12px; overflow: hidden; display: block; }
-        .banner img { 
-            width: 100%; 
-            aspect-ratio: 1000 / 398; 
-            object-fit: cover; 
-            display: block; 
-            border-radius: 12px; 
-        }
+        .banner img { width: 100%; aspect-ratio: 1000 / 398; object-fit: cover; display: block; border-radius: 12px; }
 
         .section-header { padding: 0 15px; margin: 20px 0 10px; font-size: 0.9rem; font-weight: bold; color: #444; border-left: 4px solid #6c5ce7; margin-left: 15px; }
         .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 15px; }
         .product-card { background: #fff; border-radius: 12px; border: 1px solid #eee; overflow: hidden; text-align: center; padding-bottom: 8px; cursor: pointer; }
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
         .product-name { font-size: 0.75rem; color: #333; margin-top: 5px; padding: 0 5px; font-weight: 500; }
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
-        .modal-content { background: white; margin: 20% auto; width: 85%; max-width: 400px; border-radius: 15px; overflow: hidden; }
-        .modal-header { background: #fff; padding: 15px; text-align: center; font-weight: bold; color: #6c5ce7; border-bottom: 1px solid #eee; position: relative; }
-        .close-btn { position: absolute; right: 15px; top: 15px; cursor: pointer; color: #888; }
-        .package-list { padding: 15px; max-height: 400px; overflow-y: auto; }
+        
+        /* Modal & Form Styles */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); overflow-y: auto; }
+        .modal-content { background: white; margin: 10% auto; width: 90%; max-width: 450px; border-radius: 15px; overflow: hidden; position: relative; }
+        .modal-header { background: #fff; padding: 15px; text-align: center; font-weight: bold; color: #6c5ce7; border-bottom: 1px solid #eee; }
+        .close-btn { position: absolute; right: 15px; top: 15px; cursor: pointer; color: #888; font-size: 1.5rem; }
+        
+        .order-form-container { padding: 20px; }
+        .payment-info { background: #f0edff; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; border: 1px dashed #6c5ce7; }
+        .payment-info b { color: #d63031; }
+
+        input, select { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 12px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .submit-btn:disabled { background: #ccc; }
+
+        .package-list { padding: 15px; }
         .package-item { border: 1px solid #eee; margin-bottom: 10px; padding: 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
         .pkg-name { font-size: 0.85rem; color: #444; font-weight: 500; }
         .pkg-price { color: #6c5ce7; font-weight: bold; }
+
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #eee; }
         .nav-item { text-align: center; color: #888; font-size: 0.65rem; text-decoration: none; }
         .nav-item i { display: block; font-size: 1.2rem; margin-bottom: 3px; }
@@ -58,13 +63,11 @@
             <img src="glory.jpg" alt="Guild">
             <div class="product-name">FF Guild glory</div>
         </div>
-
         <div class="product-card" onclick="openModal('Weekly/Monthly Offer', 'offers')">
             <img src="offer.jpg" alt="Offer">
             <div class="product-name">Weekly/Monthly Offer</div>
         </div>
-
-        <div class="product-card" onclick="openModal('Free Fire - 200 Like প্রতিদিন', 'likes')">
+        <div class="product-card" onclick="openModal('Free Fire - 200 Like', 'likes')">
             <img src="like.jpg" alt="Like">
             <div class="product-name">Free Fire - 200 Like প্রতিদিন</div>
         </div>
@@ -80,6 +83,29 @@
         </div>
     </div>
 
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>Complete Your Order</span>
+                <span class="close-btn" onclick="closeOrderModal()">&times;</span>
+            </div>
+            <div class="order-form-container">
+                <div class="payment-info">
+                    বিকাশ (Personal): <b>01794327542</b><br>
+                    টাকা পাঠিয়ে নিচের তথ্যগুলো পূরণ করুন।
+                </div>
+                <form id="topupForm">
+                    <input type="hidden" name="package" id="selectedPackage">
+                    <input type="text" name="player_name" placeholder="আপনার নাম" required>
+                    <input type="number" name="player_id" placeholder="Player UID (আইডি কোড)" required>
+                    <input type="tel" name="phone" placeholder="বিকাশ নাম্বার" required>
+                    <input type="text" name="payment" placeholder="Transaction ID (TrxID)" required>
+                    <button type="submit" class="submit-btn" id="submitBtn">অর্ডার কনফার্ম করুন</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="bottom-nav">
         <a href="#" class="nav-item active"><i class="fas fa-home"></i>Home</a>
         <a href="#" class="nav-item"><i class="fas fa-plus-circle"></i>Add Money</a>
@@ -88,6 +114,8 @@
     </div>
 
     <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxARxNylLdlyhcJ45XjCjJ30OfjWl2Ok-S294HJmXz2nE4z4DMWtvquVXFLuwfoZ6sJ/exec';
+        
         const products = {
             guild: [
                 { name: "1 BASIC - $2.30", price: "৳ 250" },
@@ -106,7 +134,7 @@
                 { name: "3WEEKLY+1MONTHLY", price: "BDT 1245" }
             ],
             likes: [
-                { name: "200 FF LIKE- প্রতিদিন ১ আইডিতে ১বার", price: "BDT 45" }
+                { name: "200 FF LIKE", price: "BDT 45" }
             ]
         };
 
@@ -116,7 +144,7 @@
             list.innerHTML = '';
             products[key].forEach(item => {
                 list.innerHTML += `
-                    <div class="package-item" onclick="order('${item.name}')">
+                    <div class="package-item" onclick="openOrderForm('${item.name} - ${item.price}')">
                         <span class="pkg-name">${item.name}</span>
                         <span class="pkg-price">${item.price}</span>
                     </div>`;
@@ -125,8 +153,45 @@
         }
 
         function closeModal() { document.getElementById('pkgModal').style.display = 'none'; }
-        function order(name) { window.open("https://wa.me/8801794327542?text=" + encodeURIComponent("I want to buy: " + name), '_blank'); }
-        window.onclick = function(event) { if (event.target == document.getElementById('pkgModal')) closeModal(); }
+        
+        function openOrderForm(pkgDetails) {
+            closeModal();
+            document.getElementById('selectedPackage').value = pkgDetails;
+            document.getElementById('orderModal').style.display = 'block';
+        }
+
+        function closeOrderModal() { document.getElementById('orderModal').style.display = 'none'; }
+
+        // Form Submission to Google Sheet
+        const form = document.getElementById('topupForm');
+        const btn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.innerText = "অর্ডার সাবমিট হচ্ছে...";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    alert("অর্ডার সফল হয়েছে! আপনার অর্ডারটি শিটে জমা হয়েছে।");
+                    form.reset();
+                    btn.disabled = false;
+                    btn.innerText = "অর্ডার কনফার্ম করুন";
+                    closeOrderModal();
+                })
+                .catch(error => {
+                    alert("দুঃখিত! কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+                    btn.disabled = false;
+                    btn.innerText = "অর্ডার কনফার্ম করুন";
+                });
+        });
+
+        window.onclick = function(event) { 
+            if (event.target.className == 'modal') {
+                closeModal();
+                closeOrderModal();
+            }
+        }
     </script>
 </body>
 </html>
