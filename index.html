@@ -27,38 +27,42 @@
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
         .product-name { font-size: 0.65rem; color: #333; margin-top: 5px; padding: 0 3px; font-weight: 600; line-height: 1.2; height: 1.5em; overflow: hidden; }
         
-        /* Modal Updates */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); overflow-y: auto; padding-top: 20px; }
-        .modal-content { background: white; margin: 0 auto 50px auto; width: 92%; max-width: 450px; border-radius: 15px; overflow: hidden; position: relative; animation: slideIn 0.3s; }
+        /* Modal & Close Button Fix */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); overflow-y: auto; padding-top: 30px; }
+        .modal-content { background: white; margin: 0 auto 50px auto; width: 92%; max-width: 450px; border-radius: 18px; overflow: hidden; position: relative; animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        
         @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
         .modal-header-wp { background: #fff; padding: 15px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee; position: relative; }
-        .modal-header-logo { width: 50px; height: 50px; border-radius: 8px; overflow: hidden; border: 1px solid #eee; }
+        .modal-header-logo { width: 55px; height: 55px; border-radius: 10px; overflow: hidden; border: 1px solid #eee; flex-shrink: 0; }
         .modal-header-logo img { width: 100%; height: 100%; object-fit: cover; }
         .modal-header-title-Area { flex: 1; }
-        .modal-header-title { font-size: 1rem; font-weight: bold; color: #333; margin: 0; }
-        .modal-header-subtitle { font-size: 0.75rem; color: #888; margin: 2px 0 0 0; }
-        .close-btn { position: absolute; right: 10px; top: 10px; cursor: pointer; color: #aaa; font-size: 1.4rem; border: none; background: none; }
+        .modal-header-title { font-size: 1.1rem; font-weight: bold; color: #333; margin: 0; }
+        .modal-header-subtitle { font-size: 0.8rem; color: #888; margin-top: 2px; }
 
-        .step-label { background: #f1f1f1; padding: 8px 15px; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #eee; }
-        .step-num { background: #6c5ce7; color: white; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; }
+        /* Close Button (X) - Clearly Visible */
+        .close-btn { position: absolute; right: 15px; top: 15px; width: 30px; height: 30px; background: #f0f0f0; color: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; border: none; z-index: 10; transition: 0.2s; }
+        .close-btn:active { background: #ddd; }
 
-        .package-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; max-height: 300px; overflow-y: auto; }
-        .package-item { border: 1px solid #e0e0e0; padding: 12px 5px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: #fff; transition: 0.2s; }
+        .step-label { background: #f8f9fa; padding: 10px 15px; font-size: 0.85rem; font-weight: bold; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #eee; color: #444; }
+        .step-num { background: #6c5ce7; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
+
+        .package-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; max-height: 280px; overflow-y: auto; }
+        .package-item { border: 1px solid #e0e0e0; padding: 12px 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: #fff; transition: 0.2s; }
         .package-item.active { border-color: #6c5ce7; background: #f0edff; box-shadow: 0 0 0 1px #6c5ce7; }
-        .pkg-name { font-size: 0.75rem; color: #333; font-weight: 600; text-align: center; }
-        .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.7rem; }
+        .pkg-name { font-size: 0.8rem; color: #333; font-weight: 600; text-align: center; }
+        .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.75rem; margin-top: 4px; }
         
         .order-form-container { padding: 15px; border-top: 1px solid #eee; }
-        .payment-info { background: #fff4f4; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 0.8rem; border: 1px dashed #d63031; text-align: center; }
-        .copy-box { background: white; border: 1px solid #eee; padding: 6px 12px; border-radius: 6px; margin-top: 5px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1rem; }
+        .payment-info { background: #fff4f4; padding: 12px; border-radius: 10px; margin-bottom: 15px; font-size: 0.85rem; border: 1px dashed #d63031; text-align: center; }
+        .copy-box { background: white; border: 1px solid #eee; padding: 8px 15px; border-radius: 8px; margin-top: 8px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1.1rem; }
         
-        input { width: 100%; padding: 12px; margin: 6px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 0.85rem; }
-        .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 14px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        input { width: 100%; padding: 14px; margin: 8px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 0.9rem; transition: 0.2s; }
+        input:focus { border-color: #6c5ce7; outline: none; background: #fcfbff; }
+        .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem; }
         .submit-btn:disabled { background: #ccc; }
 
         .footer-dark { background: #0a1128; color: white; padding: 40px 20px; text-align: left; margin-top: 30px; }
-        .footer-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: #6c5ce7; font-weight: bold; }
         .social-links { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 35px; }
         .social-links a { color: white; border: 1px solid rgba(108, 92, 231, 0.3); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; text-decoration: none; font-size: 1.1rem; background: rgba(255,255,255,0.05); }
         .support-box { background: rgba(108, 92, 231, 0.1); border: 1px solid rgba(108, 92, 231, 0.3); border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
@@ -104,14 +108,14 @@
     </div>
 
     <footer class="footer-dark">
-        <div class="footer-title">Stay Connected</div>
+        <div style="font-size: 1.1rem; color: #6c5ce7; font-weight: bold; margin-bottom: 20px;">Stay Connected</div>
         <div class="social-links">
             <a href="https://www.facebook.com/LxChanchal100" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.tiktok.com/@lalagamer10k?_r=1&_t=ZS-95tNX8fppEg" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://youtube.com/@lalagamer100?si=ytHaM4-RPMm06QPK" target="_blank"><i class="fab fa-youtube"></i></a>
             <a href="https://www.instagram.com/mrkuddusofficial" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
-        <div class="footer-title">Support Center</div>
+        <div style="font-size: 1.1rem; color: #6c5ce7; font-weight: bold; margin-bottom: 20px;">Support Center</div>
         <a href="https://t.me/your_telegram" class="support-box">
             <div class="support-icon"><i class="fab fa-telegram-plane"></i></div>
             <div>
@@ -133,7 +137,8 @@
 
     <div id="unifiedModal" class="modal">
         <div class="modal-content">
-            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+
             <div class="modal-header-wp">
                 <div class="modal-header-logo"><img src="" id="modalLogoImg"></div>
                 <div class="modal-header-title-Area">
@@ -195,18 +200,33 @@
                 list.appendChild(div);
             });
             document.getElementById('unifiedModal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Disable scroll when modal is open
         }
 
-        function closeModal() { document.getElementById('unifiedModal').style.display = 'none'; }
-        function copyNumber(num) { navigator.clipboard.writeText(num).then(() => alert("নাম্বার কপি হয়েছে!")); }
+        function closeModal() { 
+            document.getElementById('unifiedModal').style.display = 'none'; 
+            document.body.style.overflow = 'auto'; // Enable scroll
+        }
+
+        function copyNumber(num) { 
+            navigator.clipboard.writeText(num).then(() => alert("বিকাশ নাম্বার কপি হয়েছে!")); 
+        }
+
+        // Close on background click
+        window.onclick = function(event) {
+            let modal = document.getElementById('unifiedModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
 
         document.getElementById('topupForm').addEventListener('submit', e => {
             e.preventDefault();
             const pkg = document.getElementById('selectedPackage').value;
             const trx = document.getElementById('payment').value.trim().toUpperCase();
 
-            if (!pkg) { alert("দয়া করে আগে একটি প্যাকেজ সিলেক্ট করুন!"); return; }
-            if (usedTrxIDs.includes(trx)) { alert("TrxID টি আগে ব্যবহার করা হয়েছে!"); return; }
+            if (!pkg) { alert("দয়া করে একটি প্যাকেজ সিলেক্ট করুন!"); return; }
+            if (usedTrxIDs.includes(trx)) { alert("এই TrxID টি আগে ব্যবহৃত হয়েছে!"); return; }
 
             const btn = document.getElementById('submitBtn');
             btn.disabled = true; btn.innerText = "অর্ডার সাবমিট হচ্ছে...";
@@ -221,10 +241,10 @@
                 usedTrxIDs.push(trx); localStorage.setItem('lala_used_trx', JSON.stringify(usedTrxIDs));
                 alert("অর্ডার সফল ভাবে সাবমিট হয়েছে!"); location.reload();
             }).catch(() => {
-                alert("অর্ডার পাঠাতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+                alert("অর্ডার পাঠাতে সমস্যা হয়েছে।");
                 btn.disabled = false; btn.innerText = "অর্ডার কনফার্ম করুন";
             });
         });
     </script>
 </body>
-    </html>
+</html>
