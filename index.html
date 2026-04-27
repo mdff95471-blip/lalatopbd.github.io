@@ -11,7 +11,7 @@
         .brand { color: #6c5ce7; font-weight: bold; font-size: 1.1rem; }
         .balance-badge { background: #6c5ce7; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; }
         
-        /* নোটিশ বার ডিজাইন */
+        /* নোটিশ বার */
         .notice-bar { background-color: #6c5ce7; color: white; padding: 10px 15px; font-size: 0.85rem; display: flex; align-items: flex-start; position: relative; line-height: 1.4; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .notice-bar b { margin-right: 8px; white-space: nowrap; color: #ffeb3b; }
         .notice-text { flex: 1; }
@@ -27,34 +27,37 @@
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
         .product-name { font-size: 0.75rem; color: #333; margin-top: 5px; padding: 0 5px; font-weight: 500; }
         
+        /* Modal Design */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); overflow-y: auto; }
         .modal-content { background: white; margin: 10% auto; width: 92%; max-width: 450px; border-radius: 15px; overflow: hidden; position: relative; animation: slideIn 0.3s; }
         @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        
         .modal-header { background: #fff; padding: 15px; text-align: center; font-weight: bold; color: #6c5ce7; border-bottom: 1px solid #eee; }
         .close-btn { position: absolute; right: 15px; top: 15px; cursor: pointer; color: #888; font-size: 1.5rem; border: none; background: none; }
         
-        .package-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px; }
-        .package-item { border: 1px solid #e0e0e0; padding: 15px 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; background: #fff; }
-        .package-item:hover { background: #f0edff; border-color: #6c5ce7; }
-        .pkg-name { font-size: 0.85rem; color: #333; font-weight: 600; margin-bottom: 4px; text-align: center; }
-        .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.8rem; }
+        /* Footer Styles */
+        .footer-dark { background: #0a1128; color: white; padding: 40px 20px; text-align: left; margin-top: 30px; }
+        .footer-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; color: #6c5ce7; font-weight: bold; }
+        .social-links { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 35px; }
+        .social-links a { color: white; border: 1px solid rgba(108, 92, 231, 0.3); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; text-decoration: none; font-size: 1.1rem; background: rgba(255,255,255,0.05); transition: 0.3s; }
+        .social-links a:hover { background: #6c5ce7; border-color: #6c5ce7; }
+        
+        .support-box { background: rgba(108, 92, 231, 0.1); border: 1px solid rgba(108, 92, 231, 0.3); border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
+        .support-icon { background: #6c5ce7; color: white; width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
 
-        .order-form-container { padding: 20px; }
-        .payment-info { background: #fff4f4; padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 0.9rem; border: 1px dashed #d63031; text-align: center; }
-        .copy-box { background: white; border: 1px solid #eee; padding: 8px 15px; border-radius: 6px; margin-top: 10px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1.2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .copy-box:active { transform: scale(0.95); }
-        .copy-icon { font-size: 1rem; color: #888; }
-
-        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 0.9rem; }
-        input:focus { border-color: #6c5ce7; outline: none; }
-        .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 14px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem; }
-        .submit-btn:disabled { background: #ccc; cursor: not-allowed; }
-
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #eee; }
-        .nav-item { text-align: center; color: #888; font-size: 0.65rem; text-decoration: none; }
-        .nav-item i { display: block; font-size: 1.2rem; margin-bottom: 3px; }
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #eee; z-index: 1000; }
+        .nav-item { text-align: center; color: #888; font-size: 0.7rem; text-decoration: none; flex: 1; }
+        .nav-item i { display: block; font-size: 1.3rem; margin-bottom: 4px; }
         .nav-item.active { color: #6c5ce7; }
+
+        /* Floating Button */
+        .float-call { position: fixed; bottom: 85px; right: 20px; background: #d63031; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 999; text-decoration: none; }
+        
+        .package-item { border: 1px solid #e0e0e0; padding: 15px 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; background: #fff; }
+        .pkg-name { font-size: 0.85rem; color: #333; font-weight: 600; }
+        .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.8rem; }
+        .copy-box { background: white; border: 1px solid #eee; padding: 8px 15px; border-radius: 6px; margin-top: 10px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1.2rem; }
+        .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 14px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
     </style>
 </head>
 <body>
@@ -66,9 +69,7 @@
 
     <div class="notice-bar" id="topNotice">
         <b>Notice:</b>
-        <div class="notice-text">
-            ১৮ বছরের নিচে কেউ অর্ডার করবেন না। বাবা/মা বা ফ্যামিলির টাকা চুরি করে অর্ডার করলে তার বিরুদ্ধে আইনগত ব্যাবস্থা নেওয়া হবে।
-        </div>
+        <div class="notice-text">১৮ বছরের নিচে কেউ অর্ডার করবেন না। ফ্যামিলির টাকা চুরি করে অর্ডার করলে আইনগত ব্যাবস্থা নেওয়া হবে।</div>
         <span class="notice-close" onclick="document.getElementById('topNotice').style.display='none'">&times;</span>
     </div>
 
@@ -93,13 +94,47 @@
         </div>
     </div>
 
+    <footer class="footer-dark">
+        <div class="footer-title">Stay Connected</div>
+        <div class="social-links">
+            <a href="https://www.facebook.com/LxChanchal100" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@lalagamer10k?_r=1&_t=ZS-95tNX8fppEg" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://youtube.com/@lalagamer100?si=ytHaM4-RPMm06QPK" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/mrkuddusofficial" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+
+        <div class="footer-title">Support Center</div>
+        <a href="https://t.me/your_telegram" class="support-box">
+            <div class="support-icon"><i class="fab fa-telegram-plane"></i></div>
+            <div>
+                <div style="font-size: 0.8rem; opacity: 0.7;">Help line [9AM-12PM]</div>
+                <div style="font-size: 0.95rem; font-weight: bold;">টেলিগ্রামে সাপোর্ট</div>
+            </div>
+        </a>
+
+        <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; font-size: 0.75rem; opacity: 0.5;">
+            © LALA TOPUP 2026 | All Rights Reserved | Developed By <span style="color: #6c5ce7; font-weight: bold;">LALA</span>
+        </div>
+    </footer>
+
+    <a href="tel:01794327542" class="float-call">
+        <i class="fas fa-phone-alt"></i>
+    </a>
+
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active"><i class="fas fa-home"></i>Home</a>
+        <a href="#" class="nav-item"><i class="fas fa-play-circle"></i>Tutorial</a>
+        <a href="#" class="nav-item"><i class="fas fa-bolt"></i>TopUp</a>
+        <a href="#" class="nav-item"><i class="fas fa-th-large"></i>Contact Us</a>
+    </div>
+
     <div id="pkgModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <span id="modalTitle">Selection</span>
                 <button class="close-btn" onclick="closeAllModals()">&times;</button>
             </div>
-            <div class="package-list" id="listContent"></div>
+            <div class="package-list" id="listContent" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px;"></div>
         </div>
     </div>
 
@@ -109,17 +144,16 @@
                 <span>অর্ডার সম্পন্ন করুন</span>
                 <button class="close-btn" onclick="closeAllModals()">&times;</button>
             </div>
-            <div class="order-form-container">
-                <div class="payment-info">
+            <div style="padding: 20px;">
+                <div style="background: #fff4f4; padding: 15px; border-radius: 10px; text-align: center; border: 1px dashed #d63031; margin-bottom: 15px;">
                     বিকাশ পার্সোনাল<br>
                     <div class="copy-box" onclick="copyNumber('01794327542')">
                         <span>01794327542</span>
-                        <i class="fas fa-copy copy-icon"></i>
-                    </div><br>
-                    <small style="margin-top: 8px; display: block; color: #666;">নাম্বারে ক্লিক করে কপি করুন এবং টাকা পাঠিয়ে নিচের ফরমটি পূরণ করুন</small>
+                        <i class="fas fa-copy"></i>
+                    </div>
                 </div>
                 <form id="topupForm">
-                    <input type="hidden" name="package" id="selectedPackage">
+                    <input type="hidden" id="selectedPackage">
                     <input type="number" name="player_id" placeholder="প্লেয়ার UID (আইডি কোড)" required>
                     <input type="tel" name="phone" placeholder="আপনার মোবাইল নাম্বার" required>
                     <input type="text" name="payment" placeholder="বিকাশ Transaction ID (TrxID)" required>
@@ -129,39 +163,19 @@
         </div>
     </div>
 
-    <div class="bottom-nav">
-        <a href="#" class="nav-item active"><i class="fas fa-home"></i>Home</a>
-        <a href="#" class="nav-item"><i class="fas fa-plus-circle"></i>Add Money</a>
-        <a href="#" class="nav-item"><i class="fas fa-history"></i>History</a>
-        <a href="#" class="nav-item"><i class="fas fa-user"></i>Profile</a>
-    </div>
-
     <script>
         const botToken = "8791604536:AAGHR3iQmldzR7Ld7Q7thyJRODJa2E7lr54";
         const chatId = "-1003881711233";
-
         let usedTrxIDs = JSON.parse(localStorage.getItem('lala_used_trx')) || [];
 
         const products = {
-            guild: [
-                { name: "1 BASIC", price: "৳ 250" }, { name: "2 BASIC", price: "৳ 420" },
-                { name: "5 BASIC", price: "৳ 800" }, { name: "10 BASIC", price: "৳ 1400" }
-            ],
-            offers: [
-                { name: "25 Diamond", price: "BDT 24" }, { name: "50 Diamond", price: "BDT 38" },
-                { name: "115 Diamond", price: "BDT 79" }, { name: "240 Diamond", price: "BDT 158" },
-                { name: "355 Diamond", price: "BDT 238" }, { name: "480 Diamond", price: "BDT 316" },
-                { name: "610 Diamond", price: "BDT 405" }, { name: "850 Diamond", price: "BDT 560" },
-                { name: "WEEKLY", price: "BDT 154" }, { name: "MONTHLY", price: "BDT 765" }
-            ],
+            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, {name:"5 BASIC", price:"৳ 800"}, {name:"10 BASIC", price:"৳ 1400"}],
+            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 38"}, {name:"115 Diamond", price:"BDT 79"}, {name:"240 Diamond", price:"BDT 158"}, {name:"WEEKLY", price:"BDT 154"}, {name:"MONTHLY", price:"BDT 765"}],
             likes: [{ name: "200 FF LIKE", price: "BDT 45" }]
         };
 
-        // অটো-কপি ফাংশন
         function copyNumber(num) {
-            navigator.clipboard.writeText(num).then(() => {
-                alert("বিকাশ নাম্বার কপি হয়েছে: " + num);
-            });
+            navigator.clipboard.writeText(num).then(() => alert("বিকাশ নাম্বার কপি হয়েছে!"));
         }
 
         function openPkgModal(title, key) {
@@ -171,17 +185,15 @@
             products[key].forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'package-item';
-                div.onclick = () => openOrderForm(`${item.name} (${item.price})`);
+                div.onclick = () => {
+                    document.getElementById('pkgModal').style.display = 'none';
+                    document.getElementById('selectedPackage').value = `${item.name} (${item.price})`;
+                    document.getElementById('orderModal').style.display = 'block';
+                };
                 div.innerHTML = `<span class="pkg-name">${item.name}</span><span class="pkg-price">${item.price}</span>`;
                 list.appendChild(div);
             });
             document.getElementById('pkgModal').style.display = 'block';
-        }
-
-        function openOrderForm(pkgDetails) {
-            document.getElementById('pkgModal').style.display = 'none';
-            document.getElementById('selectedPackage').value = pkgDetails;
-            document.getElementById('orderModal').style.display = 'block';
         }
 
         function closeAllModals() {
@@ -189,46 +201,24 @@
             document.getElementById('orderModal').style.display = 'none';
         }
 
-        const form = document.getElementById('topupForm');
-        const btn = document.getElementById('submitBtn');
-
-        form.addEventListener('submit', e => {
+        document.getElementById('topupForm').addEventListener('submit', e => {
             e.preventDefault();
-            const trxid = form.payment.value.trim().toUpperCase();
-            if (usedTrxIDs.includes(trxid)) { alert("দুঃখিত! এই TrxID টি ব্যবহার করা হয়েছে।"); return; }
+            const btn = document.getElementById('submitBtn');
+            const trx = e.target.payment.value.trim().toUpperCase();
+            if (usedTrxIDs.includes(trx)) { alert("TrxID টি আগে ব্যবহার করা হয়েছে!"); return; }
 
-            btn.disabled = true;
-            btn.innerText = "অর্ডার সাবমিট হচ্ছে...";
-
-            const message = `🚀 *LALA TOPUP - NEW ORDER*\n` +
-                            `━━━━━━━━━━━━━━━━━━\n` +
-                            `📦 *Package:* ${document.getElementById('selectedPackage').value}\n` +
-                            `🆔 *Player UID:* ${form.player_id.value}\n` +
-                            `📞 *Phone:* ${form.phone.value}\n` +
-                            `💳 *TrxID:* ${trxid}\n` +
-                            `━━━━━━━━━━━━━━━━━━`;
+            btn.disabled = true; btn.innerText = "অর্ডার সাবমিট হচ্ছে...";
+            const msg = `🚀 *LALA TOPUP - NEW ORDER*\n📦 *Pkg:* ${document.getElementById('selectedPackage').value}\n🆔 *UID:* ${e.target.player_id.value}\n📞 *Phone:* ${e.target.phone.value}\n💳 *TrxID:* ${trx}`;
 
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: 'Markdown' })
-            })
-            .then(() => {
-                usedTrxIDs.push(trxid);
-                localStorage.setItem('lala_used_trx', JSON.stringify(usedTrxIDs));
-                alert("অর্ডার সফলভাবে জমা হয়েছে!");
-                form.reset();
-                btn.disabled = false;
-                btn.innerText = "অর্ডার কনফার্ম করুন";
-                closeAllModals();
-            })
-            .catch(() => {
-                alert("ভুল হয়েছে। আবার চেষ্টা করুন।");
-                btn.disabled = false;
+                body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'Markdown' })
+            }).then(() => {
+                usedTrxIDs.push(trx); localStorage.setItem('lala_used_trx', JSON.stringify(usedTrxIDs));
+                alert("অর্ডার সফল!"); location.reload();
             });
         });
-
-        window.onclick = function(event) { if (event.target.className === 'modal') closeAllModals(); }
     </script>
 </body>
 </html>
