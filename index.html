@@ -16,7 +16,7 @@
         .notice-text { flex: 1; }
         .notice-close { cursor: pointer; margin-left: 10px; font-size: 1.2rem; }
 
-        /* --- New Slider CSS --- */
+        /* --- Banner Slider CSS --- */
         .banner-slider {
             width: 95%;
             margin: 15px auto;
@@ -27,11 +27,11 @@
         }
         .slides {
             display: flex;
-            width: 200%; /* ২টি ছবি তাই ২০০% */
-            animation: slide-anim 10s infinite; /* ১০ সেকেন্ড পর পর লুপ হবে */
+            width: 200%;
+            animation: slide-anim 10s infinite;
         }
         .slides img {
-            width: 50%; /* প্রতিটি ছবি স্ক্রিনের পূর্ণ অংশ নিবে */
+            width: 50%;
             aspect-ratio: 1000 / 398;
             object-fit: cover;
             display: block;
@@ -43,7 +43,6 @@
             95% { transform: translateX(-50%); }
             100% { transform: translateX(0); }
         }
-        /* --- End of Slider CSS --- */
 
         .section-header { padding: 0 15px; margin: 20px 0 10px; font-size: 0.9rem; font-weight: bold; color: #444; border-left: 4px solid #6c5ce7; margin-left: 15px; }
         
@@ -99,6 +98,10 @@
     </style>
 </head>
 <body>
+
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="header">
         <div class="brand">LALA TOPUP</div>
@@ -201,6 +204,14 @@
         const botToken = "8791604536:AAGHR3iQmldzR7Ld7Q7thyJRODJa2E7lr54";
         const chatId = "-1003881711233";
         let usedTrxIDs = JSON.parse(localStorage.getItem('lala_used_trx')) || [];
+
+        // মিউজিক অটো-প্লে লজিক (প্রথম ক্লিকের পর বাজবে)
+        document.addEventListener('click', function() {
+            var audio = document.getElementById("bgMusic");
+            audio.play().catch(function(error) {
+                console.log("Music blocked by browser");
+            });
+        }, { once: true });
 
         const products = {
             guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, {name:"5 BASIC", price:"৳ 800"}, {name:"10 BASIC", price:"৳ 1400"}],
