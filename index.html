@@ -11,41 +11,25 @@
         .brand { color: #6c5ce7; font-weight: bold; font-size: 1.1rem; }
         .balance-badge { background: #6c5ce7; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; }
         
+        /* স্ট্যাটাস ইন্ডিকেটর স্টাইল */
+        .status-badge { display: flex; align-items: center; gap: 5px; font-size: 0.7rem; padding: 3px 8px; border-radius: 12px; font-weight: bold; margin-left: 8px; }
+        .status-online { background: #e7f9ed; color: #2ecc71; border: 1px solid #2ecc71; }
+        .status-offline { background: #fceaea; color: #e74c3c; border: 1px solid #e74c3c; }
+        .dot { width: 7px; height: 7px; border-radius: 50%; }
+        .dot-on { background: #2ecc71; box-shadow: 0 0 5px #2ecc71; }
+        .dot-off { background: #e74c3c; }
+
         .notice-bar { background-color: #6c5ce7; color: white; padding: 10px 15px; font-size: 0.85rem; display: flex; align-items: flex-start; position: relative; line-height: 1.4; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .notice-bar b { margin-right: 8px; white-space: nowrap; color: #ffeb3b; }
         .notice-text { flex: 1; }
         .notice-close { cursor: pointer; margin-left: 10px; font-size: 1.2rem; }
 
-        /* --- Banner Slider CSS --- */
-        .banner-slider {
-            width: 95%;
-            margin: 15px auto;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .slides {
-            display: flex;
-            width: 200%;
-            animation: slide-anim 10s infinite;
-        }
-        .slides img {
-            width: 50%;
-            aspect-ratio: 1000 / 398;
-            object-fit: cover;
-            display: block;
-        }
-        @keyframes slide-anim {
-            0% { transform: translateX(0); }
-            45% { transform: translateX(0); }
-            50% { transform: translateX(-50%); }
-            95% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-        }
+        .banner-slider { width: 95%; margin: 15px auto; border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .slides { display: flex; width: 200%; animation: slide-anim 10s infinite; }
+        .slides img { width: 50%; aspect-ratio: 1000 / 398; object-fit: cover; display: block; }
+        @keyframes slide-anim { 0% { transform: translateX(0); } 45% { transform: translateX(0); } 50% { transform: translateX(-50%); } 95% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
         .section-header { padding: 0 15px; margin: 20px 0 10px; font-size: 0.9rem; font-weight: bold; color: #444; border-left: 4px solid #6c5ce7; margin-left: 15px; }
-        
         .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 10px; }
         .product-card { background: #fff; border-radius: 10px; border: 1px solid #eee; overflow: hidden; text-align: center; padding-bottom: 8px; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
         .product-card:active { transform: scale(0.95); }
@@ -54,7 +38,6 @@
         
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); overflow-y: auto; padding-top: 30px; }
         .modal-content { background: white; margin: 0 auto 50px auto; width: 92%; max-width: 450px; border-radius: 18px; overflow: hidden; position: relative; animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        
         @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
         .modal-header-wp { background: #fff; padding: 15px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee; position: relative; }
@@ -65,7 +48,6 @@
         .modal-header-subtitle { font-size: 0.8rem; color: #888; margin-top: 2px; }
 
         .close-btn { position: absolute; right: 15px; top: 15px; width: 30px; height: 30px; background: #f0f0f0; color: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; border: none; z-index: 10; transition: 0.2s; }
-
         .step-label { background: #f8f9fa; padding: 10px 15px; font-size: 0.85rem; font-weight: bold; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #eee; color: #444; }
         .step-num { background: #6c5ce7; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
 
@@ -99,12 +81,16 @@
 </head>
 <body>
 
-    <audio id="bgMusic" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
     <div class="header">
-        <div class="brand">LALA TOPUP</div>
+        <div style="display: flex; align-items: center;">
+            <div class="brand">LALA TOPUP</div>
+            <div id="adminBadge" class="status-badge status-online">
+                <div id="adminDot" class="dot dot-on"></div>
+                <span id="adminText">Checking...</span>
+            </div>
+        </div>
         <div class="balance-badge">৳ 0.00</div>
     </div>
 
@@ -122,20 +108,11 @@
     </div>
 
     <div class="section-header">FREE FIRE TOPUP</div>
-
     <div class="card-grid">
-        <div class="product-card" onclick="openPkgModal('FF Guild glory', 'guild', 'glory.jpg')">
-            <img src="glory.jpg"><div class="product-name">FF Guild glory</div>
-        </div>
-        <div class="product-card" onclick="openPkgModal('UID TOPUP (BD)', 'offers', 'offer.jpg')">
-            <img src="offer.jpg"><div class="product-name">UID Diamond Topup</div>
-        </div>
-        <div class="product-card" onclick="openPkgModal('Free Fire - 200 Like', 'likes', 'like.jpg')">
-            <img src="like.jpg"><div class="product-name">Free Fire - 200 Like প্রতিদিন</div>
-        </div>
-        <div class="product-card" onclick="openPkgModal('Weekly/Monthly Offer', 'weekly_monthly', 'weekly.jpg')">
-            <img src="weekly.jpg"><div class="product-name">Weekly/Monthly Offer</div>
-        </div>
+        <div class="product-card" onclick="openPkgModal('FF Guild glory', 'guild', 'glory.jpg')"><img src="glory.jpg"><div class="product-name">FF Guild glory</div></div>
+        <div class="product-card" onclick="openPkgModal('UID TOPUP (BD)', 'offers', 'offer.jpg')"><img src="offer.jpg"><div class="product-name">UID Diamond Topup</div></div>
+        <div class="product-card" onclick="openPkgModal('Free Fire - 200 Like', 'likes', 'like.jpg')"><img src="like.jpg"><div class="product-name">Free Fire - 200 Like প্রতিদিন</div></div>
+        <div class="product-card" onclick="openPkgModal('Weekly/Monthly Offer', 'weekly_monthly', 'weekly.jpg')"><img src="weekly.jpg"><div class="product-name">Weekly/Monthly Offer</div></div>
     </div>
 
     <footer class="footer-dark">
@@ -146,14 +123,6 @@
             <a href="https://youtube.com/@lalagamer100?si=ytHaM4-RPMm06QPK" target="_blank"><i class="fab fa-youtube"></i></a>
             <a href="https://www.instagram.com/mrkuddusofficial" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
-        <div style="font-size: 1.1rem; color: #6c5ce7; font-weight: bold; margin-bottom: 20px;">Support Center</div>
-        <a href="https://t.me/your_telegram" class="support-box">
-            <div class="support-icon"><i class="fab fa-telegram-plane"></i></div>
-            <div>
-                <div style="font-size: 0.8rem; opacity: 0.7;">Help line [9AM-12PM]</div>
-                <div style="font-size: 0.95rem; font-weight: bold;">টেলিগ্রামে সাপোর্ট</div>
-            </div>
-        </a>
         <p style="text-align:center; margin-top:50px; font-size:0.75rem; opacity:0.5;">© LALA TOPUP 2026 | Developed By LALA</p>
     </footer>
 
@@ -169,7 +138,6 @@
     <div id="unifiedModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
-
             <div class="modal-header-wp">
                 <div class="modal-header-logo"><img src="" id="modalLogoImg"></div>
                 <div class="modal-header-title-Area">
@@ -177,18 +145,11 @@
                     <p class="modal-header-subtitle">Game / Top up</p>
                 </div>
             </div>
-
             <div class="step-label"><span class="step-num">1</span> প্যাকেজ সিলেক্ট করুন</div>
             <div class="package-list" id="listContent"></div>
-
             <div class="step-label"><span class="step-num">2</span> পেমেন্ট ও তথ্য দিন</div>
             <div class="order-form-container">
-                <div class="payment-info">
-                    বিকাশ পার্সোনাল:<br>
-                    <div class="copy-box" onclick="copyNumber('01794327542')">
-                        01794327542 <i class="fas fa-copy" style="font-size: 0.8rem; opacity: 0.4;"></i>
-                    </div>
-                </div>
+                <div class="payment-info">বিকাশ পার্সোনাল:<br><div class="copy-box" onclick="copyNumber('01794327542')">01794327542 <i class="fas fa-copy" style="font-size: 0.8rem; opacity: 0.4;"></i></div></div>
                 <form id="topupForm">
                     <input type="hidden" id="selectedPackage">
                     <input type="number" id="player_id" placeholder="প্লেয়ার UID (আইডি কোড)" required>
@@ -203,17 +164,51 @@
     <script>
         const botToken = "8791604536:AAGHR3iQmldzR7Ld7Q7thyJRODJa2E7lr54";
         const chatId = "-1003881711233";
-        let usedTrxIDs = JSON.parse(localStorage.getItem('lala_used_trx')) || [];
+        // তোমার ফায়ারবেস লিঙ্ক
+        const dbURL = "https://lala-status-default-rtdb.asia-southeast1.firebasedatabase.app/.json";
 
-        // আপডেট করা মিউজিক লজিক (একবারই প্লে হবে)
+        // --- লাইভ স্ট্যাটাস সিঙ্ক ফাংশন ---
+        function syncLiveStatus() {
+            const badge = document.getElementById('adminBadge');
+            const dot = document.getElementById('adminDot');
+            const text = document.getElementById('adminText');
+            const btn = document.getElementById('submitBtn');
+
+            fetch(dbURL)
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.status === 'online') {
+                        badge.className = "status-badge status-online";
+                        dot.className = "dot dot-on";
+                        text.innerText = "Online";
+                        if(btn) {
+                            btn.disabled = false;
+                            btn.innerText = "অর্ডার কনফার্ম করুন";
+                        }
+                    } else {
+                        badge.className = "status-badge status-offline";
+                        dot.className = "dot dot-off";
+                        text.innerText = "Offline";
+                        if(btn) {
+                            btn.disabled = true;
+                            btn.innerText = "এখন অফলাইন (পরে চেষ্টা করুন)";
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.log("Sync error");
+                });
+        }
+
+        // প্রতি ৫ সেকেন্ড পর পর অটো চেক হবে
+        setInterval(syncLiveStatus, 5000);
+        syncLiveStatus();
+
+        // --- মিউজিক সিস্টেম ---
         document.addEventListener('click', function() {
             var audio = document.getElementById("bgMusic");
             if (!sessionStorage.getItem('musicPlayed')) {
-                audio.play().then(function() {
-                    sessionStorage.setItem('musicPlayed', 'true');
-                }).catch(function(error) {
-                    console.log("Music play blocked");
-                });
+                audio.play().then(() => sessionStorage.setItem('musicPlayed', 'true')).catch(e => console.log("Blocked"));
             }
         }, { once: true });
 
@@ -227,8 +222,6 @@
         function openPkgModal(title, key, logoSrc) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalLogoImg').src = logoSrc;
-            document.getElementById('selectedPackage').value = "";
-            
             const list = document.getElementById('listContent');
             list.innerHTML = '';
             products[key].forEach(item => {
@@ -246,45 +239,28 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() { 
-            document.getElementById('unifiedModal').style.display = 'none'; 
-            document.body.style.overflow = 'auto';
-        }
-
-        function copyNumber(num) { 
-            navigator.clipboard.writeText(num).then(() => alert("বিকাশ নাম্বার কপি হয়েছে!")); 
-        }
-
-        window.onclick = function(event) {
-            let modal = document.getElementById('unifiedModal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
+        function closeModal() { document.getElementById('unifiedModal').style.display = 'none'; document.body.style.overflow = 'auto'; }
+        function copyNumber(num) { navigator.clipboard.writeText(num).then(() => alert("বিকাশ নাম্বার কপি হয়েছে!")); }
 
         document.getElementById('topupForm').addEventListener('submit', e => {
             e.preventDefault();
             const pkg = document.getElementById('selectedPackage').value;
             const trx = document.getElementById('payment').value.trim().toUpperCase();
-
-            if (!pkg) { alert("দয়া করে একটি প্যাকেজ সিলেক্ট করুন!"); return; }
-            if (usedTrxIDs.includes(trx)) { alert("এই TrxID টি আগে ব্যবহৃত হয়েছে!"); return; }
-
+            if (!pkg) { alert("প্যাকেজ সিলেক্ট করুন!"); return; }
+            
             const btn = document.getElementById('submitBtn');
-            btn.disabled = true; btn.innerText = "অর্ডার সাবমিট হচ্ছে...";
-
+            btn.disabled = true; 
+            btn.innerText = "অর্ডার সাবমিট হচ্ছে...";
+            
             const msg = `🚀 *LALA TOPUP - NEW ORDER*\n📦 *Pkg:* ${pkg}\n🆔 *UID:* ${document.getElementById('player_id').value}\n📞 *Phone:* ${document.getElementById('phone').value}\n💳 *TrxID:* ${trx}`;
-
+            
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'Markdown' })
             }).then(() => {
-                usedTrxIDs.push(trx); localStorage.setItem('lala_used_trx', JSON.stringify(usedTrxIDs));
-                alert("অর্ডার সফল ভাবে সাবমিট হয়েছে!"); location.reload();
-            }).catch(() => {
-                alert("অর্ডার পাঠাতে সমস্যা হয়েছে।");
-                btn.disabled = false; btn.innerText = "অর্ডার কনফার্ম করুন";
+                alert("অর্ডার সফল ভাবে সাবমিট হয়েছে!"); 
+                location.reload();
             });
         });
     </script>
