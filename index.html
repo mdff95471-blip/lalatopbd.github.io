@@ -20,14 +20,44 @@
         .dot-off { background: #e74c3c; }
 
         /* প্রিমিয়াম অ্যানিমেশন নোটিশ বার */
-        .notice-bar { background: #2d3436; color: white; padding: 12px 0; font-size: 0.85rem; overflow: hidden; position: relative; border-bottom: 2px solid #6c5ce7; display: flex; align-items: center; }
-        .notice-label { background: #6c5ce7; padding: 12px 15px; font-weight: bold; z-index: 5; position: absolute; box-shadow: 5px 0 15px rgba(0,0,0,0.3); color: #ffeb3b; }
-        .scrolling-wrapper { display: flex; white-space: nowrap; width: 100%; }
-        .scrolling-text { display: inline-block; padding-left: 100%; animation: scroll-left 18s linear infinite; font-weight: 500; }
+        .notice-bar { 
+            background: #2d3436; 
+            color: white; 
+            height: 45px; 
+            overflow: hidden; 
+            position: relative; 
+            display: flex; 
+            align-items: center;
+            border-bottom: 2px solid #6c5ce7;
+        }
+        .notice-label { 
+            background: #6c5ce7; 
+            color: #ffeb3b;
+            padding: 0 15px; 
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: bold; 
+            z-index: 10; 
+            position: absolute; 
+            left: 0;
+            box-shadow: 5px 0 10px rgba(0,0,0,0.3);
+        }
+        .scrolling-wrapper { 
+            width: 100%; 
+            display: flex;
+            white-space: nowrap;
+        }
+        .scrolling-text { 
+            display: inline-block; 
+            padding-left: 100%; 
+            animation: scroll-left 18s linear infinite; 
+            font-size: 0.9rem;
+        }
         @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* অফলাইন ও অনলাইন নোটিশের স্পেশাল কালার */
-        .flash-red { color: #ff7675 !important; text-shadow: 0 0 10px #d63031; font-weight: bold; }
+        /* অফলাইন ও অনলাইন নোটিশ স্পেশাল */
+        .flash-red { color: #ff7675 !important; text-shadow: 0 0 8px #d63031; font-weight: bold; }
         .glow-green { color: #55efc4 !important; text-shadow: 0 0 5px rgba(85, 239, 196, 0.5); }
 
         .banner-slider { width: 95%; margin: 15px auto; border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
@@ -42,38 +72,16 @@
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
         .product-name { font-size: 0.65rem; color: #333; margin-top: 5px; padding: 0 3px; font-weight: 600; line-height: 1.2; height: 1.5em; overflow: hidden; }
         
+        /* মডাল ও অন্যান্য স্টাইল */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); overflow-y: auto; padding-top: 30px; }
         .modal-content { background: white; margin: 0 auto 50px auto; width: 92%; max-width: 450px; border-radius: 18px; overflow: hidden; position: relative; animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        .close-btn { position: absolute; right: 15px; top: 15px; width: 30px; height: 30px; background: #f0f0f0; color: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; border: none; z-index: 10; transition: 0.2s; }
-        .step-label { background: #f8f9fa; padding: 10px 15px; font-size: 0.85rem; font-weight: bold; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #eee; color: #444; }
-        .step-num { background: #6c5ce7; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
-
-        .package-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; max-height: 280px; overflow-y: auto; }
-        .package-item { border: 1px solid #e0e0e0; padding: 12px 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: #fff; transition: 0.2s; }
-        .package-item.active { border-color: #6c5ce7; background: #f0edff; box-shadow: 0 0 0 1px #6c5ce7; }
-        .pkg-name { font-size: 0.8rem; color: #333; font-weight: 600; text-align: center; }
-        .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.75rem; margin-top: 4px; }
-        
-        .order-form-container { padding: 15px; border-top: 1px solid #eee; }
-        .payment-info { background: #fff4f4; padding: 12px; border-radius: 10px; margin-bottom: 15px; font-size: 0.85rem; border: 1px dashed #d63031; text-align: center; }
-        .copy-box { background: white; border: 1px solid #eee; padding: 8px 15px; border-radius: 8px; margin-top: 8px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1.1rem; }
-        
-        input { width: 100%; padding: 14px; margin: 8px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 0.9rem; transition: 0.2s; }
-        input:focus { border-color: #6c5ce7; outline: none; background: #fcfbff; }
         .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem; }
-        .submit-btn:disabled { background: #ccc; }
-
-        .footer-dark { background: #0a1128; color: white; padding: 40px 20px; text-align: left; margin-top: 30px; }
-        .social-links { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 35px; }
-        .social-links a { color: white; border: 1px solid rgba(108, 92, 231, 0.3); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; text-decoration: none; font-size: 1.1rem; background: rgba(255,255,255,0.05); }
         
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #eee; z-index: 1000; }
         .nav-item { text-align: center; color: #888; font-size: 0.7rem; text-decoration: none; flex: 1; }
         .nav-item i { display: block; font-size: 1.3rem; margin-bottom: 4px; }
         .nav-item.active { color: #6c5ce7; }
-        .float-call { position: fixed; bottom: 85px; right: 20px; background: #d63031; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; z-index: 999; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
@@ -94,7 +102,7 @@
     <div class="notice-bar">
         <div class="notice-label">Notice:</div>
         <div class="scrolling-wrapper">
-            <div id="lala-scrolling-notice" class="scrolling-text">Loading information...</div>
+            <div id="lala-scrolling-notice" class="scrolling-text">অ্যাডমিন স্ট্যাটাস লোড হচ্ছে...</div>
         </div>
     </div>
 
@@ -113,45 +121,24 @@
         <div class="product-card" onclick="openPkgModal('Weekly/Monthly Offer', 'weekly_monthly', 'weekly.jpg')"><img src="weekly.jpg"><div class="product-name">Weekly/Monthly Offer</div></div>
     </div>
 
-    <footer class="footer-dark">
-        <div style="font-size: 1.1rem; color: #6c5ce7; font-weight: bold; margin-bottom: 20px;">Stay Connected</div>
-        <div class="social-links">
-            <a href="https://www.facebook.com/LxChanchal100" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.tiktok.com/@lalagamer10k?_r=1&_t=ZS-95tNX8fppEg" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://youtube.com/@lalagamer100?si=ytHaM4-RPMm06QPK" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.instagram.com/mrkuddusofficial" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
-        <p style="text-align:center; margin-top:50px; font-size:0.75rem; opacity:0.5;">© LALA TOPUP 2026 | Developed By LALA</p>
-    </footer>
-
-    <a href="tel:01794327542" class="float-call"><i class="fas fa-phone-alt"></i></a>
-
     <div class="bottom-nav">
         <a href="#" class="nav-item active"><i class="fas fa-home"></i>Home</a>
         <a href="#" class="nav-item"><i class="fas fa-play-circle"></i>Tutorial</a>
         <a href="#" class="nav-item"><i class="fas fa-bolt"></i>TopUp</a>
-        <a href="#" class="nav-item"><i class="fas fa-th-large"></i>Contact Us</a>
+        <a href="#" class="nav-item"><i class="fas fa-th-large"></i>Contact</a>
     </div>
 
     <div id="unifiedModal" class="modal">
         <div class="modal-content">
-            <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
-            <div class="modal-header-wp" style="padding: 15px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee;">
-                <div class="modal-header-logo" style="width: 55px; height: 55px; border-radius: 10px; overflow: hidden;"><img src="" id="modalLogoImg" style="width: 100%; height: 100%; object-fit: cover;"></div>
-                <div><h2 id="modalTitle" style="font-size: 1.1rem; margin: 0;">Selection</h2><p style="font-size: 0.8rem; color: #888; margin: 0;">Top up</p></div>
-            </div>
-            <div class="step-label"><span class="step-num">1</span> প্যাকেজ সিলেক্ট করুন</div>
-            <div class="package-list" id="listContent"></div>
-            <div class="step-label"><span class="step-num">2</span> পেমেন্ট ও তথ্য দিন</div>
-            <div class="order-form-container">
-                <div class="payment-info">বিকাশ পার্সোনাল: <b>01794327542</b></div>
-                <form id="topupForm">
-                    <input type="hidden" id="selectedPackage">
-                    <input type="number" id="player_id" placeholder="প্লেয়ার UID" required>
-                    <input type="tel" id="phone" placeholder="আপনার মোবাইল নাম্বার" required>
-                    <input type="text" id="payment" placeholder="TrxID" required>
-                    <button type="submit" class="submit-btn" id="submitBtn">অর্ডার কনফার্ম করুন</button>
-                </form>
+            <div style="padding: 20px; text-align: center;">
+                <h2 id="modalTitle">Selection</h2>
+                <div id="listContent" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0;"></div>
+                <input type="hidden" id="selectedPackage">
+                <input type="number" id="player_id" placeholder="প্লেয়ার UID" style="width: 90%; padding: 10px; margin: 5px 0;">
+                <input type="tel" id="phone" placeholder="আপনার নাম্বার" style="width: 90%; padding: 10px; margin: 5px 0;">
+                <input type="text" id="payment" placeholder="TrxID" style="width: 90%; padding: 10px; margin: 5px 0;">
+                <button class="submit-btn" id="submitBtn" onclick="submitOrder()">অর্ডার কনফার্ম করুন</button>
+                <button onclick="closeModal()" style="margin-top: 10px; border: none; background: none; color: #888;">বন্ধ করুন</button>
             </div>
         </div>
     </div>
@@ -161,7 +148,6 @@
         const chatId = "-1003881711233";
         const dbURL = "https://lala-status-default-rtdb.asia-southeast1.firebasedatabase.app/.json";
 
-        // --- স্ট্যাটাস ও নোটিশ সিঙ্ক ---
         function syncLiveStatus() {
             const badge = document.getElementById('adminBadge');
             const dot = document.getElementById('adminDot');
@@ -175,16 +161,14 @@
                         badge.className = "status-badge status-online";
                         dot.className = "dot dot-on";
                         text.innerText = "Online";
-                        
                         notice.className = "scrolling-text glow-green";
-                        notice.innerHTML = "<i class='fas fa-check-circle'></i> অভিনন্দন! অ্যাডমিন এখন অনলাইনে আছে। অর্ডার করলে সুপার ফাস্ট ডেলিভারি পাবেন। এখনই অর্ডার করুন!";
+                        notice.innerHTML = "● অ্যাডমিন এখন অনলাইনে আছে! অর্ডার করলে ৫-১০ মিনিটে ডেলিভারি পাবেন। ইনশাআল্লাহ। ●";
                     } else {
                         badge.className = "status-badge status-offline";
                         dot.className = "dot dot-off";
                         text.innerText = "Offline";
-                        
                         notice.className = "scrolling-text flash-red";
-                        notice.innerHTML = "<i class='fas fa-exclamation-triangle'></i> সতর্কবার্তা: অ্যাডমিন বর্তমানে অফলাইনে আছে! এখন অর্ডার করলে ডেলিভারি পেতে কিছুটা দেরি হতে পারে। দয়া করে ধৈর্য ধরুন।";
+                        notice.innerHTML = "⚠ অ্যাডমিন এখন অফলাইনে! এখন অর্ডার করলে ডেলিভারি পেতে দেরি হতে পারে। ধৈর্য ধরুন। ⚠";
                     }
                 })
                 .catch(err => console.log("Sync error"));
@@ -193,48 +177,44 @@
         setInterval(syncLiveStatus, 5000);
         syncLiveStatus();
 
-        // বাকি জাভাস্ক্রিপ্ট কোড আগের মতোই আছে...
         const products = {
-            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, {name:"5 BASIC", price:"৳ 800"}, {name:"10 BASIC", price:"৳ 1400"}],
-            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 43"}, {name:"115 Diamond", price:"BDT 85"}, {name:"240 Diamond", price:"BDT 165"}, {name:"355 Diamond", price:"BDT 244"}, {name:"480 Diamond", price:"BDT 321"}, {name:"610 Diamond", price:"BDT 410"}, {name:"850 Diamond", price:"BDT 566"}, {name:"1240 Diamond", price:"BDT 805"}, {name:"2530 Diamond", price:"BDT 1600"}, {name:"5060 Diamond", price:"BDT 3200"}, {name:"10120 Diamond", price:"BDT 6399"}],
-            weekly_monthly: [{name:"WEEKLY", price:"BDT 160"}, {name:"2X WEEKLY", price:"BDT 320"}, {name:"3X WEEKLY", price:"BDT 480"}, {name:"MONTHLY", price:"BDT 770"}, {name:"2X MONTHLY", price:"BDT 1540"}, {name:"1WEEKLY+1MONTHLY", price:"BDT 930"}, {name:"3WEEKLY+1MONTHLY", price:"BDT 1250"}],
+            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}],
+            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 43"}],
+            weekly_monthly: [{name:"WEEKLY", price:"BDT 160"}, {name:"MONTHLY", price:"BDT 770"}],
             likes: [{ name: "200 FF LIKE", price: "BDT 45" }]
         };
 
-        function openPkgModal(title, key, logoSrc) {
+        function openPkgModal(title, key) {
             document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalLogoImg').src = logoSrc;
             const list = document.getElementById('listContent');
             list.innerHTML = '';
             products[key].forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'package-item';
-                div.innerHTML = `<span class="pkg-name">${item.name}</span><span class="pkg-price">${item.price}</span>`;
-                div.onclick = () => {
-                    document.querySelectorAll('.package-item').forEach(el => el.classList.remove('active'));
-                    div.classList.add('active');
+                const btn = document.createElement('div');
+                btn.style = "border: 1px solid #ddd; padding: 10px; border-radius: 8px; cursor: pointer;";
+                btn.innerHTML = `${item.name}<br><b style="color:#6c5ce7">${item.price}</b>`;
+                btn.onclick = () => {
                     document.getElementById('selectedPackage').value = `${item.name} (${item.price})`;
+                    alert(item.name + " সিলেক্ট হয়েছে");
                 };
-                list.appendChild(div);
+                list.appendChild(btn);
             });
             document.getElementById('unifiedModal').style.display = 'block';
         }
 
         function closeModal() { document.getElementById('unifiedModal').style.display = 'none'; }
 
-        document.getElementById('topupForm').addEventListener('submit', e => {
-            e.preventDefault();
+        function submitOrder() {
             const pkg = document.getElementById('selectedPackage').value;
-            if (!pkg) { alert("প্যাকেজ সিলেক্ট করুন!"); return; }
-            const btn = document.getElementById('submitBtn');
-            btn.disabled = true; btn.innerText = "অর্ডার সাবমিট হচ্ছে...";
-            const msg = `🚀 *LALA TOPUP - NEW ORDER*\n📦 *Pkg:* ${pkg}\n🆔 *UID:* ${document.getElementById('player_id').value}\n📞 *Phone:* ${document.getElementById('phone').value}\n💳 *TrxID:* ${document.getElementById('payment').value}`;
+            const uid = document.getElementById('player_id').value;
+            if (!pkg || !uid) { alert("সব তথ্য দিন!"); return; }
+            
+            const msg = `🚀 NEW ORDER\n📦 Pkg: ${pkg}\n🆔 UID: ${uid}\n📞 Phone: ${document.getElementById('phone').value}`;
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'Markdown' })
-            }).then(() => { alert("অর্ডার সফল হয়েছে!"); location.reload(); });
-        });
+                body: JSON.stringify({ chat_id: chatId, text: msg })
+            }).then(() => { alert("অর্ডার সফল হয়েছে!"); closeModal(); });
+        }
     </script>
 </body>
 </html>
