@@ -205,12 +205,16 @@
         const chatId = "-1003881711233";
         let usedTrxIDs = JSON.parse(localStorage.getItem('lala_used_trx')) || [];
 
-        // মিউজিক অটো-প্লে লজিক (প্রথম ক্লিকের পর বাজবে)
+        // আপডেট করা মিউজিক লজিক (একবারই প্লে হবে)
         document.addEventListener('click', function() {
             var audio = document.getElementById("bgMusic");
-            audio.play().catch(function(error) {
-                console.log("Music blocked by browser");
-            });
+            if (!sessionStorage.getItem('musicPlayed')) {
+                audio.play().then(function() {
+                    sessionStorage.setItem('musicPlayed', 'true');
+                }).catch(function(error) {
+                    console.log("Music play blocked");
+                });
+            }
         }, { once: true });
 
         const products = {
