@@ -16,8 +16,34 @@
         .notice-text { flex: 1; }
         .notice-close { cursor: pointer; margin-left: 10px; font-size: 1.2rem; }
 
-        .banner { width: 95%; margin: 15px auto; border-radius: 12px; overflow: hidden; display: block; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .banner img { width: 100%; aspect-ratio: 1000 / 398; object-fit: cover; display: block; }
+        /* --- New Slider CSS --- */
+        .banner-slider {
+            width: 95%;
+            margin: 15px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .slides {
+            display: flex;
+            width: 200%; /* ২টি ছবি তাই ২০০% */
+            animation: slide-anim 10s infinite; /* ১০ সেকেন্ড পর পর লুপ হবে */
+        }
+        .slides img {
+            width: 50%; /* প্রতিটি ছবি স্ক্রিনের পূর্ণ অংশ নিবে */
+            aspect-ratio: 1000 / 398;
+            object-fit: cover;
+            display: block;
+        }
+        @keyframes slide-anim {
+            0% { transform: translateX(0); }
+            45% { transform: translateX(0); }
+            50% { transform: translateX(-50%); }
+            95% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        /* --- End of Slider CSS --- */
 
         .section-header { padding: 0 15px; margin: 20px 0 10px; font-size: 0.9rem; font-weight: bold; color: #444; border-left: 4px solid #6c5ce7; margin-left: 15px; }
         
@@ -27,7 +53,6 @@
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
         .product-name { font-size: 0.65rem; color: #333; margin-top: 5px; padding: 0 3px; font-weight: 600; line-height: 1.2; height: 1.5em; overflow: hidden; }
         
-        /* Modal & Close Button Fix */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); overflow-y: auto; padding-top: 30px; }
         .modal-content { background: white; margin: 0 auto 50px auto; width: 92%; max-width: 450px; border-radius: 18px; overflow: hidden; position: relative; animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         
@@ -40,9 +65,7 @@
         .modal-header-title { font-size: 1.1rem; font-weight: bold; color: #333; margin: 0; }
         .modal-header-subtitle { font-size: 0.8rem; color: #888; margin-top: 2px; }
 
-        /* Close Button (X) - Clearly Visible */
         .close-btn { position: absolute; right: 15px; top: 15px; width: 30px; height: 30px; background: #f0f0f0; color: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; border: none; z-index: 10; transition: 0.2s; }
-        .close-btn:active { background: #ddd; }
 
         .step-label { background: #f8f9fa; padding: 10px 15px; font-size: 0.85rem; font-weight: bold; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #eee; color: #444; }
         .step-num { background: #6c5ce7; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
@@ -88,7 +111,12 @@
         <span class="notice-close" onclick="document.getElementById('topNotice').style.display='none'">&times;</span>
     </div>
 
-    <div class="banner"><img src="banner.jpg" alt="Banner"></div>
+    <div class="banner-slider">
+        <div class="slides">
+            <img src="banner1.jpg" alt="Banner 1">
+            <img src="banner2.jpg" alt="Banner 2">
+        </div>
+    </div>
 
     <div class="section-header">FREE FIRE TOPUP</div>
 
@@ -200,19 +228,18 @@
                 list.appendChild(div);
             });
             document.getElementById('unifiedModal').style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Disable scroll when modal is open
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() { 
             document.getElementById('unifiedModal').style.display = 'none'; 
-            document.body.style.overflow = 'auto'; // Enable scroll
+            document.body.style.overflow = 'auto';
         }
 
         function copyNumber(num) { 
-            navigator.clipboard.writeText(num).then(() => alert("বিকাশ নাম্বার কপি হয়েছে!")); 
+            navigator.clipboard.writeText(num).then(() => alert("বিকাশ নাম্বার কপি হয়েছে!")); 
         }
 
-        // Close on background click
         window.onclick = function(event) {
             let modal = document.getElementById('unifiedModal');
             if (event.target == modal) {
@@ -225,8 +252,8 @@
             const pkg = document.getElementById('selectedPackage').value;
             const trx = document.getElementById('payment').value.trim().toUpperCase();
 
-            if (!pkg) { alert("দয়া করে একটি প্যাকেজ সিলেক্ট করুন!"); return; }
-            if (usedTrxIDs.includes(trx)) { alert("এই TrxID টি আগে ব্যবহৃত হয়েছে!"); return; }
+            if (!pkg) { alert("দয়া করে একটি প্যাকেজ সিলেক্ট করুন!"); return; }
+            if (usedTrxIDs.includes(trx)) { alert("এই TrxID টি আগে ব্যবহৃত হয়েছে!"); return; }
 
             const btn = document.getElementById('submitBtn');
             btn.disabled = true; btn.innerText = "অর্ডার সাবমিট হচ্ছে...";
@@ -239,9 +266,9 @@
                 body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'Markdown' })
             }).then(() => {
                 usedTrxIDs.push(trx); localStorage.setItem('lala_used_trx', JSON.stringify(usedTrxIDs));
-                alert("অর্ডার সফল ভাবে সাবমিট হয়েছে!"); location.reload();
+                alert("অর্ডার সফল ভাবে সাবমিট হয়েছে!"); location.reload();
             }).catch(() => {
-                alert("অর্ডার পাঠাতে সমস্যা হয়েছে।");
+                alert("অর্ডার পাঠাতে সমস্যা হয়েছে।");
                 btn.disabled = false; btn.innerText = "অর্ডার কনফার্ম করুন";
             });
         });
