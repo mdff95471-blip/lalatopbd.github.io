@@ -79,7 +79,7 @@
         .product-card { background: #fff; border-radius: 10px; border: 1px solid #eee; overflow: hidden; text-align: center; padding-bottom: 8px; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
         .product-card:active { transform: scale(0.95); }
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
-        .product-card .icon-placeholder { width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; background: #f0edff; }
+        .product-card .icon-placeholder { width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; background: #f0edff; color: #6c5ce7; }
         .product-name { font-size: 0.65rem; color: #333; margin-top: 5px; padding: 0 3px; font-weight: 600; line-height: 1.2; height: 1.5em; overflow: hidden; }
 
         /* Modal Styles */
@@ -171,8 +171,13 @@
         </div>
 
         <div class="product-card" onclick="window.location.href='cutter.html'">
-            <div class="icon-placeholder">✂️</div>
+            <div class="icon-placeholder"><i class="fas fa-cut"></i></div>
             <div class="product-name">Image Splitter (ছবি কাটুন)</div>
+        </div>
+
+        <div class="product-card" onclick="window.location.href='enhance.html'">
+            <div class="icon-placeholder" style="background: #fff0f6; color: #ff78b0;"><i class="fas fa-magic"></i></div>
+            <div class="product-name">HD Photo Enhancer (কোয়ালিটি বাড়ান)</div>
         </div>
     </div>
 
