@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LALA Image Splitter - ছবি কাটুন ফ্রিতে</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #6c5ce7; --secondary: #a29bfe; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; }
+        
+        .nav { background: #fff; padding: 15px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .nav h2 { margin: 0; color: var(--primary); font-size: 1.5rem; }
+
+        .container { max-width: 600px; margin: 20px auto; background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        
+        .upload-area { border: 2px dashed var(--secondary); padding: 30px; text-align: center; border-radius: 12px; cursor: pointer; transition: 0.3s; margin-bottom: 20px; }
+        .upload-area:hover { background: #f8f7ff; border-color: var(--primary); }
+        .upload-area i { font-size: 3rem; color: var(--primary); margin-bottom: 10px; }
+        
+        #preview { width: 100%; max-height: 300px; object-fit: contain; display: none; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd; }
+
+        .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .input-group { display: flex; flex-direction: column; gap: 5px; }
+        label { font-size: 0.85rem; font-weight: bold; color: #555; }
+        input, select { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
+
+        .btn-split { width: 100%; background: var(--primary); color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3); }
+        .btn-split:disabled { background: #ccc; cursor: not-allowed; box-shadow: none; }
+
+        #result-container { margin-top: 25px; display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; }
+        .split-part { width: 100%; border-radius: 5px; border: 1px solid #eee; }
+        
+        .back-home { display: block; text-align: center; margin-top: 20px; text-decoration: none; color: #888; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <h2>LALA IMAGE SPLITTER</h2>
+    </div>
+
+    <div class="container">
+        <div class="upload-area" onclick="document.getElementById('imageInput').click()">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>ছবি সিলেক্ট করতে এখানে ক্লিক করুন</p>
+            <input type="file" id="imageInput" accept="image/*" style="display: none;">
+        </div>
+
+        <img id="preview">
+
+        <div class="controls">
+            <div class="input-group">
+                <label>সারি (Rows)</label>
+                <input type="number" id="rows" value="1" min="1">
+            </div>
+            <div class="input-group">
+                <label>কলাম (Columns)</label>
+                <input type="number" id="cols" value="2" min="1">
+            </div>
+        </div>
+
+        <button class="btn-split" id="splitBtn" disabled onclick="splitImage()">ছবি কাটুন (SPLIT)</button>
+
+        <div id="result-container"></div>
+
+        <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> হোম পেজে ফিরে যান</a>
+    </div>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const preview = document.getElementById('preview');
+        const splitBtn = document.getElementById('splitBtn');
+        const resultContainer = document.getElementById('result-container');
+        let originalImage = new Image();
+
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    preview.src = event.target.result;
+                    preview.style.display = 'block';
+                    originalImage.src = event.target.result;
+                    splitBtn.disabled = false;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function splitImage() {
+            const rows = parseInt(document.getElementById('rows').value);
+            const cols = parseInt(document.getElementById('cols').value);
+            resultContainer.innerHTML = '';
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            const partWidth = originalImage.width / cols;
+            const partHeight = originalImage.height / rows;
+
+            canvas.width = partWidth;
+            canvas.height = partHeight;
+
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(originalImage, c * partWidth, r * partHeight, partWidth, partHeight, 0, 0, partWidth, partHeight);
+                    
+                    const imgData = canvas.toDataURL('image/png');
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imgData;
+                    imgElement.className = 'split-part';
+                    
+                    // অটো ডাউনলোড অপশন (ঐচ্ছিক)
+                    const link = document.createElement('a');
+                    link.href = imgData;
+                    link.download = `lala_part_${r}_${c}.png`;
+                    link.appendChild(imgElement);
+                    
+                    resultContainer.appendChild(link);
+                }
+            }
+            alert("ছবি কাটা সম্পন্ন হয়েছে! ছবির ওপর ক্লিক করে ডাউনলোড করুন।");
+        }
+    </script>
+</body>
+</html>
