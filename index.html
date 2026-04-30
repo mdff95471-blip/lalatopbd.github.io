@@ -129,7 +129,7 @@
         </div>
     </div>
 
-    <!-- 🔵 APPS PASSWORD UNLOCK SECTION (নতুন যুক্ত করা হয়েছে) -->
+    <!-- 🔵 APPS PASSWORD UNLOCK SECTION -->
     <div class="section-header">APPS PASSWORD UNLOCK</div>
     <div class="card-grid">
         <div class="product-card" onclick="openSSModal('Free Fire Tool', 'LALA-7788')">
@@ -195,12 +195,12 @@
         </div>
     </div>
 
-    <!-- Screenshot Unlock Modal (নতুন) -->
+    <!-- Screenshot Unlock Modal -->
     <div id="ssModal" class="modal">
         <div class="modal-content" style="padding: 20px;">
             <button class="close-btn" onclick="closeSSModal()"><i class="fas fa-times"></i></button>
             <h3 id="ssModalTitle" style="text-align: center;">Unlock Password</h3>
-            <p style="font-size: 0.8rem; text-align: center; color: #666; margin-bottom: 10px;">সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড সাথে সাথে পাবেন।</p>
+            <p style="font-size: 0.8rem; text-align: center; color: #666; margin-bottom: 10px;">সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড সাথে সাথে পাবেন।</p>
             <a href="https://youtube.com/@lalagamer100" target="_blank" class="yt-btn">Subscribe Youtube</a>
             <div id="uploadFormArea">
                 <label for="ssInput" class="ss-upload-label">
@@ -211,8 +211,8 @@
                 <button id="unlockBtn" class="submit-btn" onclick="handleUnlock()">UPLOAD & GET PASS</button>
             </div>
             <div id="passwordResult" class="pass-box">
-                <p style="color:green; font-weight:bold; margin-bottom:5px;">ভেরিফাই হয়েছে!</p>
-                <span style="font-size:0.8rem;">আপনার পাসওয়ার্ড:</span>
+                <p id="verificationStatus" style="color:green; font-weight:bold; margin-bottom:5px;">অপেক্ষা করুন...</p>
+                <span id="passLabel" style="font-size:0.8rem; display:none;">আপনার পাসওয়ার্ড:</span>
                 <h2 id="finalPassword" style="letter-spacing: 2px; color:#333;"></h2>
             </div>
         </div>
@@ -222,7 +222,8 @@
         const botToken = "8791604536:AAGHR3iQmldzR7Ld7Q7thyJRODJa2E7lr54";
         const chatId = "-1003881711233";
         const dbURL = "https://lala-status-default-rtdb.asia-southeast1.firebasedatabase.app/.json";
-        let usedTrxIDs = JSON.parse(localStorage.getItem('lala_used_trx')) || [];
+        const fbRequestURL = "https://lala-status-default-rtdb.asia-southeast1.firebasedatabase.app/requests";
+        
         let currentPass = "";
 
         // Admin Status Sync
@@ -243,7 +244,6 @@
         }
         setInterval(syncStatus, 5000); syncStatus();
 
-        // Products List
         const products = {
             guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}],
             offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 43"}, {name:"115 Diamond", price:"BDT 85"}],
@@ -251,7 +251,6 @@
             likes: [{ name: "200 FF LIKE", price: "BDT 45" }]
         };
 
-        // Diamond Modal Functions
         function openPkgModal(title, key, logoSrc) {
             document.getElementById('modalTitle').innerText = title;
             const list = document.getElementById('listContent');
@@ -289,26 +288,56 @@
             const btn = document.getElementById('unlockBtn');
             if (!fileInput.files[0]) { alert("আগে স্ক্রিনশট সিলেক্ট করুন!"); return; }
 
-            btn.disabled = true; btn.innerText = "যাচাই হচ্ছে...";
+            btn.disabled = true; btn.innerText = "পাঠানো হচ্ছে...";
+            const reqId = "REQ" + Date.now();
 
             const formData = new FormData();
             formData.append('chat_id', chatId);
             formData.append('photo', fileInput.files[0]);
-            formData.append('caption', `📸 নতুন স্ক্রিনশট!\nঅ্যাপ: ${document.getElementById('ssModalTitle').innerText}\nপাসওয়ার্ড শো হয়েছে: ${currentPass}`);
+            formData.append('caption', `📸 নতুন স্ক্রিনশট!\nপ্রজেক্ট: ${document.getElementById('ssModalTitle').innerText}\nআইডি: ${reqId}`);
+            
+            // Adding Approve/Reject Buttons for Telegram
+            formData.append('reply_markup', JSON.stringify({
+                inline_keyboard: [[
+                    { text: "✅ Approve", callback_data: `approve_${reqId}_${currentPass}` },
+                    { text: "❌ Reject", callback_data: `reject_${reqId}` }
+                ]]
+            }));
 
             try {
                 const response = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, { method: 'POST', body: formData });
                 if (response.ok) {
-                    setTimeout(() => {
-                        document.getElementById('uploadFormArea').style.display = 'none';
-                        document.getElementById('passwordResult').style.display = 'block';
-                        document.getElementById('finalPassword').innerText = currentPass;
-                    }, 2000);
-                } else { alert("ছবি পাঠাতে সমস্যা হয়েছে!"); btn.disabled = false; }
+                    await fetch(`${fbRequestURL}/${reqId}.json`, {
+                        method: 'PUT',
+                        body: JSON.stringify({ status: "pending" })
+                    });
+                    document.getElementById('uploadFormArea').style.display = 'none';
+                    document.getElementById('passwordResult').style.display = 'block';
+                    document.getElementById('verificationStatus').innerText = "অপেক্ষা করুন... অ্যাডমিন চেক করছে।";
+                    startStatusCheck(reqId);
+                } else { alert("টেলিগ্রামে পাঠাতে সমস্যা হয়েছে!"); btn.disabled = false; }
             } catch (err) { alert("ইন্টারনেট সমস্যা!"); btn.disabled = false; }
         }
 
-        // Diamond Form Submit
+        function startStatusCheck(reqId) {
+            const checkInterval = setInterval(async () => {
+                try {
+                    const response = await fetch(`${fbRequestURL}/${reqId}.json`);
+                    const data = await response.json();
+                    if (data && data.status === "approved") {
+                        clearInterval(checkInterval);
+                        document.getElementById('verificationStatus').innerText = "ভেরিফাই হয়েছে!";
+                        document.getElementById('passLabel').style.display = "block";
+                        document.getElementById('finalPassword').innerText = data.password;
+                    } else if (data && data.status === "rejected") {
+                        clearInterval(checkInterval);
+                        alert("আপনার স্ক্রিনশট রিজেক্ট করা হয়েছে! আবার চেষ্টা করুন।");
+                        closeSSModal();
+                    }
+                } catch (e) { }
+            }, 3000);
+        }
+
         document.getElementById('topupForm').addEventListener('submit', e => {
             e.preventDefault();
             const pkg = document.getElementById('selectedPackage').value;
@@ -321,7 +350,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'Markdown' })
-            }).then(() => { alert("অর্ডার সফল হয়েছে!"); location.reload(); });
+            }).then(() => { alert("অর্ডার সফল হয়েছে!"); location.reload(); });
         });
 
         window.onclick = e => { 
