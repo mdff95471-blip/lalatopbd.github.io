@@ -139,7 +139,6 @@
     <!-- 🔵 APPS PASSWORD UNLOCK SECTION -->
     <div class="section-header">APPS PASSWORD UNLOCK</div>
     <div class="card-grid">
-        <!-- পাসওয়ার্ড LALA999 সেট করা আছে -->
         <div class="product-card" onclick="openSSModal('Free Fire Tool', 'LALA999')">
             <div class="icon-box" style="background: #e67e22; color: white;"><i class="fas fa-key"></i></div>
             <span class="product-name">SKIN TOOL PASS</span>
@@ -211,18 +210,15 @@
             <p style="font-size: 0.8rem; text-align: center; color: #666; margin-bottom: 10px;">ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।</p>
             
             <a href="https://youtube.com/@lalagamer100" target="_blank" class="social-btn yt-btn"><i class="fab fa-youtube"></i> Subscribe Youtube</a>
-            <!-- TikTok বাটন যুক্ত করা হলো -->
-            <a href="https://www.tiktok.com/@rdxlala" target="_blank" class="social-btn tk-btn"><i class="fab fa-tiktok"></i> Follow TikTok</a>
+            <!-- নতুন টিকটক লিঙ্ক এখানে আপডেট করা হয়েছে -->
+            <a href="https://www.tiktok.com/@rdx_lala1" target="_blank" class="social-btn tk-btn"><i class="fab fa-tiktok"></i> Follow TikTok</a>
 
             <div id="uploadFormArea">
                 <label for="ssInput" class="ss-upload-label">
                     <i class="fas fa-image" style="font-size: 2rem; color: #6c5ce7;"></i>
                     <p id="ssFileName">১ বা ২ টি স্ক্রিনশট ফাইল সিলেক্ট করুন</p>
                 </label>
-                <!-- একাধিক ফাইল সিলেক্ট করার জন্য multiple যুক্ত করা হয়েছে -->
                 <input type="file" id="ssInput" accept="image/*" multiple style="display: none;" onchange="updateFileInfo(this)">
-                
-                <!-- বাটন ডিফল্টভাবে ডিজেবল থাকবে -->
                 <button id="unlockBtn" class="submit-btn" disabled onclick="handleUnlock()">UPLOAD & GET PASS</button>
             </div>
             <div id="passwordResult" class="pass-box">
@@ -241,7 +237,6 @@
         
         let currentPass = "";
 
-        // Admin Status Sync
         function syncStatus() {
             const badge = document.getElementById('adminBadge'), dot = document.getElementById('adminDot'), 
                   text = document.getElementById('adminStatusText'), notice = document.getElementById('lalaNotice');
@@ -287,7 +282,6 @@
         function closeModal() { document.getElementById('unifiedModal').style.display = 'none'; }
         function copyNumber(num) { navigator.clipboard.writeText(num).then(() => alert("নাম্বার কপি হয়েছে!")); }
 
-        // ফাইল ইনফো আপডেট এবং বাটন কন্ট্রোল
         function updateFileInfo(input) {
             const fileNameDisplay = document.getElementById('ssFileName');
             const unlockBtn = document.getElementById('unlockBtn');
@@ -300,14 +294,13 @@
             }
         }
 
-        // Unlock Modal Functions
         function openSSModal(title, pass) {
             currentPass = pass;
             document.getElementById('ssModalTitle').innerText = title;
             document.getElementById('ssModal').style.display = 'block';
             document.getElementById('uploadFormArea').style.display = 'block';
             document.getElementById('passwordResult').style.display = 'none';
-            document.getElementById('ssInput').value = ""; // রিসেট
+            document.getElementById('ssInput').value = "";
             updateFileInfo(document.getElementById('ssInput'));
         }
 
@@ -321,14 +314,12 @@
             btn.disabled = true; btn.innerText = "পাঠানো হচ্ছে...";
             const reqId = "REQ" + Date.now();
 
-            // একাধিক ছবি পাঠানোর লুপ
             for (let i = 0; i < fileInput.files.length; i++) {
                 const formData = new FormData();
                 formData.append('chat_id', chatId);
                 formData.append('photo', fileInput.files[i]);
                 formData.append('caption', `📸 নতুন স্ক্রিনশট (${i+1}/${fileInput.files.length})\nপ্রজেক্ট: ${document.getElementById('ssModalTitle').innerText}\nআইডি: ${reqId}`);
                 
-                // শুধুমাত্র শেষ ছবির সাথে কন্ট্রোল বাটন পাঠানো হবে
                 if (i === fileInput.files.length - 1) {
                     formData.append('reply_markup', JSON.stringify({
                         inline_keyboard: [[
@@ -343,7 +334,6 @@
                 } catch (err) { console.error("Upload error"); }
             }
 
-            // ডেটাবেসে পেন্ডিং রাখা
             await fetch(`${fbRequestURL}/${reqId}.json`, {
                 method: 'PUT',
                 body: JSON.stringify({ status: "pending" })
