@@ -7,13 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { background-color: #f8f9fa; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 70px; overflow-x: hidden; }
-        
-        /* Header & Status Section */
         .header { background: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
         .brand { color: #6c5ce7; font-weight: bold; font-size: 1.1rem; }
         .balance-badge { background: #6c5ce7; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; }
-        
-        /* Admin Status Badge */
         .admin-status { display: flex; align-items: center; gap: 5px; font-size: 0.7rem; padding: 3px 8px; border-radius: 12px; font-weight: bold; margin-left: 8px; border: 1px solid transparent; }
         .status-online { background: #e7f9ed; color: #2ecc71; border-color: #2ecc71; }
         .status-offline { background: #fceaea; color: #e74c3c; border-color: #e74c3c; }
@@ -21,47 +17,22 @@
         .dot-on { background: #2ecc71; box-shadow: 0 0 5px #2ecc71; animation: pulse 1.5s infinite; }
         .dot-off { background: #e74c3c; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
-
-        /* 🔥 DYNAMIC SCROLLING NOTICE BAR 🔥 */
         .dynamic-notice-container { width: 100%; background: #2d3436; height: 40px; display: flex !important; align-items: center; position: relative; overflow: hidden; border-bottom: 2px solid #6c5ce7; z-index: 999; }
         .notice-label-fixed { position: absolute; left: 0; background: #6c5ce7; color: #fff; padding: 0 12px; height: 100%; display: flex; align-items: center; font-weight: bold; font-size: 13px; z-index: 1001; box-shadow: 4px 0 8px rgba(0,0,0,0.4); }
         .scrolling-wrapper { width: 100%; display: flex; align-items: center; }
         .dynamic-scrolling-text { white-space: nowrap; padding-left: 100%; display: inline-block; animation: lala-scroll 20s linear infinite; font-size: 14px; color: #fff; }
         @keyframes lala-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-180%); } }
-        .online-text { color: #55efc4 !important; }
-        .offline-text { color: #ff7675 !important; font-weight: bold; }
-
-        /* Notice Bar */
-        .notice-bar { background-color: #d63031; color: white; padding: 10px 15px; font-size: 0.85rem; display: flex; align-items: flex-start; position: relative; line-height: 1.4; }
-        .notice-bar b { margin-right: 8px; color: #ffeb3b; }
-        .notice-close { cursor: pointer; margin-left: 10px; font-size: 1.2rem; }
-
-        /* Banner Slider */
-        .banner-slider { width: 95%; margin: 15px auto; border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .slides { display: flex; width: 200%; animation: slide-anim 10s infinite; }
-        .slides img { width: 50%; aspect-ratio: 1000 / 398; object-fit: cover; display: block; }
-        @keyframes slide-anim { 0%, 45% { transform: translateX(0); } 50%, 95% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
-
-        /* Titles */
         .section-header { padding: 0 15px; margin: 25px 0 12px; font-size: 1rem; font-weight: bold; color: #1e3799; text-align: center; text-transform: uppercase; }
-        
-        /* Grid */
         .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 12px; margin-bottom: 20px; }
         .product-card { background: #fff; border-radius: 15px; overflow: hidden; text-align: center; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding-bottom: 10px; }
         .product-card:active { transform: scale(0.92); }
         .product-card img, .icon-box { width: 100%; aspect-ratio: 1/1; border-radius: 15px 15px 0 0; object-fit: cover; background: #fff; margin-bottom: 5px; }
         .icon-box { display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #6c5ce7; }
         .product-name { font-size: 0.62rem; color: #333; font-weight: 700; line-height: 1.2; height: 2.4em; overflow: hidden; display: block; padding: 0 5px; }
-
-        /* Download Button Style */
         .download-btn { display: inline-block; background: #6c5ce7; color: white; padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 10px; font-weight: bold; transition: 0.3s; border: none; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 5px; }
-        .download-btn:hover { background: #5541d8; transform: translateY(-2px); }
-
-        /* Modal Styles */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); overflow-y: auto; padding-top: 30px; }
         .modal-content { background: white; margin: 0 auto 50px auto; width: 92%; max-width: 450px; border-radius: 18px; overflow: hidden; position: relative; animation: slideIn 0.3s; }
         @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        
         .close-btn { position: absolute; right: 15px; top: 15px; width: 30px; height: 30px; background: #f0f0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; z-index: 10; }
         .package-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; max-height: 280px; overflow-y: auto; }
         .package-item { border: 1px solid #e0e0e0; padding: 12px 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: #fff; }
@@ -70,14 +41,11 @@
         input { width: 100%; padding: 14px; margin: 8px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
         .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; }
         .submit-btn:disabled { background: #cccccc; cursor: not-allowed; }
-
-        /* Unlock System Extra Style */
         .ss-upload-label { display: block; padding: 20px; border: 2px dashed #6c5ce7; border-radius: 12px; cursor: pointer; background: #f9f8ff; margin: 15px 0; text-align: center; }
         .pass-box { display: none; margin-top: 15px; padding: 20px; background: #e7f9ed; border: 2px solid #2ecc71; border-radius: 12px; text-align: center; }
         .social-btn { color: white; text-decoration: none; display: block; padding: 12px; border-radius: 10px; font-weight: bold; margin-bottom: 10px; text-align: center; }
         .yt-btn { background: #ff0000; }
         .tk-btn { background: #000000; }
-
         .footer-dark { background: #0a1128; color: white; padding: 40px 20px; text-align: left; margin-top: 30px; }
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #eee; z-index: 1000; }
         .nav-item { text-align: center; color: #888; font-size: 0.7rem; text-decoration: none; flex: 1; }
@@ -119,27 +87,25 @@
         </div>
     </div>
 
-    <!-- 🔵 FREE FIRE SECTION -->
     <div class="section-header">FREE FIRE</div>
     <div class="card-grid">
-        <div class="product-card" onclick="openPkgModal('UID DIAMOND TOPUP', 'offers', 'offer.jpg')">
+        <div class="product-card" onclick="openPkgModal('UID TOPUP (BD)', 'offers', 'offer.jpg')">
             <img src="offer.jpg"><span class="product-name">UID DIAMOND TOPUP</span>
         </div>
         <div class="product-card" onclick="openPkgModal('Weekly/Monthly Offer', 'weekly_monthly', 'weekly.jpg')">
             <img src="weekly.jpg"><span class="product-name">WEEKLY/MONTHLY OFFER</span>
         </div>
-        <div class="product-card" onclick="openPkgModal('FF Guild Glory', 'guild', 'glory.jpg')">
+        <div class="product-card" onclick="openPkgModal('FF Guild glory', 'guild', 'glory.jpg')">
             <img src="glory.jpg"><span class="product-name">FF GUILD GLORY</span>
         </div>
-        <div class="product-card" onclick="openPkgModal('FF 200 Like প্রতিদিন', 'likes', 'like.jpg')">
+        <div class="product-card" onclick="openPkgModal('Free Fire - 200 Like', 'likes', 'like.jpg')">
             <img src="like.jpg"><span class="product-name">FF 200 LIKE প্রতিদিন</span>
         </div>
     </div>
 
-    <!-- 🔵 APPS PASSWORD UNLOCK SECTION -->
     <div class="section-header">APPS download APK</div>
     <div class="card-grid">
-        <div class="product-card" onclick="openSSModal('Free Fire Tool', 'LALA999')">
+        <div class="product-card" onclick="openSSModal('Apps Password', 'LALA999')">
             <div class="icon-box" style="background: #e67e22; color: white;"><i class="fas fa-key"></i></div>
             <span class="product-name">password</span>
         </div>
@@ -157,12 +123,15 @@
         </div>
     </div>
 
-    <!-- 🔵 TOOLS SECTION -->
     <div class="section-header">IMAGE TOOLS</div>
     <div class="card-grid">
         <div class="product-card" onclick="window.location.href='enhance.html'">
             <div class="icon-box" style="color: #ff78b0;"><i class="fas fa-magic"></i></div>
             <span class="product-name">PHOTO ENHANCER</span>
+        </div>
+        <div class="product-card" onclick="openTelegramSystem()">
+            <div class="icon-box" style="background: #0088cc; color: white;"><i class="fab fa-telegram-plane"></i></div>
+            <span class="product-name">TELEGRAM CHANNEL</span>
         </div>
     </div>
 
@@ -179,7 +148,6 @@
         <a href="#" class="nav-item"><i class="fas fa-th-large"></i>Contact Us</a>
     </div>
 
-    <!-- Diamond Modal -->
     <div id="unifiedModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
@@ -202,17 +170,15 @@
         </div>
     </div>
 
-    <!-- Screenshot Unlock Modal -->
     <div id="ssModal" class="modal">
         <div class="modal-content" style="padding: 20px;">
             <button class="close-btn" onclick="closeSSModal()"><i class="fas fa-times"></i></button>
             <h3 id="ssModalTitle" style="text-align: center;">Unlock Password</h3>
-            <p style="font-size: 0.8rem; text-align: center; color: #666; margin-bottom: 10px;">ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।</p>
+            <p id="ssDescription" style="font-size: 0.8rem; text-align: center; color: #666; margin-bottom: 10px;">ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।</p>
             
             <a href="https://youtube.com/@lalagamer100" target="_blank" class="social-btn yt-btn"><i class="fab fa-youtube"></i> Subscribe Youtube</a>
-            <a href="https://www.tiktok.com/@rdx_lala1" target="_blank" class="social-btn tk-btn">
-                <i class="fab fa-tiktok"></i> Follow TikTok
-            </a>
+            <a href="https://www.tiktok.com/@rdx_lala1" target="_blank" class="social-btn tk-btn"><i class="fab fa-tiktok"></i> Follow TikTok</a>
+
             <div id="uploadFormArea">
                 <label for="ssInput" class="ss-upload-label">
                     <i class="fas fa-image" style="font-size: 2rem; color: #6c5ce7;"></i>
@@ -221,10 +187,20 @@
                 <input type="file" id="ssInput" accept="image/*" multiple style="display: none;" onchange="updateFileInfo(this)">
                 <button id="unlockBtn" class="submit-btn" disabled onclick="handleUnlock()">UPLOAD & GET PASS</button>
             </div>
-            <div id="passwordResult" class="pass-box">
+
+            <div id="passwordEntryArea" style="display: none; margin-top: 15px;">
+                <p style="text-align:center; font-weight:bold; color:#6c5ce7;">ভেরিফিকেশন সফল! পাসওয়ার্ড দিন:</p>
+                <input type="text" id="userPassInput" placeholder="এখানে পাসওয়ার্ড দিন" style="text-align: center; font-size: 1.2rem;">
+                <button class="submit-btn" onclick="verifyFinalPass()">SUBMIT & JOIN</button>
+            </div>
+
+            <div id="finalResultArea" class="pass-box">
                 <p id="verificationStatus" style="color:green; font-weight:bold; margin-bottom:5px;">অপেক্ষা করুন...</p>
-                <span id="passLabel" style="font-size:0.8rem; display:none;">আপনার পাসওয়ার্ড:</span>
-                <h2 id="finalPassword" style="letter-spacing: 2px; color:#333;"></h2>
+                <div id="telegramLinkBox" style="display: none;">
+                    <p style="font-size: 0.9rem; margin-bottom: 10px;">আপনার লিংকটি আনলক হয়েছে:</p>
+                    <a href="https://t.me/your_telegram_channel" target="_blank" class="social-btn" style="background: #0088cc;">JOIN TELEGRAM CHANNEL</a>
+                </div>
+                <h2 id="finalPassword" style="letter-spacing: 2px; color:#333; display:none;"></h2>
             </div>
         </div>
     </div>
@@ -236,6 +212,7 @@
         const fbRequestURL = "https://lala-status-default-rtdb.asia-southeast1.firebasedatabase.app/requests";
         
         let currentPass = "";
+        let isTelegramSystem = false;
 
         function syncStatus() {
             const badge = document.getElementById('adminBadge'), dot = document.getElementById('adminDot'), 
@@ -295,11 +272,26 @@
         }
 
         function openSSModal(title, pass) {
+            isTelegramSystem = false;
             currentPass = pass;
             document.getElementById('ssModalTitle').innerText = title;
+            document.getElementById('ssDescription').innerText = "ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।";
             document.getElementById('ssModal').style.display = 'block';
             document.getElementById('uploadFormArea').style.display = 'block';
-            document.getElementById('passwordResult').style.display = 'none';
+            document.getElementById('passwordEntryArea').style.display = 'none';
+            document.getElementById('finalResultArea').style.display = 'none';
+            document.getElementById('ssInput').value = "";
+            updateFileInfo(document.getElementById('ssInput'));
+        }
+
+        function openTelegramSystem() {
+            isTelegramSystem = true;
+            document.getElementById('ssModalTitle').innerText = "Join Telegram Channel";
+            document.getElementById('ssDescription').innerText = "টেলিগ্রামে জয়েন করতে চ্যানেল সাবস্ক্রাইব ও ফলো করে স্ক্রিনশট দিন।";
+            document.getElementById('ssModal').style.display = 'block';
+            document.getElementById('uploadFormArea').style.display = 'block';
+            document.getElementById('passwordEntryArea').style.display = 'none';
+            document.getElementById('finalResultArea').style.display = 'none';
             document.getElementById('ssInput').value = "";
             updateFileInfo(document.getElementById('ssInput'));
         }
@@ -328,19 +320,12 @@
                         ]]
                     }));
                 }
-
-                try {
-                    await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, { method: 'POST', body: formData });
-                } catch (err) { console.error("Upload error"); }
+                await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, { method: 'POST', body: formData });
             }
 
-            await fetch(`${fbRequestURL}/${reqId}.json`, {
-                method: 'PUT',
-                body: JSON.stringify({ status: "pending" })
-            });
-
+            await fetch(`${fbRequestURL}/${reqId}.json`, { method: 'PUT', body: JSON.stringify({ status: "pending" }) });
             document.getElementById('uploadFormArea').style.display = 'none';
-            document.getElementById('passwordResult').style.display = 'block';
+            document.getElementById('finalResultArea').style.display = 'block';
             document.getElementById('verificationStatus').innerText = "অপেক্ষা করুন... অ্যাডমিন চেক করছে।";
             startStatusCheck(reqId);
         }
@@ -352,16 +337,34 @@
                     const data = await response.json();
                     if (data && data.status === "approved") {
                         clearInterval(checkInterval);
-                        document.getElementById('verificationStatus').innerText = "ভেরিফাই হয়েছে!";
-                        document.getElementById('passLabel').style.display = "block";
-                        document.getElementById('finalPassword').innerText = data.password;
+                        window.serverPass = data.password;
+                        if (isTelegramSystem) {
+                            document.getElementById('finalResultArea').style.display = 'none';
+                            document.getElementById('passwordEntryArea').style.display = 'block';
+                        } else {
+                            document.getElementById('verificationStatus').innerText = "ভেরিফাই হয়েছে!";
+                            document.getElementById('finalPassword').innerText = data.password;
+                            document.getElementById('finalPassword').style.display = "block";
+                        }
                     } else if (data && data.status === "rejected") {
                         clearInterval(checkInterval);
-                        alert("আপনার স্ক্রিনশট রিজেক্ট করা হয়েছে! আবার চেষ্টা করুন।");
+                        alert("আপনার স্ক্রিনশট রিজেক্ট করা হয়েছে!");
                         closeSSModal();
                     }
                 } catch (e) { }
             }, 3000);
+        }
+
+        function verifyFinalPass() {
+            const userPass = document.getElementById('userPassInput').value;
+            if (userPass === window.serverPass) {
+                document.getElementById('passwordEntryArea').style.display = 'none';
+                document.getElementById('finalResultArea').style.display = 'block';
+                document.getElementById('verificationStatus').innerText = "পাসওয়ার্ড সঠিক হয়েছে!";
+                document.getElementById('telegramLinkBox').style.display = "block";
+            } else {
+                alert("ভুল পাসওয়ার্ড! সঠিক পাসওয়ার্ড দিন।");
+            }
         }
 
         document.getElementById('topupForm').addEventListener('submit', e => {
