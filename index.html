@@ -139,7 +139,7 @@
     <!-- 🔵 APPS PASSWORD UNLOCK SECTION -->
     <div class="section-header">APPS download APK</div>
     <div class="card-grid">
-        <div class="product-card" onclick="openSSModal('Free Fire Tool', 'LALA999')">
+        <div class="product-card" onclick="openSSModal('Free Fire Tool', 'AUTO')">
             <div class="icon-box" style="background: #e67e22; color: white;"><i class="fas fa-key"></i></div>
             <span class="product-name">password</span>
         </div>
@@ -164,7 +164,6 @@
             <div class="icon-box" style="color: #ff78b0;"><i class="fas fa-magic"></i></div>
             <span class="product-name">PHOTO ENHANCER</span>
         </div>
-        <!-- 🔴 টেলিগ্রাম সেকশন নতুন যুক্ত করা হলো -->
         <div class="product-card" onclick="openTelegramSystem()">
             <div class="icon-box" style="background: #0088cc; color: white;"><i class="fab fa-telegram-plane"></i></div>
             <span class="product-name">JOIN TELEGRAM VIP</span>
@@ -228,9 +227,9 @@
                 <button id="unlockBtn" class="submit-btn" disabled onclick="handleUnlock()">UPLOAD & GET PASS</button>
             </div>
 
-            <!-- পাসওয়ার্ড ইনপুট সেকশন (টেলিগ্রামের জন্য) -->
+            <!-- পাসওয়ার্ড ইনপুট সেকশন (টেলিগ্রামের জন্য) -->
             <div id="passwordEntryArea" style="display: none; margin-top: 15px;">
-                <input type="text" id="userPassInput" placeholder="অ্যাডমিনের দেওয়া পাসওয়ার্ড দিন" style="text-align: center;">
+                <input type="text" id="userPassInput" placeholder="অ্যাডমিনের দেওয়া পাসওয়ার্ড দিন" style="text-align: center;">
                 <button class="submit-btn" onclick="verifyTelegramPass()">JOIN TELEGRAM</button>
             </div>
 
@@ -253,6 +252,20 @@
         
         let currentPass = "";
         let isTelegramTask = false;
+
+        // --- নতুন অটো পাসওয়ার্ড জেনারেশন ফাংশন ---
+        function generateAutoPass() {
+            const secret = "RDX_LALA_ADMIN"; // সিক্রেট কী
+            const d = new Date();
+            const timeKey = `${d.getFullYear()}${d.getMonth()+1}${d.getDate()}${d.getHours()}`;
+            let hash = 0;
+            const combined = secret + timeKey;
+            for (let i = 0; i < combined.length; i++) {
+                hash = ((hash << 5) - hash) + combined.charCodeAt(i);
+                hash |= 0; 
+            }
+            return "LALA" + Math.abs(hash).toString().substring(0, 4);
+        }
 
         function syncStatus() {
             const badge = document.getElementById('adminBadge'), dot = document.getElementById('adminDot'), 
@@ -313,7 +326,8 @@
 
         function openSSModal(title, pass) {
             isTelegramTask = false;
-            currentPass = pass;
+            // যদি পাসওয়ার্ড 'AUTO' হয় তবে ডাইনামিক পাস জেনারেট হবে
+            currentPass = (pass === 'AUTO') ? generateAutoPass() : pass;
             document.getElementById('ssModalTitle').innerText = title;
             document.getElementById('ssDescription').innerText = "ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।";
             document.getElementById('ssModal').style.display = 'block';
@@ -326,9 +340,9 @@
 
         function openTelegramSystem() {
             isTelegramTask = true;
-            currentPass = "TELEGRAM_VIP"; // এটি ইন্টারনাল ট্র্যাকিংয়ের জন্য
+            currentPass = generateAutoPass(); // টেলিগ্রামের জন্যও অটো পাসওয়ার্ড
             document.getElementById('ssModalTitle').innerText = "Join Telegram VIP";
-            document.getElementById('ssDescription').innerText = "টেলিগ্রামে জয়েন করতে ইউটিউব ও টিকটক সাবস্ক্রাইব করে স্ক্রিনশট দিন।";
+            document.getElementById('ssDescription').innerText = "টেলিগ্রামে জয়েন করতে ইউটিউব ও টিকটক সাবস্ক্রাইব করে স্ক্রিনশট দিন।";
             document.getElementById('ssModal').style.display = 'block';
             document.getElementById('uploadFormArea').style.display = 'block';
             document.getElementById('passwordEntryArea').style.display = 'none';
@@ -385,13 +399,13 @@
                     const data = await response.json();
                     if (data && data.status === "approved") {
                         clearInterval(checkInterval);
-                        window.serverPass = data.password; // অ্যাডমিন যে পাসওয়ার্ড দিবে তা সেভ হলো
+                        window.serverPass = data.password; 
                         
                         if (isTelegramTask) {
-                            document.getElementById('verificationStatus').innerText = "অ্যাডমিন অনুমতি দিয়েছে!";
+                            document.getElementById('verificationStatus').innerText = "অ্যাডমিন অনুমতি দিয়েছে!";
                             document.getElementById('passwordEntryArea').style.display = "block";
                             document.getElementById('passLabel').style.display = "none";
-                            document.getElementById('finalPassword').innerText = "পাসওয়ার্ডটি নিচে ইনপুট দিন";
+                            document.getElementById('finalPassword').innerText = "পাসওয়ার্ডটি নিচে ইনপুট দিন";
                         } else {
                             document.getElementById('verificationStatus').innerText = "ভেরিফাই হয়েছে!";
                             document.getElementById('passLabel').style.display = "block";
@@ -407,13 +421,14 @@
         }
 
         function verifyTelegramPass() {
-            const inputVal = document.getElementById('userPassInput').value;
+            const inputVal = document.getElementById('userPassInput').value.trim();
+            // এখানে ডাইনামিক পাসের সাথে ইউজার ইনপুট চেক হবে
             if (inputVal === window.serverPass) {
                 document.getElementById('passwordEntryArea').style.display = "none";
                 document.getElementById('telegramLinkArea').style.display = "block";
-                document.getElementById('finalPassword').innerText = "পাসওয়ার্ড সঠিক!";
+                document.getElementById('finalPassword').innerText = "পাসওয়ার্ড সঠিক!";
             } else {
-                alert("ভুল পাসওয়ার্ড! অ্যাডমিনের দেওয়া সঠিক পাসওয়ার্ডটি দিন।");
+                alert("ভুল পাসওয়ার্ড! সঠিক পাসওয়ার্ডটি দিন।");
             }
         }
 
@@ -438,4 +453,4 @@
         }
     </script>
 </body>
-                                                            </html>
+</html>
