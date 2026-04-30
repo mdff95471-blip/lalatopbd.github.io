@@ -122,16 +122,16 @@
     <!-- 🔵 FREE FIRE SECTION -->
     <div class="section-header">FREE FIRE</div>
     <div class="card-grid">
-        <div class="product-card" onclick="openPkgModal('UID TOPUP (BD)', 'offers', 'offer.jpg')">
+        <div class="product-card" onclick="openPkgModal('UID DIAMOND TOPUP', 'offers', 'offer.jpg')">
             <img src="offer.jpg"><span class="product-name">UID DIAMOND TOPUP</span>
         </div>
         <div class="product-card" onclick="openPkgModal('Weekly/Monthly Offer', 'weekly_monthly', 'weekly.jpg')">
             <img src="weekly.jpg"><span class="product-name">WEEKLY/MONTHLY OFFER</span>
         </div>
-        <div class="product-card" onclick="openPkgModal('FF Guild glory', 'guild', 'glory.jpg')">
+        <div class="product-card" onclick="openPkgModal('FF Guild Glory', 'guild', 'glory.jpg')">
             <img src="glory.jpg"><span class="product-name">FF GUILD GLORY</span>
         </div>
-        <div class="product-card" onclick="openPkgModal('Free Fire - 200 Like', 'likes', 'like.jpg')">
+        <div class="product-card" onclick="openPkgModal('FF 200 Like প্রতিদিন', 'likes', 'like.jpg')">
             <img src="like.jpg"><span class="product-name">FF 200 LIKE প্রতিদিন</span>
         </div>
     </div>
@@ -207,12 +207,11 @@
         <div class="modal-content" style="padding: 20px;">
             <button class="close-btn" onclick="closeSSModal()"><i class="fas fa-times"></i></button>
             <h3 id="ssModalTitle" style="text-align: center;">Unlock Password</h3>
-            <p style="font-size: 0.8rem; text-align: center; color: #666; margin-bottom: 10px;">ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।</p>
+            <p style="font-size: 0.8rem; text-align: center; color: #666; margin-bottom: 10px;">ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।</p>
             
             <a href="https://youtube.com/@lalagamer100" target="_blank" class="social-btn yt-btn"><i class="fab fa-youtube"></i> Subscribe Youtube</a>
-            <!-- নতুন টিকটক লিঙ্ক এখানে আপডেট করা হয়েছে -->
             <a href="https://www.tiktok.com/@rdx_lala1" target="_blank" class="social-btn tk-btn">
-            <i class="fab fa-tiktok"></i> Follow TikTok
+                <i class="fab fa-tiktok"></i> Follow TikTok
             </a>
             <div id="uploadFormArea">
                 <label for="ssInput" class="ss-upload-label">
@@ -287,7 +286,7 @@
             const fileNameDisplay = document.getElementById('ssFileName');
             const unlockBtn = document.getElementById('unlockBtn');
             if (input.files.length > 0) {
-                fileNameDisplay.innerText = input.files.length + " টি ফাইল সিলেক্ট করা হয়েছে";
+                fileNameDisplay.innerText = input.files.length + " টি ফাইল সিলেক্ট করা হয়েছে";
                 unlockBtn.disabled = false;
             } else {
                 fileNameDisplay.innerText = "স্ক্রিনশট ফাইল সিলেক্ট করুন";
