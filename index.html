@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LALA TOPUP - Home</title>
+    <title>LALA TOPUP - Auto Dynamic System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* মূল ডিজাইন এবং স্টাইল */
         body { background-color: #f8f9fa; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 70px; overflow-x: hidden; }
-        
-        /* Header & Status Section */
         .header { background: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
         .brand { color: #6c5ce7; font-weight: bold; font-size: 1.1rem; }
         .balance-badge { background: #6c5ce7; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; }
         
-        /* Admin Status Badge */
-        .admin-status { display: flex; align-items: center; gap: 5px; font-size: 0.7rem; padding: 3px 8px; border-radius: 12px; font-weight: bold; margin-left: 8px; border: 1px solid transparent; }
+        /* অ্যাডমিন স্ট্যাটাস ব্যাজ */
+        .admin-status { display: flex; align-items: center; gap: 5px; font-size: 0.7rem; padding: 3px 8px; border-radius: 12px; font-weight: bold; }
         .status-online { background: #e7f9ed; color: #2ecc71; border-color: #2ecc71; }
         .status-offline { background: #fceaea; color: #e74c3c; border-color: #e74c3c; }
         .dot { width: 7px; height: 7px; border-radius: 50%; }
@@ -22,75 +21,37 @@
         .dot-off { background: #e74c3c; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        /* 🔥 DYNAMIC SCROLLING NOTICE BAR 🔥 */
-        .dynamic-notice-container { width: 100%; background: #2d3436; height: 40px; display: flex !important; align-items: center; position: relative; overflow: hidden; border-bottom: 2px solid #6c5ce7; z-index: 999; }
-        .notice-label-fixed { position: absolute; left: 0; background: #6c5ce7; color: #fff; padding: 0 12px; height: 100%; display: flex; align-items: center; font-weight: bold; font-size: 13px; z-index: 1001; box-shadow: 4px 0 8px rgba(0,0,0,0.4); }
-        .scrolling-wrapper { width: 100%; display: flex; align-items: center; }
+        /* নোটিশ বার */
+        .dynamic-notice-container { width: 100%; background: #2d3436; height: 40px; display: flex; align-items: center; position: relative; overflow: hidden; border-bottom: 2px solid #6c5ce7; }
+        .notice-label-fixed { position: absolute; left: 0; background: #6c5ce7; color: #fff; padding: 0 12px; height: 100%; display: flex; align-items: center; font-weight: bold; font-size: 13px; z-index: 10; }
         .dynamic-scrolling-text { white-space: nowrap; padding-left: 100%; display: inline-block; animation: lala-scroll 20s linear infinite; font-size: 14px; color: #fff; }
         @keyframes lala-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-180%); } }
-        .online-text { color: #55efc4 !important; }
-        .offline-text { color: #ff7675 !important; font-weight: bold; }
 
-        /* Notice Bar */
-        .notice-bar { background-color: #d63031; color: white; padding: 10px 15px; font-size: 0.85rem; display: flex; align-items: flex-start; position: relative; line-height: 1.4; }
-        .notice-bar b { margin-right: 8px; color: #ffeb3b; }
-        .notice-close { cursor: pointer; margin-left: 10px; font-size: 1.2rem; }
+        /* কার্ড গ্রিড */
+        .section-header { padding: 15px; font-size: 1rem; font-weight: bold; color: #1e3799; text-align: center; }
+        .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 12px; }
+        .product-card { background: #fff; border-radius: 15px; overflow: hidden; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding-bottom: 10px; cursor: pointer; transition: 0.2s; }
+        .product-card:active { transform: scale(0.95); }
+        .icon-box { width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #6c5ce7; }
+        .product-name { font-size: 0.65rem; font-weight: bold; color: #333; }
 
-        /* Banner Slider */
-        .banner-slider { width: 95%; margin: 15px auto; border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .slides { display: flex; width: 200%; animation: slide-anim 10s infinite; }
-        .slides img { width: 50%; aspect-ratio: 1000 / 398; object-fit: cover; display: block; }
-        @keyframes slide-anim { 0%, 45% { transform: translateX(0); } 50%, 95% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
-
-        /* Titles */
-        .section-header { padding: 0 15px; margin: 25px 0 12px; font-size: 1rem; font-weight: bold; color: #1e3799; text-align: center; text-transform: uppercase; }
-        
-        /* Grid */
-        .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 12px; margin-bottom: 20px; }
-        .product-card { background: #fff; border-radius: 15px; overflow: hidden; text-align: center; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding-bottom: 10px; }
-        .product-card:active { transform: scale(0.92); }
-        .product-card img, .icon-box { width: 100%; aspect-ratio: 1/1; border-radius: 15px 15px 0 0; object-fit: cover; background: #fff; margin-bottom: 5px; }
-        .icon-box { display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #6c5ce7; }
-        .product-name { font-size: 0.62rem; color: #333; font-weight: 700; line-height: 1.2; height: 2.4em; overflow: hidden; display: block; padding: 0 5px; }
-
-        /* Download Button Style */
-        .download-btn { display: inline-block; background: #6c5ce7; color: white; padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 10px; font-weight: bold; transition: 0.3s; border: none; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 5px; }
-        .download-btn:hover { background: #5541d8; transform: translateY(-2px); }
-
-        /* Modal Styles */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); overflow-y: auto; padding-top: 30px; }
-        .modal-content { background: white; margin: 0 auto 50px auto; width: 92%; max-width: 450px; border-radius: 18px; overflow: hidden; position: relative; animation: slideIn 0.3s; }
-        @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        
-        .close-btn { position: absolute; right: 15px; top: 15px; width: 30px; height: 30px; background: #f0f0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; z-index: 10; }
-        .package-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; max-height: 280px; overflow-y: auto; }
-        .package-item { border: 1px solid #e0e0e0; padding: 12px 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: #fff; }
-        .package-item.active { border-color: #6c5ce7; background: #f0edff; box-shadow: 0 0 0 1px #6c5ce7; }
-        .copy-box { background: white; border: 1px solid #eee; padding: 8px 15px; border-radius: 8px; margin-top: 8px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1.1rem; }
-        input { width: 100%; padding: 14px; margin: 8px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
-        .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        .submit-btn:disabled { background: #cccccc; cursor: not-allowed; }
-
-        /* Unlock System Extra Style */
-        .ss-upload-label { display: block; padding: 20px; border: 2px dashed #6c5ce7; border-radius: 12px; cursor: pointer; background: #f9f8ff; margin: 15px 0; text-align: center; }
-        .pass-box { display: none; margin-top: 15px; padding: 20px; background: #e7f9ed; border: 2px solid #2ecc71; border-radius: 12px; text-align: center; }
-        .social-btn { color: white; text-decoration: none; display: block; padding: 12px; border-radius: 10px; font-weight: bold; margin-bottom: 10px; text-align: center; }
+        /* মোডাল স্টাইল */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
+        .modal-content { background: white; margin: 60px auto; width: 85%; max-width: 380px; border-radius: 20px; padding: 25px; position: relative; animation: slideUp 0.3s; }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .close-btn { position: absolute; right: 15px; top: 15px; border: none; background: #f0f0f0; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; }
+        .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 14px; border: none; border-radius: 10px; font-weight: bold; margin-top: 15px; cursor: pointer; }
+        .submit-btn:disabled { background: #ccc; }
+        .pass-box { display: none; margin-top: 15px; padding: 20px; background: #e7f9ed; border: 2px solid #2ecc71; border-radius: 15px; text-align: center; }
+        .social-btn { color: white; text-decoration: none; display: block; padding: 12px; border-radius: 10px; margin-bottom: 10px; text-align: center; font-weight: bold; }
         .yt-btn { background: #ff0000; }
         .tk-btn { background: #000000; }
-
-        .footer-dark { background: #0a1128; color: white; padding: 40px 20px; text-align: left; margin-top: 30px; }
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #eee; z-index: 1000; }
-        .nav-item { text-align: center; color: #888; font-size: 0.7rem; text-decoration: none; flex: 1; }
-        .nav-item.active { color: #6c5ce7; }
-        .float-call { position: fixed; bottom: 85px; right: 20px; background: #d63031; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; z-index: 999; text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
-
     <div class="header">
-        <div style="display: flex; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 10px;">
             <div class="brand">LALA TOPUP</div>
             <div id="adminBadge" class="admin-status status-online">
                 <div id="adminDot" class="dot dot-on"></div>
@@ -101,341 +62,193 @@
     </div>
 
     <div class="dynamic-notice-container">
-        <div class="notice-label-fixed"><i class="fas fa-bullhorn"></i> NOTICE</div>
-        <div class="scrolling-wrapper">
-            <div id="lalaNotice" class="dynamic-scrolling-text">অ্যাডমিন স্ট্যাটাস যাচাই করা হচ্ছে...</div>
-        </div>
+        <div class="notice-label-fixed"><i class="fas fa-bullhorn"></i> NEWS</div>
+        <div id="lalaNotice" class="dynamic-scrolling-text">অ্যাডমিন স্ট্যাটাস লোড হচ্ছে...</div>
     </div>
 
-    <div class="notice-bar" id="topNotice">
-        <b>সতর্কতা:</b> ১৮ বছরের নিচে কেউ অর্ডার করবেন না। ফ্যামিলির টাকা চুরি করে অর্ডার করলে আইনগত ব্যবস্থা নেওয়া হবে।
-        <span class="notice-close" onclick="document.getElementById('topNotice').style.display='none'">&times;</span>
-    </div>
-
-    <div class="banner-slider">
-        <div class="slides">
-            <img src="banner1.jpg" alt="Banner 1">
-            <img src="banner2.jpg" alt="Banner 2">
-        </div>
-    </div>
-
-    <!-- 🔵 FREE FIRE SECTION -->
-    <div class="section-header">FREE FIRE</div>
+    <div class="section-header">SECURE UNLOCK SYSTEM</div>
     <div class="card-grid">
-        <div class="product-card" onclick="openPkgModal('UID TOPUP (BD)', 'offers', 'offer.jpg')">
-            <img src="offer.jpg"><span class="product-name">UID DIAMOND TOPUP</span>
+        <div class="product-card" onclick="openSSModal('Apps Password')">
+            <div class="icon-box" style="background: #f39c12; color: white;"><i class="fas fa-key"></i></div>
+            <span class="product-name">GET PASSWORD</span>
         </div>
-        <div class="product-card" onclick="openPkgModal('Weekly/Monthly Offer', 'weekly_monthly', 'weekly.jpg')">
-            <img src="weekly.jpg"><span class="product-name">WEEKLY/MONTHLY OFFER</span>
-        </div>
-        <div class="product-card" onclick="openPkgModal('FF Guild glory', 'guild', 'glory.jpg')">
-            <img src="glory.jpg"><span class="product-name">FF GUILD GLORY</span>
-        </div>
-        <div class="product-card" onclick="openPkgModal('Free Fire - 200 Like', 'likes', 'like.jpg')">
-            <img src="like.jpg"><span class="product-name">FF 200 LIKE প্রতিদিন</span>
-        </div>
-    </div>
-
-    <!-- 🔵 APPS PASSWORD UNLOCK SECTION -->
-    <div class="section-header">APPS download APK</div>
-    <div class="card-grid">
-        <div class="product-card" onclick="openSSModal('Free Fire Tool', 'LALA999')">
-            <div class="icon-box" style="background: #e67e22; color: white;"><i class="fas fa-key"></i></div>
-            <span class="product-name">password</span>
-        </div>
-        <div class="product-card" onclick="window.location.href='cutter.html'">
-            <div class="icon-box"><i class="fas fa-cut"></i></div>
-            <span class="product-name">IMAGE SPLITTER</span>
-        </div>
-        <div class="product-card">
-            <div class="icon-box" style="background: #27ae60; color: white;"><i class="fas fa-file-archive"></i></div>
-            <span class="product-name">download file ZIP</span>
-            <div style="padding: 5px; text-align: center;">
-                <p style="font-size: 8px; color: #d63031; font-weight: bold; margin-bottom: 2px;">⚠️ আনলক করতে পাসওয়ার্ড নিন</p>
-                <a href="https://www.mediafire.com/file/w22u8tx75vx4yyz/com.commsource.beautyplus_7.31.0.zip/file" target="_blank" class="download-btn">DOWNLOAD ZIP</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- 🔵 TOOLS SECTION -->
-    <div class="section-header">IMAGE TOOLS</div>
-    <div class="card-grid">
-        <div class="product-card" onclick="window.location.href='enhance.html'">
-            <div class="icon-box" style="color: #ff78b0;"><i class="fas fa-magic"></i></div>
-            <span class="product-name">PHOTO ENHANCER</span>
-        </div>
-        <!-- 🔴 টেলিগ্রাম সেকশন নতুন যুক্ত করা হলো -->
         <div class="product-card" onclick="openTelegramSystem()">
             <div class="icon-box" style="background: #0088cc; color: white;"><i class="fab fa-telegram-plane"></i></div>
-            <span class="product-name">JOIN TELEGRAM VIP</span>
+            <span class="product-name">TELEGRAM VIP</span>
         </div>
     </div>
 
-    <footer class="footer-dark">
-        <p style="text-align:center; font-size:0.75rem; opacity:0.5;">© LALA TOPUP 2026 | Developed By LALA</p>
-    </footer>
-
-    <a href="tel:01794327542" class="float-call"><i class="fas fa-phone-alt"></i></a>
-
-    <div class="bottom-nav">
-        <a href="#" class="nav-item active"><i class="fas fa-home"></i>Home</a>
-        <a href="#" class="nav-item"><i class="fas fa-play-circle"></i>Tutorial</a>
-        <a href="#" class="nav-item"><i class="fas fa-bolt"></i>TopUp</a>
-        <a href="#" class="nav-item"><i class="fas fa-th-large"></i>Contact Us</a>
-    </div>
-
-    <!-- Diamond Modal -->
-    <div id="unifiedModal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
-            <div style="padding:20px;">
-                <h2 id="modalTitle">Selection</h2>
-                <div class="package-list" id="listContent"></div>
-                <div class="order-form-container">
-                    <div style="text-align:center; margin-bottom:10px;">
-                        বিকাশ পার্সোনাল: <div class="copy-box" onclick="copyNumber('01794327542')">01794327542 <i class="fas fa-copy"></i></div>
-                    </div>
-                    <form id="topupForm">
-                        <input type="hidden" id="selectedPackage">
-                        <input type="number" id="player_id" placeholder="প্লেয়ার UID" required>
-                        <input type="tel" id="phone" placeholder="আপনার মোবাইল নাম্বার" required>
-                        <input type="text" id="payment" placeholder="TrxID" required>
-                        <button type="submit" class="submit-btn" id="submitBtn">অর্ডার কনফার্ম করুন</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Screenshot Unlock Modal -->
+    <!-- Universal Unlock Modal -->
     <div id="ssModal" class="modal">
-        <div class="modal-content" style="padding: 20px;">
-            <button class="close-btn" onclick="closeSSModal()"><i class="fas fa-times"></i></button>
-            <h3 id="ssModalTitle" style="text-align: center;">Unlock Password</h3>
-            <p id="ssDescription" style="font-size: 0.8rem; text-align: center; color: #666; margin-bottom: 10px;">ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।</p>
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeSSModal()">&times;</button>
+            <h3 id="ssModalTitle" style="text-align: center; margin-bottom: 5px;">Unlock Request</h3>
+            <p id="ssDescription" style="font-size: 0.75rem; text-align: center; color: #666; margin-bottom: 20px;">স্ক্রিনশট দিন, অ্যাডমিন এপ্রুভ করলে অটো পাসওয়ার্ড পাবেন।</p>
             
             <a href="https://youtube.com/@lalagamer100" target="_blank" class="social-btn yt-btn"><i class="fab fa-youtube"></i> Subscribe Youtube</a>
-            <a href="https://www.tiktok.com/@rdx_lala1" target="_blank" class="social-btn tk-btn">
-            <i class="fab fa-tiktok"></i> Follow TikTok
-            </a>
+            <a href="https://www.tiktok.com/@rdx_lala1" target="_blank" class="social-btn tk-btn"><i class="fab fa-tiktok"></i> Follow TikTok</a>
 
             <div id="uploadFormArea">
-                <label for="ssInput" class="ss-upload-label">
-                    <i class="fas fa-image" style="font-size: 2rem; color: #6c5ce7;"></i>
-                    <p id="ssFileName">১ বা ২ টি স্ক্রিনশট ফাইল সিলেক্ট করুন</p>
+                <label style="display: block; padding: 25px; border: 2px dashed #6c5ce7; border-radius: 15px; cursor: pointer; text-align: center; background: #f9f8ff;">
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #6c5ce7;"></i>
+                    <p id="ssFileName" style="font-size: 0.8rem; margin-top: 10px;">ক্লিকের স্ক্রিনশট সিলেক্ট করুন</p>
+                    <input type="file" id="ssInput" accept="image/*" multiple style="display: none;" onchange="updateFileInfo(this)">
                 </label>
-                <input type="file" id="ssInput" accept="image/*" multiple style="display: none;" onchange="updateFileInfo(this)">
-                <button id="unlockBtn" class="submit-btn" disabled onclick="handleUnlock()">UPLOAD & GET PASS</button>
+                <button id="unlockBtn" class="submit-btn" disabled onclick="handleUnlock()">SUBMIT FOR APPROVAL</button>
             </div>
 
-            <!-- পাসওয়ার্ড ইনপুট সেকশন (টেলিগ্রামের জন্য) -->
+            <!-- পাসওয়ার্ড ইনপুট সেকশন (শুধুমাত্র টেলিগ্রামের জন্য) -->
             <div id="passwordEntryArea" style="display: none; margin-top: 15px;">
-                <input type="text" id="userPassInput" placeholder="অ্যাডমিনের দেওয়া পাসওয়ার্ড দিন" style="text-align: center;">
-                <button class="submit-btn" onclick="verifyTelegramPass()">JOIN TELEGRAM</button>
+                <input type="text" id="userPassInput" placeholder="অটো পাসওয়ার্ডটি এখানে দিন" style="width: 100%; padding: 14px; border: 2px solid #eee; border-radius: 10px; text-align: center; font-size: 1.1rem; outline: none;">
+                <button class="submit-btn" onclick="verifyDynamicPass()">JOIN TELEGRAM NOW</button>
             </div>
 
             <div id="passwordResult" class="pass-box">
-                <p id="verificationStatus" style="color:green; font-weight:bold; margin-bottom:5px;">অপেক্ষা করুন...</p>
-                <span id="passLabel" style="font-size:0.8rem; display:none;">আপনার পাসওয়ার্ড:</span>
-                <h2 id="finalPassword" style="letter-spacing: 2px; color:#333;"></h2>
+                <p id="verificationStatus" style="font-weight:bold; color: #27ae60;">অ্যাডমিন চেক করছে...</p>
+                <h2 id="finalPassword" style="color:#6c5ce7; font-size: 2rem; letter-spacing: 3px; margin: 10px 0;"></h2>
                 <div id="telegramLinkArea" style="display: none; margin-top: 10px;">
-                    <a href="https://t.me/LalaTopUp" target="_blank" class="social-btn" style="background: #0088cc;">CLICK TO JOIN CHANNEL</a>
+                    <a href="https://t.me/LalaTopUp" target="_blank" class="social-btn" style="background: #2980b9;">CLICK TO JOIN CHANNEL</a>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        // আপনার কনফিগারেশন
         const botToken = "8791604536:AAGHR3iQmldzR7Ld7Q7thyJRODJa2E7lr54";
         const chatId = "-1003881711233";
-        const dbURL = "https://lala-status-default-rtdb.asia-southeast1.firebasedatabase.app/.json";
-        const fbRequestURL = "https://lala-status-default-rtdb.asia-southeast1.firebasedatabase.app/requests";
+        const fbBaseURL = "https://lala-status-default-rtdb.asia-southeast1.firebasedatabase.app";
         
-        let currentPass = "";
         let isTelegramTask = false;
 
-        function syncStatus() {
-            const badge = document.getElementById('adminBadge'), dot = document.getElementById('adminDot'), 
-                  text = document.getElementById('adminStatusText'), notice = document.getElementById('lalaNotice');
-            fetch(dbURL).then(res => res.json()).then(data => {
-                if (data && data.status === 'online') {
-                    badge.className = "admin-status status-online"; dot.className = "dot dot-on"; text.innerText = "Online";
-                    notice.className = "dynamic-scrolling-text online-text";
-                    notice.innerHTML = "✅ অভিনন্দন! অ্যাডমিন অনলাইনে আছে। অর্ডার করার ৫-১০ মিনিটের মধ্যে ডেলিভারি সম্পন্ন করা হবে।";
-                } else {
-                    badge.className = "admin-status status-offline"; dot.className = "dot dot-off"; text.innerText = "Offline";
-                    notice.className = "dynamic-scrolling-text offline-text";
-                    notice.innerHTML = "⚠️ সতর্কতা: অ্যাডমিন অফলাইনে আছে! ডেলিভারি পেতে কিছুটা সময় লাগতে পারে।";
-                }
-            }).catch(() => { notice.innerText = "সার্ভার এরর!"; });
-        }
-        setInterval(syncStatus, 5000); syncStatus();
-
-        const products = {
-            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, {name:"5 BASIC", price:"৳ 800"}, {name:"10 BASIC", price:"৳ 1400"}],
-            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 43"}, {name:"115 Diamond", price:"BDT 85"}, {name:"240 Diamond", price:"BDT 165"}, {name:"355 Diamond", price:"BDT 244"}, {name:"480 Diamond", price:"BDT 321"}, {name:"610 Diamond", price:"BDT 410"}, {name:"850 Diamond", price:"BDT 566"}, {name:"1240 Diamond", price:"BDT 805"}, {name:"2530 Diamond", price:"BDT 1600"}, {name:"5060 Diamond", price:"BDT 3200"}, {name:"10120 Diamond", price:"BDT 6399"}],
-            weekly_monthly: [{name:"WEEKLY", price:"BDT 160"}, {name:"2X WEEKLY", price:"BDT 320"}, {name:"3X WEEKLY", price:"BDT 480"}, {name:"MONTHLY", price:"BDT 770"}, {name:"2X MONTHLY", price:"BDT 1540"}],
-            likes: [{ name: "200 FF LIKE", price: "BDT 45" }]
-        };
-
-        function openPkgModal(title, key, logoSrc) {
-            document.getElementById('modalTitle').innerText = title;
-            const list = document.getElementById('listContent');
-            list.innerHTML = '';
-            products[key].forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'package-item';
-                div.innerHTML = `<span class="pkg-name">${item.name}</span><span class="pkg-price">${item.price}</span>`;
-                div.onclick = () => {
-                    document.querySelectorAll('.package-item').forEach(el => el.classList.remove('active'));
-                    div.classList.add('active');
-                    document.getElementById('selectedPackage').value = `${item.name} (${item.price})`;
-                };
-                list.appendChild(div);
-            });
-            document.getElementById('unifiedModal').style.display = 'block';
-        }
-
-        function closeModal() { document.getElementById('unifiedModal').style.display = 'none'; }
-        function copyNumber(num) { navigator.clipboard.writeText(num).then(() => alert("নাম্বার কপি হয়েছে!")); }
-
-        function updateFileInfo(input) {
-            const fileNameDisplay = document.getElementById('ssFileName');
-            const unlockBtn = document.getElementById('unlockBtn');
-            if (input.files.length > 0) {
-                fileNameDisplay.innerText = input.files.length + " টি ফাইল সিলেক্ট করা হয়েছে";
-                unlockBtn.disabled = false;
-            } else {
-                fileNameDisplay.innerText = "স্ক্রিনশট ফাইল সিলেক্ট করুন";
-                unlockBtn.disabled = true;
+        // --- ১. অটোমেটিক পাসওয়ার্ড জেনারেশন (প্রতি ১ ঘণ্টা অন্তর পরিবর্তন) ---
+        function generateAutoPass() {
+            const secret = "LALA_RDX_ADMIN"; // সিক্রেট কী
+            const d = new Date();
+            // বর্তমান তারিখ ও ঘণ্টার ওপর ভিত্তি করে ইউনিক কী
+            const timeKey = `${d.getFullYear()}${d.getMonth()+1}${d.getDate()}${d.getHours()}`;
+            
+            let hash = 0;
+            const combined = secret + timeKey;
+            for (let i = 0; i < combined.length; i++) {
+                hash = ((hash << 5) - hash) + combined.charCodeAt(i);
+                hash |= 0; 
             }
+            return "LALA" + Math.abs(hash).toString().substring(0, 4);
         }
 
-        function openSSModal(title, pass) {
+        // অ্যাডমিন স্ট্যাটাস সিঙ্ক
+        function syncAdmin() {
+            fetch(`${fbBaseURL}/.json`).then(res => res.json()).then(data => {
+                const badge = document.getElementById('adminBadge');
+                const notice = document.getElementById('lalaNotice');
+                if (data && data.status === 'online') {
+                    badge.className = "admin-status status-online";
+                    notice.innerHTML = "✅ অ্যাডমিন এখন অনলাইনে আছে! দ্রুত এপ্রুভাল পাওয়া যাবে।";
+                } else {
+                    badge.className = "admin-status status-offline";
+                    notice.innerHTML = "⚠️ অ্যাডমিন বর্তমানে অফলাইনে। এপ্রুভ করতে সময় লাগতে পারে।";
+                }
+            });
+        }
+        setInterval(syncAdmin, 8000); syncAdmin();
+
+        function openSSModal(title) {
             isTelegramTask = false;
-            currentPass = pass;
-            document.getElementById('ssModalTitle').innerText = title;
-            document.getElementById('ssDescription').innerText = "ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।";
-            document.getElementById('ssModal').style.display = 'block';
-            document.getElementById('uploadFormArea').style.display = 'block';
-            document.getElementById('passwordEntryArea').style.display = 'none';
-            document.getElementById('passwordResult').style.display = 'none';
-            document.getElementById('ssInput').value = "";
-            updateFileInfo(document.getElementById('ssInput'));
+            showModal(title);
         }
 
         function openTelegramSystem() {
             isTelegramTask = true;
-            currentPass = "TELEGRAM_VIP"; // এটি ইন্টারনাল ট্র্যাকিংয়ের জন্য
-            document.getElementById('ssModalTitle').innerText = "Join Telegram VIP";
-            document.getElementById('ssDescription').innerText = "টেলিগ্রামে জয়েন করতে ইউটিউব ও টিকটক সাবস্ক্রাইব করে স্ক্রিনশট দিন।";
+            showModal("Join Telegram VIP");
+        }
+
+        function showModal(title) {
+            document.getElementById('ssModalTitle').innerText = title;
             document.getElementById('ssModal').style.display = 'block';
             document.getElementById('uploadFormArea').style.display = 'block';
             document.getElementById('passwordEntryArea').style.display = 'none';
             document.getElementById('passwordResult').style.display = 'none';
             document.getElementById('ssInput').value = "";
-            updateFileInfo(document.getElementById('ssInput'));
         }
 
         function closeSSModal() { document.getElementById('ssModal').style.display = 'none'; }
 
+        function updateFileInfo(input) {
+            document.getElementById('ssFileName').innerText = input.files.length + " টি স্ক্রিনশট সিলেক্টেড";
+            document.getElementById('unlockBtn').disabled = input.files.length === 0;
+        }
+
         async function handleUnlock() {
             const fileInput = document.getElementById('ssInput');
             const btn = document.getElementById('unlockBtn');
-            if (fileInput.files.length === 0) return;
-
-            btn.disabled = true; btn.innerText = "পাঠানো হচ্ছে...";
+            btn.disabled = true; btn.innerText = "SENDING...";
             const reqId = "REQ" + Date.now();
 
+            // টেলিগ্রাম বটে স্ক্রিনশট পাঠানো
             for (let i = 0; i < fileInput.files.length; i++) {
                 const formData = new FormData();
                 formData.append('chat_id', chatId);
                 formData.append('photo', fileInput.files[i]);
-                formData.append('caption', `📸 নতুন স্ক্রিনশট (${i+1}/${fileInput.files.length})\nপ্রজেক্ট: ${document.getElementById('ssModalTitle').innerText}\nআইডি: ${reqId}`);
-                
+                formData.append('caption', `🔔 নতুন রিকোয়েস্ট\nটাইপ: ${document.getElementById('ssModalTitle').innerText}\nID: ${reqId}`);
                 if (i === fileInput.files.length - 1) {
                     formData.append('reply_markup', JSON.stringify({
                         inline_keyboard: [[
-                            { text: "✅ Approve", callback_data: `approve_${reqId}_${currentPass}` },
+                            { text: "✅ Approve", callback_data: `approve_${reqId}` },
                             { text: "❌ Reject", callback_data: `reject_${reqId}` }
                         ]]
                     }));
                 }
-
-                try {
-                    await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, { method: 'POST', body: formData });
-                } catch (err) { console.error("Upload error"); }
+                await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, { method: 'POST', body: formData });
             }
 
-            await fetch(`${fbRequestURL}/${reqId}.json`, {
-                method: 'PUT',
-                body: JSON.stringify({ status: "pending" })
-            });
+            // Firebase-এ রিকোয়েস্ট সেভ
+            await fetch(`${fbBaseURL}/requests/${reqId}.json`, { method: 'PUT', body: JSON.stringify({ status: "pending" }) });
 
             document.getElementById('uploadFormArea').style.display = 'none';
             document.getElementById('passwordResult').style.display = 'block';
-            document.getElementById('verificationStatus').innerText = "অপেক্ষা করুন... অ্যাডমিন চেক করছে।";
-            startStatusCheck(reqId);
+            checkRequestStatus(reqId);
         }
 
-        function startStatusCheck(reqId) {
-            const checkInterval = setInterval(async () => {
-                try {
-                    const response = await fetch(`${fbRequestURL}/${reqId}.json`);
-                    const data = await response.json();
-                    if (data && data.status === "approved") {
-                        clearInterval(checkInterval);
-                        window.serverPass = data.password; // অ্যাডমিন যে পাসওয়ার্ড দিবে তা সেভ হলো
-                        
-                        if (isTelegramTask) {
-                            document.getElementById('verificationStatus').innerText = "অ্যাডমিন অনুমতি দিয়েছে!";
-                            document.getElementById('passwordEntryArea').style.display = "block";
-                            document.getElementById('passLabel').style.display = "none";
-                            document.getElementById('finalPassword').innerText = "পাসওয়ার্ডটি নিচে ইনপুট দিন";
-                        } else {
-                            document.getElementById('verificationStatus').innerText = "ভেরিফাই হয়েছে!";
-                            document.getElementById('passLabel').style.display = "block";
-                            document.getElementById('finalPassword').innerText = data.password;
-                        }
-                    } else if (data && data.status === "rejected") {
-                        clearInterval(checkInterval);
-                        alert("আপনার স্ক্রিনশট রিজেক্ট করা হয়েছে! আবার চেষ্টা করুন।");
-                        closeSSModal();
+        function checkRequestStatus(reqId) {
+            const timer = setInterval(async () => {
+                const res = await fetch(`${fbBaseURL}/requests/${reqId}.json`);
+                const data = await res.json();
+                
+                if (data && data.status === "approved") {
+                    clearInterval(timer);
+                    const currentPass = generateAutoPass(); // বর্তমান ঘণ্টার পাসওয়ার্ড
+                    
+                    if (isTelegramTask) {
+                        document.getElementById('verificationStatus').innerText = "অ্যাডমিন অনুমতি দিয়েছে!";
+                        document.getElementById('passwordEntryArea').style.display = "block";
+                        document.getElementById('finalPassword').innerText = "পাসওয়ার্ডটি নিচে ইনপুট দিন";
+                    } else {
+                        document.getElementById('verificationStatus').innerText = "আপনার আনলক পাসওয়ার্ড:";
+                        document.getElementById('finalPassword').innerText = currentPass;
                     }
-                } catch (e) { }
+                } else if (data && data.status === "rejected") {
+                    clearInterval(timer);
+                    alert("আপনার রিকোয়েস্ট রিজেক্ট করা হয়েছে। সঠিক স্ক্রিনশট দিন।");
+                    closeSSModal();
+                }
             }, 3000);
         }
 
-        function verifyTelegramPass() {
-            const inputVal = document.getElementById('userPassInput').value;
-            if (inputVal === window.serverPass) {
+        function verifyDynamicPass() {
+            const input = document.getElementById('userPassInput').value.trim().toUpperCase();
+            const correctPass = generateAutoPass();
+            
+            if (input === correctPass) {
                 document.getElementById('passwordEntryArea').style.display = "none";
                 document.getElementById('telegramLinkArea').style.display = "block";
-                document.getElementById('finalPassword').innerText = "পাসওয়ার্ড সঠিক!";
+                document.getElementById('finalPassword').innerText = "SUCCESS!";
             } else {
-                alert("ভুল পাসওয়ার্ড! অ্যাডমিনের দেওয়া সঠিক পাসওয়ার্ডটি দিন।");
+                alert("ভুল বা মেয়াদোত্তীর্ণ পাসওয়ার্ড! আবার ট্রাই করুন।");
             }
         }
 
-        document.getElementById('topupForm').addEventListener('submit', e => {
-            e.preventDefault();
-            const pkg = document.getElementById('selectedPackage').value;
-            const trx = document.getElementById('payment').value.trim().toUpperCase();
-            if (!pkg) return alert("প্যাকেজ সিলেক্ট করুন!");
-            const btn = document.getElementById('submitBtn');
-            btn.disabled = true; btn.innerText = "সাবমিট হচ্ছে...";
-            const msg = `🚀 *NEW ORDER*\n📦 *Pkg:* ${pkg}\n🆔 *UID:* ${document.getElementById('player_id').value}\n💳 *TrxID:* ${trx}`;
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'Markdown' })
-            }).then(() => { alert("অর্ডার সফল হয়েছে!"); location.reload(); });
-        });
-
-        window.onclick = e => { 
-            if (e.target == document.getElementById('unifiedModal')) closeModal(); 
-            if (e.target == document.getElementById('ssModal')) closeSSModal();
-        }
+        window.onclick = e => { if (e.target.className === 'modal') closeSSModal(); }
     </script>
 </body>
 </html>
