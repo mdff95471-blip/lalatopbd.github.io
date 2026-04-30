@@ -69,11 +69,14 @@
         .copy-box { background: white; border: 1px solid #eee; padding: 8px 15px; border-radius: 8px; margin-top: 8px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1.1rem; }
         input { width: 100%; padding: 14px; margin: 8px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
         .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .submit-btn:disabled { background: #cccccc; cursor: not-allowed; }
 
         /* Unlock System Extra Style */
         .ss-upload-label { display: block; padding: 20px; border: 2px dashed #6c5ce7; border-radius: 12px; cursor: pointer; background: #f9f8ff; margin: 15px 0; text-align: center; }
         .pass-box { display: none; margin-top: 15px; padding: 20px; background: #e7f9ed; border: 2px solid #2ecc71; border-radius: 12px; text-align: center; }
-        .yt-btn { background: #ff0000; color: white; text-decoration: none; display: block; padding: 12px; border-radius: 10px; font-weight: bold; margin-bottom: 10px; text-align: center; }
+        .social-btn { color: white; text-decoration: none; display: block; padding: 12px; border-radius: 10px; font-weight: bold; margin-bottom: 10px; text-align: center; }
+        .yt-btn { background: #ff0000; }
+        .tk-btn { background: #000000; }
 
         .footer-dark { background: #0a1128; color: white; padding: 40px 20px; text-align: left; margin-top: 30px; }
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #eee; z-index: 1000; }
@@ -136,6 +139,7 @@
     <!-- 🔵 APPS PASSWORD UNLOCK SECTION -->
     <div class="section-header">APPS PASSWORD UNLOCK</div>
     <div class="card-grid">
+        <!-- পাসওয়ার্ড LALA999 সেট করা আছে -->
         <div class="product-card" onclick="openSSModal('Free Fire Tool', 'LALA999')">
             <div class="icon-box" style="background: #e67e22; color: white;"><i class="fas fa-key"></i></div>
             <span class="product-name">SKIN TOOL PASS</span>
@@ -144,7 +148,7 @@
             <div class="icon-box" style="background: #27ae60; color: white;"><i class="fas fa-file-archive"></i></div>
             <span class="product-name">BEAUTYPLUS ZIP</span>
             <div style="padding: 5px; text-align: center;">
-                <p style="font-size: 8px; color: #d63031; font-weight: bold; margin-bottom: 2px;">⚠️ আনলক করতে পাসওয়ার্ড নিন</p>
+                <p style="font-size: 8px; color: #d63031; font-weight: bold; margin-bottom: 2px;">⚠️ আনলক করতে পাসওয়ার্ড নিন</p>
                 <a href="https://www.mediafire.com/file/w22u8tx75vx4yyz/com.commsource.beautyplus_7.31.0.zip/file" target="_blank" class="download-btn">DOWNLOAD ZIP</a>
             </div>
         </div>
@@ -204,15 +208,22 @@
         <div class="modal-content" style="padding: 20px;">
             <button class="close-btn" onclick="closeSSModal()"><i class="fas fa-times"></i></button>
             <h3 id="ssModalTitle" style="text-align: center;">Unlock Password</h3>
-            <p style="font-size: 0.8rem; text-align: center; color: #666; margin-bottom: 10px;">সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড সাথে সাথে পাবেন।</p>
-            <a href="https://youtube.com/@lalagamer100" target="_blank" class="yt-btn">Subscribe Youtube</a>
+            <p style="font-size: 0.8rem; text-align: center; color: #666; margin-bottom: 10px;">ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।</p>
+            
+            <a href="https://youtube.com/@lalagamer100" target="_blank" class="social-btn yt-btn"><i class="fab fa-youtube"></i> Subscribe Youtube</a>
+            <!-- TikTok বাটন যুক্ত করা হলো -->
+            <a href="https://www.tiktok.com/@rdxlala" target="_blank" class="social-btn tk-btn"><i class="fab fa-tiktok"></i> Follow TikTok</a>
+
             <div id="uploadFormArea">
                 <label for="ssInput" class="ss-upload-label">
                     <i class="fas fa-image" style="font-size: 2rem; color: #6c5ce7;"></i>
-                    <p id="ssFileName">স্ক্রিনশট ফাইল সিলেক্ট করুন</p>
+                    <p id="ssFileName">১ বা ২ টি স্ক্রিনশট ফাইল সিলেক্ট করুন</p>
                 </label>
-                <input type="file" id="ssInput" accept="image/*" style="display: none;" onchange="document.getElementById('ssFileName').innerText = this.files[0].name">
-                <button id="unlockBtn" class="submit-btn" onclick="handleUnlock()">UPLOAD & GET PASS</button>
+                <!-- একাধিক ফাইল সিলেক্ট করার জন্য multiple যুক্ত করা হয়েছে -->
+                <input type="file" id="ssInput" accept="image/*" multiple style="display: none;" onchange="updateFileInfo(this)">
+                
+                <!-- বাটন ডিফল্টভাবে ডিজেবল থাকবে -->
+                <button id="unlockBtn" class="submit-btn" disabled onclick="handleUnlock()">UPLOAD & GET PASS</button>
             </div>
             <div id="passwordResult" class="pass-box">
                 <p id="verificationStatus" style="color:green; font-weight:bold; margin-bottom:5px;">অপেক্ষা করুন...</p>
@@ -276,6 +287,19 @@
         function closeModal() { document.getElementById('unifiedModal').style.display = 'none'; }
         function copyNumber(num) { navigator.clipboard.writeText(num).then(() => alert("নাম্বার কপি হয়েছে!")); }
 
+        // ফাইল ইনফো আপডেট এবং বাটন কন্ট্রোল
+        function updateFileInfo(input) {
+            const fileNameDisplay = document.getElementById('ssFileName');
+            const unlockBtn = document.getElementById('unlockBtn');
+            if (input.files.length > 0) {
+                fileNameDisplay.innerText = input.files.length + " টি ফাইল সিলেক্ট করা হয়েছে";
+                unlockBtn.disabled = false;
+            } else {
+                fileNameDisplay.innerText = "স্ক্রিনশট ফাইল সিলেক্ট করুন";
+                unlockBtn.disabled = true;
+            }
+        }
+
         // Unlock Modal Functions
         function openSSModal(title, pass) {
             currentPass = pass;
@@ -283,6 +307,8 @@
             document.getElementById('ssModal').style.display = 'block';
             document.getElementById('uploadFormArea').style.display = 'block';
             document.getElementById('passwordResult').style.display = 'none';
+            document.getElementById('ssInput').value = ""; // রিসেট
+            updateFileInfo(document.getElementById('ssInput'));
         }
 
         function closeSSModal() { document.getElementById('ssModal').style.display = 'none'; }
@@ -290,36 +316,43 @@
         async function handleUnlock() {
             const fileInput = document.getElementById('ssInput');
             const btn = document.getElementById('unlockBtn');
-            if (!fileInput.files[0]) { alert("আগে স্ক্রিনশট সিলেক্ট করুন!"); return; }
+            if (fileInput.files.length === 0) return;
 
             btn.disabled = true; btn.innerText = "পাঠানো হচ্ছে...";
             const reqId = "REQ" + Date.now();
 
-            const formData = new FormData();
-            formData.append('chat_id', chatId);
-            formData.append('photo', fileInput.files[0]);
-            formData.append('caption', `📸 নতুন স্ক্রিনশট!\nপ্রজেক্ট: ${document.getElementById('ssModalTitle').innerText}\nআইডি: ${reqId}`);
-            
-            formData.append('reply_markup', JSON.stringify({
-                inline_keyboard: [[
-                    { text: "✅ Approve", callback_data: `approve_${reqId}_${currentPass}` },
-                    { text: "❌ Reject", callback_data: `reject_${reqId}` }
-                ]]
-            }));
+            // একাধিক ছবি পাঠানোর লুপ
+            for (let i = 0; i < fileInput.files.length; i++) {
+                const formData = new FormData();
+                formData.append('chat_id', chatId);
+                formData.append('photo', fileInput.files[i]);
+                formData.append('caption', `📸 নতুন স্ক্রিনশট (${i+1}/${fileInput.files.length})\nপ্রজেক্ট: ${document.getElementById('ssModalTitle').innerText}\nআইডি: ${reqId}`);
+                
+                // শুধুমাত্র শেষ ছবির সাথে কন্ট্রোল বাটন পাঠানো হবে
+                if (i === fileInput.files.length - 1) {
+                    formData.append('reply_markup', JSON.stringify({
+                        inline_keyboard: [[
+                            { text: "✅ Approve", callback_data: `approve_${reqId}_${currentPass}` },
+                            { text: "❌ Reject", callback_data: `reject_${reqId}` }
+                        ]]
+                    }));
+                }
 
-            try {
-                const response = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, { method: 'POST', body: formData });
-                if (response.ok) {
-                    await fetch(`${fbRequestURL}/${reqId}.json`, {
-                        method: 'PUT',
-                        body: JSON.stringify({ status: "pending" })
-                    });
-                    document.getElementById('uploadFormArea').style.display = 'none';
-                    document.getElementById('passwordResult').style.display = 'block';
-                    document.getElementById('verificationStatus').innerText = "অপেক্ষা করুন... অ্যাডমিন চেক করছে।";
-                    startStatusCheck(reqId);
-                } else { alert("টেলিগ্রামে পাঠাতে সমস্যা হয়েছে!"); btn.disabled = false; }
-            } catch (err) { alert("ইন্টারনেট সমস্যা!"); btn.disabled = false; }
+                try {
+                    await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, { method: 'POST', body: formData });
+                } catch (err) { console.error("Upload error"); }
+            }
+
+            // ডেটাবেসে পেন্ডিং রাখা
+            await fetch(`${fbRequestURL}/${reqId}.json`, {
+                method: 'PUT',
+                body: JSON.stringify({ status: "pending" })
+            });
+
+            document.getElementById('uploadFormArea').style.display = 'none';
+            document.getElementById('passwordResult').style.display = 'block';
+            document.getElementById('verificationStatus').innerText = "অপেক্ষা করুন... অ্যাডমিন চেক করছে।";
+            startStatusCheck(reqId);
         }
 
         function startStatusCheck(reqId) {
