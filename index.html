@@ -47,11 +47,15 @@
         
         /* Grid */
         .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 12px; margin-bottom: 20px; }
-        .product-card { background: transparent; overflow: hidden; text-align: center; cursor: pointer; transition: 0.2s; }
+        .product-card { background: #fff; border-radius: 15px; overflow: hidden; text-align: center; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding-bottom: 10px; }
         .product-card:active { transform: scale(0.92); }
-        .product-card img, .icon-box { width: 100%; aspect-ratio: 1/1; border-radius: 15px; object-fit: cover; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #fff; margin-bottom: 5px; }
+        .product-card img, .icon-box { width: 100%; aspect-ratio: 1/1; border-radius: 15px 15px 0 0; object-fit: cover; background: #fff; margin-bottom: 5px; }
         .icon-box { display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #6c5ce7; }
-        .product-name { font-size: 0.62rem; color: #333; font-weight: 700; line-height: 1.2; height: 2.4em; overflow: hidden; display: block; }
+        .product-name { font-size: 0.62rem; color: #333; font-weight: 700; line-height: 1.2; height: 2.4em; overflow: hidden; display: block; padding: 0 5px; }
+
+        /* Download Button Style */
+        .download-btn { display: inline-block; background: #6c5ce7; color: white; padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 10px; font-weight: bold; transition: 0.3s; border: none; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 5px; }
+        .download-btn:hover { background: #5541d8; transform: translateY(-2px); }
 
         /* Modal Styles */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); overflow-y: auto; padding-top: 30px; }
@@ -140,9 +144,13 @@
             <div class="icon-box" style="background: #2980b9; color: white;"><i class="fas fa-shield-alt"></i></div>
             <span class="product-name">VPN PASSWORD</span>
         </div>
-        <div class="product-card" onclick="openSSModal('Zip File Extractor', 'ZIP-8877')">
+        <div class="product-card">
             <div class="icon-box" style="background: #27ae60; color: white;"><i class="fas fa-file-archive"></i></div>
-            <span class="product-name">ZIP FILE PASS</span>
+            <span class="product-name">BEAUTYPLUS ZIP</span>
+            <div style="padding: 5px; text-align: center;">
+                <p style="font-size: 8px; color: #d63031; font-weight: bold; margin-bottom: 2px;">⚠️ আনলক করতে পাসওয়ার্ড নিন</p>
+                <a href="https://www.mediafire.com/file/w22u8tx75vx4yyz/com.commsource.beautyplus_7.31.0.zip/file" target="_blank" class="download-btn">DOWNLOAD ZIP</a>
+            </div>
         </div>
     </div>
 
@@ -296,7 +304,6 @@
             formData.append('photo', fileInput.files[0]);
             formData.append('caption', `📸 নতুন স্ক্রিনশট!\nপ্রজেক্ট: ${document.getElementById('ssModalTitle').innerText}\nআইডি: ${reqId}`);
             
-            // Adding Approve/Reject Buttons for Telegram
             formData.append('reply_markup', JSON.stringify({
                 inline_keyboard: [[
                     { text: "✅ Approve", callback_data: `approve_${reqId}_${currentPass}` },
@@ -331,7 +338,7 @@
                         document.getElementById('finalPassword').innerText = data.password;
                     } else if (data && data.status === "rejected") {
                         clearInterval(checkInterval);
-                        alert("আপনার স্ক্রিনশট রিজেক্ট করা হয়েছে! আবার চেষ্টা করুন।");
+                        alert("আপনার স্ক্রিনশট রিজেক্ট করা হয়েছে! আবার চেষ্টা করুন।");
                         closeSSModal();
                     }
                 } catch (e) { }
