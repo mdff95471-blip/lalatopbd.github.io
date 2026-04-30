@@ -133,7 +133,6 @@
     <!-- APPS PASSWORD UNLOCK SECTION -->
     <div class="section-header">APPS download APK</div>
     <div class="card-grid">
-        <!-- এখানে ফিক্সড পাসওয়ার্ড LALA999 সেট করা হলো -->
         <div class="product-card" onclick="openSSModal('Free Fire Tool', 'LALA999')">
             <div class="icon-box" style="background: #e67e22; color: white;"><i class="fas fa-key"></i></div>
             <span class="product-name">password</span>
@@ -155,7 +154,6 @@
             <div class="icon-box" style="color: #ff78b0;"><i class="fas fa-magic"></i></div>
             <span class="product-name">PHOTO ENHANCER</span>
         </div>
-        <!-- টেলিগ্রামের জন্য অটো পাসওয়ার্ড জেনারেশন ফাংশন কল করা হবে -->
         <div class="product-card" onclick="openTelegramSystem()">
             <div class="icon-box" style="background: #0088cc; color: white;"><i class="fab fa-telegram-plane"></i></div>
             <span class="product-name">JOIN TELEGRAM VIP</span>
@@ -217,15 +215,8 @@
                 <button id="unlockBtn" class="submit-btn" disabled onclick="handleUnlock()">UPLOAD & GET PASS</button>
             </div>
 
-            <!-- পাসওয়ার্ড ইনপুট সেকশন (টেলিগ্রামের জন্য) -->
-            <div id="passwordEntryArea" style="display: none; margin-top: 15px;">
-                <input type="text" id="userPassInput" placeholder="অ্যাডমিনের দেওয়া পাসওয়ার্ড দিন" style="text-align: center;">
-                <button class="submit-btn" onclick="verifyTelegramPass()">JOIN TELEGRAM</button>
-            </div>
-
             <div id="passwordResult" class="pass-box">
                 <p id="verificationStatus" style="color:green; font-weight:bold; margin-bottom:5px;">অপেক্ষা করুন...</p>
-                <span id="passLabel" style="font-size:0.8rem; display:none;">আপনার পাসওয়ার্ড:</span>
                 <h2 id="finalPassword" style="letter-spacing: 2px; color:#333;"></h2>
                 <div id="telegramLinkArea" style="display: none; margin-top: 10px;">
                     <a href="https://t.me/LalaTopUp" target="_blank" class="social-btn" style="background: #0088cc;">CLICK TO JOIN CHANNEL</a>
@@ -243,21 +234,10 @@
         let currentPass = "";
         let isTelegramTask = false;
 
-        // অটো পাসওয়ার্ড জেনারেশন (প্রতি ঘণ্টার জন্য আলাদা)
         function generateAutoPass() {
-            const secret = "RDX_LALA_ADMIN";
-            const d = new Date();
-            const timeKey = `${d.getFullYear()}${d.getMonth()+1}${d.getDate()}${d.getHours()}`;
-            let hash = 0;
-            const combined = secret + timeKey;
-            for (let i = 0; i < combined.length; i++) {
-                hash = ((hash << 5) - hash) + combined.charCodeAt(i);
-                hash |= 0; 
-            }
-            return "LALA" + Math.abs(hash).toString().substring(0, 4);
+            return "LALA" + Math.floor(1000 + Math.random() * 9000);
         }
 
-        // অ্যাডমিন স্ট্যাটাস সিঙ্ক
         function syncStatus() {
             const badge = document.getElementById('adminBadge'), dot = document.getElementById('adminDot'), 
                   text = document.getElementById('adminStatusText'), notice = document.getElementById('lalaNotice');
@@ -271,13 +251,13 @@
                     notice.className = "dynamic-scrolling-text offline-text";
                     notice.innerHTML = "⚠️ অ্যাডমিন অফলাইনে আছে! ডেলিভারিতে দেরি হতে পারে।";
                 }
-            }).catch(() => { });
+            });
         }
         setInterval(syncStatus, 5000); syncStatus();
 
         const products = {
-            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, {name:"5 BASIC", price:"৳ 800"}, {name:"10 BASIC", price:"৳ 1400"}],
-            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 43"}, {name:"115 Diamond", price:"BDT 85"}, {name:"240 Diamond", price:"BDT 165"}, {name:"355 Diamond", price:"BDT 244"}, {name:"480 Diamond", price:"BDT 321"}, {name:"610 Diamond", price:"BDT 410"}, {name:"850 Diamond", price:"BDT 566"}, {name:"1240 Diamond", price:"BDT 805"}, {name:"2530 Diamond", price:"BDT 1600"}, {name:"5060 Diamond", price:"BDT 3200"}, {name:"10120 Diamond", price:"BDT 6399"}],
+            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}],
+            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"115 Diamond", price:"BDT 85"}],
             weekly_monthly: [{name:"WEEKLY", price:"BDT 160"}, {name:"MONTHLY", price:"BDT 770"}],
             likes: [{ name: "200 FF LIKE", price: "BDT 45" }]
         };
@@ -316,60 +296,44 @@
             }
         }
 
-        // অ্যাপস পাসওয়ার্ডের জন্য (ফিক্সড পাসওয়ার্ড LALA999)
         function openSSModal(title, pass) {
             isTelegramTask = false;
-            currentPass = pass; // এখানে HTML থেকে LALA999 আসবে
+            currentPass = pass;
             document.getElementById('ssModalTitle').innerText = title;
-            document.getElementById('ssDescription').innerText = "ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।";
             document.getElementById('ssModal').style.display = 'block';
             document.getElementById('uploadFormArea').style.display = 'block';
-            document.getElementById('passwordEntryArea').style.display = 'none';
             document.getElementById('passwordResult').style.display = 'none';
-            document.getElementById('ssInput').value = "";
-            updateFileInfo(document.getElementById('ssInput'));
         }
 
-        // টেলিগ্রামের জন্য (অটো পাসওয়ার্ড)
         function openTelegramSystem() {
             isTelegramTask = true;
             currentPass = generateAutoPass();
             document.getElementById('ssModalTitle').innerText = "Join Telegram VIP";
-            document.getElementById('ssDescription').innerText = "টেলিগ্রামে জয়েন করতে ইউটিউব ও টিকটক সাবস্ক্রাইব করে স্ক্রিনশট দিন।";
             document.getElementById('ssModal').style.display = 'block';
             document.getElementById('uploadFormArea').style.display = 'block';
-            document.getElementById('passwordEntryArea').style.display = 'none';
             document.getElementById('passwordResult').style.display = 'none';
-            document.getElementById('ssInput').value = "";
-            updateFileInfo(document.getElementById('ssInput'));
         }
 
         async function handleUnlock() {
             const fileInput = document.getElementById('ssInput');
             const btn = document.getElementById('unlockBtn');
-            if (fileInput.files.length === 0) return;
-
             btn.disabled = true; btn.innerText = "পাঠানো হচ্ছে...";
             const reqId = "REQ" + Date.now();
 
-            for (let i = 0; i < fileInput.files.length; i++) {
-                const formData = new FormData();
-                formData.append('chat_id', chatId);
-                formData.append('photo', fileInput.files[i]);
-                formData.append('caption', `📸 নতুন স্ক্রিনশট\nপ্রজেক্ট: ${document.getElementById('ssModalTitle').innerText}\nআইডি: ${reqId}`);
-                
-                if (i === fileInput.files.length - 1) {
-                    formData.append('reply_markup', JSON.stringify({
-                        inline_keyboard: [[
-                            { text: "✅ Approve", callback_data: `approve_${reqId}_${currentPass}` },
-                            { text: "❌ Reject", callback_data: `reject_${reqId}` }
-                        ]]
-                    }));
-                }
-                await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, { method: 'POST', body: formData });
-            }
+            const formData = new FormData();
+            formData.append('chat_id', chatId);
+            formData.append('photo', fileInput.files[0]);
+            formData.append('caption', `📸 নতুন রিকোয়েস্ট\nপ্রজেক্ট: ${document.getElementById('ssModalTitle').innerText}\nআইডি: ${reqId}\nপাসওয়ার্ড: ${currentPass}`);
+            formData.append('reply_markup', JSON.stringify({
+                inline_keyboard: [[
+                    { text: "✅ Approve", callback_data: `approve_${reqId}_${currentPass}` },
+                    { text: "❌ Reject", callback_data: `reject_${reqId}` }
+                ]]
+            }));
 
-            await fetch(`${fbRequestURL}/${reqId}.json`, { method: 'PUT', body: JSON.stringify({ status: "pending" }) });
+            await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, { method: 'POST', body: formData });
+            await fetch(`${fbRequestURL}/${reqId}.json`, { method: 'PUT', body: JSON.stringify({ status: "pending", password: currentPass }) });
+            
             document.getElementById('uploadFormArea').style.display = 'none';
             document.getElementById('passwordResult').style.display = 'block';
             document.getElementById('verificationStatus').innerText = "অপেক্ষা করুন... অ্যাডমিন চেক করছে।";
@@ -382,30 +346,14 @@
                 const data = await response.json();
                 if (data && data.status === "approved") {
                     clearInterval(checkInterval);
-                    window.serverPass = data.password; 
-                    if (isTelegramTask) {
-                        document.getElementById('verificationStatus').innerText = "অ্যাডমিন অনুমতি দিয়েছে!";
-                        document.getElementById('passwordEntryArea').style.display = "block";
-                        document.getElementById('finalPassword').innerText = "পাসওয়ার্ডটি ইনপুট দিন";
-                    } else {
-                        document.getElementById('verificationStatus').innerText = "ভেরিফাই হয়েছে!";
-                        document.getElementById('passLabel').style.display = "block";
-                        document.getElementById('finalPassword').innerText = data.password;
-                    }
+                    document.getElementById('verificationStatus').innerText = "অ্যাডমিন অনুমতি দিয়েছে!";
+                    document.getElementById('finalPassword').innerText = data.password;
+                    if(isTelegramTask) document.getElementById('telegramLinkArea').style.display = "block";
                 } else if (data && data.status === "rejected") {
                     clearInterval(checkInterval);
                     alert("রিজেক্ট করা হয়েছে!"); closeSSModal();
                 }
             }, 3000);
-        }
-
-        function verifyTelegramPass() {
-            const val = document.getElementById('userPassInput').value.trim();
-            if (val === window.serverPass) {
-                document.getElementById('passwordEntryArea').style.display = "none";
-                document.getElementById('telegramLinkArea').style.display = "block";
-                document.getElementById('finalPassword').innerText = "পাসওয়ার্ড সঠিক!";
-            } else { alert("ভুল পাসওয়ার্ড!"); }
         }
 
         window.onclick = e => { 
@@ -414,4 +362,4 @@
         }
     </script>
 </body>
-</html>
+    </html>
