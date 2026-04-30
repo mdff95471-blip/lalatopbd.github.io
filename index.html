@@ -22,46 +22,15 @@
         .dot-off { background: #e74c3c; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        /* 🔥 DYNAMIC SCROLLING NOTICE BAR 🔥 */
-        .dynamic-notice-container {
-            width: 100%;
-            background: #2d3436;
-            height: 40px;
-            display: flex !important;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 2px solid #6c5ce7;
-            z-index: 999;
-        }
-        .notice-label-fixed {
-            position: absolute;
-            left: 0;
-            background: #6c5ce7;
-            color: #fff;
-            padding: 0 12px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            font-size: 13px;
-            z-index: 1001;
-            box-shadow: 4px 0 8px rgba(0,0,0,0.4);
-        }
+        /* NOTICE BAR */
+        .dynamic-notice-container { width: 100%; background: #2d3436; height: 40px; display: flex !important; align-items: center; position: relative; overflow: hidden; border-bottom: 2px solid #6c5ce7; z-index: 999; }
+        .notice-label-fixed { position: absolute; left: 0; background: #6c5ce7; color: #fff; padding: 0 12px; height: 100%; display: flex; align-items: center; font-weight: bold; font-size: 13px; z-index: 1001; box-shadow: 4px 0 8px rgba(0,0,0,0.4); }
         .scrolling-wrapper { width: 100%; display: flex; align-items: center; }
-        .dynamic-scrolling-text {
-            white-space: nowrap;
-            padding-left: 100%;
-            display: inline-block;
-            animation: lala-scroll 20s linear infinite;
-            font-size: 14px;
-            color: #fff;
-        }
+        .dynamic-scrolling-text { white-space: nowrap; padding-left: 100%; display: inline-block; animation: lala-scroll 20s linear infinite; font-size: 14px; color: #fff; }
         @keyframes lala-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-180%); } }
         .online-text { color: #55efc4 !important; }
         .offline-text { color: #ff7675 !important; font-weight: bold; }
 
-        /* Notice Bar */
         .notice-bar { background-color: #d63031; color: white; padding: 10px 15px; font-size: 0.85rem; display: flex; align-items: flex-start; position: relative; line-height: 1.4; }
         .notice-bar b { margin-right: 8px; color: #ffeb3b; }
         .notice-close { cursor: pointer; margin-left: 10px; font-size: 1.2rem; }
@@ -72,39 +41,68 @@
         .slides img { width: 50%; aspect-ratio: 1000 / 398; object-fit: cover; display: block; }
         @keyframes slide-anim { 0%, 45% { transform: translateX(0); } 50%, 95% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
-        .section-header { padding: 0 15px; margin: 20px 0 10px; font-size: 0.9rem; font-weight: bold; color: #444; border-left: 4px solid #6c5ce7; margin-left: 15px; }
+        /* 🔵 SECTION TITLES (As per image) */
+        .category-title { 
+            text-align: center; 
+            color: #1e3799; 
+            font-size: 1.1rem; 
+            font-weight: 800; 
+            margin: 25px 0 12px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 🔵 CARD GRID (3 Columns) */
+        .card-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 15px; 
+            padding: 0 15px; 
+            margin-bottom: 20px;
+        }
+
+        /* 🔵 PRODUCT CARD DESIGN */
+        .product-card { 
+            background: transparent; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: 0.2s; 
+        }
+        .product-card:active { transform: scale(0.92); }
         
-        /* কার্ড গ্রিড এবং ডিজাইন */
-        .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 10px; }
-        .product-card { background: #fff; border-radius: 10px; border: 1px solid #eee; overflow: hidden; text-align: center; padding-bottom: 8px; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .product-card:active { transform: scale(0.95); }
-        .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
-        .product-card .icon-placeholder { width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; background: #f0edff; color: #6c5ce7; }
-        .product-name { font-size: 0.65rem; color: #333; margin-top: 5px; padding: 0 3px; font-weight: 600; line-height: 1.2; height: 1.5em; overflow: hidden; }
+        .product-card img, .icon-box { 
+            width: 100%; 
+            aspect-ratio: 1/1; 
+            border-radius: 15px; 
+            object-fit: cover; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .icon-box { display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #6c5ce7; }
+        .product-name { font-size: 0.62rem; color: #2c3e50; font-weight: 700; line-height: 1.2; padding: 0 2px; display: block; height: 2.4em; overflow: hidden; }
 
         /* Modal Styles */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); overflow-y: auto; padding-top: 30px; }
         .modal-content { background: white; margin: 0 auto 50px auto; width: 92%; max-width: 450px; border-radius: 18px; overflow: hidden; position: relative; animation: slideIn 0.3s; }
         @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .modal-header-wp { background: #fff; padding: 15px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee; position: relative; }
+        .modal-header-wp { background: #fff; padding: 15px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee; }
         .modal-header-logo { width: 55px; height: 55px; border-radius: 10px; overflow: hidden; border: 1px solid #eee; flex-shrink: 0; }
         .modal-header-logo img { width: 100%; height: 100%; object-fit: cover; }
-        .modal-header-title-Area { flex: 1; }
         .modal-header-title { font-size: 1.1rem; font-weight: bold; color: #333; margin: 0; }
-        .modal-header-subtitle { font-size: 0.8rem; color: #888; margin-top: 2px; }
-        .close-btn { position: absolute; right: 15px; top: 15px; width: 30px; height: 30px; background: #f0f0f0; color: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; border: none; z-index: 10; }
-        .step-label { background: #f8f9fa; padding: 10px 15px; font-size: 0.85rem; font-weight: bold; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #eee; color: #444; }
-        .step-num { background: #6c5ce7; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
+        .close-btn { position: absolute; right: 15px; top: 15px; width: 30px; height: 30px; background: #f0f0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; }
+        
         .package-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; max-height: 280px; overflow-y: auto; }
-        .package-item { border: 1px solid #e0e0e0; padding: 12px 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: #fff; transition: 0.2s; }
+        .package-item { border: 1px solid #e0e0e0; padding: 12px 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: #fff; }
         .package-item.active { border-color: #6c5ce7; background: #f0edff; box-shadow: 0 0 0 1px #6c5ce7; }
-        .pkg-name { font-size: 0.8rem; color: #333; font-weight: 600; text-align: center; }
+        .pkg-name { font-size: 0.8rem; font-weight: 600; text-align: center; }
         .pkg-price { color: #6c5ce7; font-weight: bold; font-size: 0.75rem; margin-top: 4px; }
+        
         .order-form-container { padding: 15px; border-top: 1px solid #eee; }
-        .payment-info { background: #fff4f4; padding: 12px; border-radius: 10px; margin-bottom: 15px; font-size: 0.85rem; border: 1px dashed #d63031; text-align: center; }
-        .copy-box { background: white; border: 1px solid #eee; padding: 8px 15px; border-radius: 8px; margin-top: 8px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1.1rem; }
-        input { width: 100%; padding: 14px; margin: 8px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 0.9rem; }
-        .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem; }
+        .copy-box { background: white; border: 1px solid #eee; padding: 8px 15px; border-radius: 8px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: #d63031; font-weight: bold; font-size: 1.1rem; margin-top: 8px; }
+        input { width: 100%; padding: 14px; margin: 8px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
+        .submit-btn { width: 100%; background: #6c5ce7; color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; }
 
         /* Footer & Nav */
         .footer-dark { background: #0a1128; color: white; padding: 40px 20px; text-align: left; margin-top: 30px; }
@@ -119,9 +117,7 @@
 </head>
 <body>
 
-    <audio id="bgMusic" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
     <div class="header">
         <div style="display: flex; align-items: center;">
@@ -135,15 +131,14 @@
     </div>
 
     <div class="dynamic-notice-container">
-        <div class="notice-label-fixed"><i class="fas fa-bullhorn" style="margin-right: 5px;"></i> NOTICE</div>
+        <div class="notice-label-fixed"><i class="fas fa-bullhorn"></i> NOTICE</div>
         <div class="scrolling-wrapper">
-            <div id="lalaNotice" class="dynamic-scrolling-text">অ্যাডমিন স্ট্যাটাস যাচাই করা হচ্ছে, দয়া করে অপেক্ষা করুন...</div>
+            <div id="lalaNotice" class="dynamic-scrolling-text">অ্যাডমিন স্ট্যাটাস যাচাই করা হচ্ছে...</div>
         </div>
     </div>
 
     <div class="notice-bar" id="topNotice">
-        <b>সতর্কতা:</b>
-        <div class="notice-text">১৮ বছরের নিচে কেউ অর্ডার করবেন না। ফ্যামিলির টাকা চুরি করে অর্ডার করলে আইনগত ব্যবস্থা নেওয়া হবে।</div>
+        <b>সতর্কতা:</b> ১৮ বছরের নিচে কেউ অর্ডার করবেন না। ফ্যামিলির টাকা চুরি করে অর্ডার করলে আইনগত ব্যবস্থা নেওয়া হবে।
         <span class="notice-close" onclick="document.getElementById('topNotice').style.display='none'">&times;</span>
     </div>
 
@@ -154,30 +149,45 @@
         </div>
     </div>
 
-    <div class="section-header">FREE FIRE TOPUP & TOOLS</div>
-
+    <!-- 🔵 FREE FIRE SECTION -->
+    <div class="category-title">FREE FIRE</div>
     <div class="card-grid">
-        <div class="product-card" onclick="openPkgModal('FF Guild glory', 'guild', 'glory.jpg')">
-            <img src="glory.jpg"><div class="product-name">FF Guild glory</div>
-        </div>
         <div class="product-card" onclick="openPkgModal('UID TOPUP (BD)', 'offers', 'offer.jpg')">
-            <img src="offer.jpg"><div class="product-name">UID Diamond Topup</div>
-        </div>
-        <div class="product-card" onclick="openPkgModal('Free Fire - 200 Like', 'likes', 'like.jpg')">
-            <img src="like.jpg"><div class="product-name">Free Fire - 200 Like প্রতিদিন</div>
+            <img src="offer.jpg">
+            <span class="product-name">UID TOPUP (BD)</span>
         </div>
         <div class="product-card" onclick="openPkgModal('Weekly/Monthly Offer', 'weekly_monthly', 'weekly.jpg')">
-            <img src="weekly.jpg"><div class="product-name">Weekly/Monthly Offer</div>
+            <img src="weekly.jpg">
+            <span class="product-name">WEEKLY/MONTHLY</span>
         </div>
+        <div class="product-card" onclick="openPkgModal('FF Guild glory', 'guild', 'glory.jpg')">
+            <img src="glory.jpg">
+            <span class="product-name">GUILD GLORY</span>
+        </div>
+        <div class="product-card" onclick="openPkgModal('Free Fire - 200 Like', 'likes', 'like.jpg')">
+            <img src="like.jpg">
+            <span class="product-name">FF 200 LIKE প্রতিদিন</span>
+        </div>
+    </div>
 
+    <!-- 🔵 SUBSCRIPTION SECTION -->
+    <div class="category-title">SUBSCRIPTION</div>
+    <div class="card-grid">
+        <div class="product-card" onclick="alert('Coming Soon')">
+            <img src="youtube.jpg">
+            <span class="product-name">YOUTUBE PREMIUM</span>
+        </div>
+        <div class="product-card" onclick="alert('Coming Soon')">
+            <img src="canva.jpg">
+            <span class="product-name">CANVA PRO</span>
+        </div>
         <div class="product-card" onclick="window.location.href='cutter.html'">
-            <div class="icon-placeholder"><i class="fas fa-cut"></i></div>
-            <div class="product-name">Image Splitter (ছবি কাটুন)</div>
+            <div class="icon-box"><i class="fas fa-cut"></i></div>
+            <span class="product-name">IMAGE SPLITTER</span>
         </div>
-
         <div class="product-card" onclick="window.location.href='enhance.html'">
-            <div class="icon-placeholder" style="background: #fff0f6; color: #ff78b0;"><i class="fas fa-magic"></i></div>
-            <div class="product-name">HD Photo Enhancer (কোয়ালিটি বাড়ান)</div>
+            <div class="icon-box" style="color: #ff78b0;"><i class="fas fa-magic"></i></div>
+            <span class="product-name">PHOTO ENHANCER</span>
         </div>
     </div>
 
@@ -201,6 +211,7 @@
         <a href="#" class="nav-item"><i class="fas fa-th-large"></i>Contact Us</a>
     </div>
 
+    <!-- Unified Modal -->
     <div id="unifiedModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
@@ -208,14 +219,14 @@
                 <div class="modal-header-logo"><img src="" id="modalLogoImg"></div>
                 <div class="modal-header-title-Area">
                     <h2 class="modal-header-title" id="modalTitle">Selection</h2>
-                    <p class="modal-header-subtitle">Game / Top up</p>
+                    <p style="font-size: 0.8rem; color: #888; margin: 2px 0 0;">Game / Top up</p>
                 </div>
             </div>
-            <div class="step-label"><span class="step-num">1</span> প্যাকেজ সিলেক্ট করুন</div>
+            <div style="background:#f8f9fa; padding:10px 15px; font-size:0.85rem; font-weight:bold; border-bottom:1px solid #eee;">1. প্যাকেজ সিলেক্ট করুন</div>
             <div class="package-list" id="listContent"></div>
-            <div class="step-label"><span class="step-num">2</span> পেমেন্ট ও তথ্য দিন</div>
+            <div style="background:#f8f9fa; padding:10px 15px; font-size:0.85rem; font-weight:bold; border-bottom:1px solid #eee;">2. পেমেন্ট ও তথ্য দিন</div>
             <div class="order-form-container">
-                <div class="payment-info">
+                <div style="background:#fff4f4; padding:12px; border-radius:10px; margin-bottom:15px; font-size:0.85rem; border:1px dashed #d63031; text-align:center;">
                     বিকাশ পার্সোনাল:<br>
                     <div class="copy-box" onclick="copyNumber('01794327542')">01794327542 <i class="fas fa-copy"></i></div>
                 </div>
@@ -237,46 +248,33 @@
         let usedTrxIDs = JSON.parse(localStorage.getItem('lala_used_trx')) || [];
 
         function syncStatus() {
-            const badge = document.getElementById('adminBadge');
-            const dot = document.getElementById('adminDot');
-            const text = document.getElementById('adminStatusText');
-            const notice = document.getElementById('lalaNotice');
-
-            fetch(dbURL)
-                .then(res => res.json())
-                .then(data => {
-                    if (data && data.status === 'online') {
-                        badge.className = "admin-status status-online";
-                        dot.className = "dot dot-on";
-                        text.innerText = "Online";
-                        notice.className = "dynamic-scrolling-text online-text";
-                        notice.innerHTML = "✅ অভিনন্দন! অ্যাডমিন অনলাইনে আছে। অর্ডার করার ৫-১০ মিনিটের মধ্যে ডেলিভারি সম্পন্ন করা হবে। ধন্যবাদ।";
-                    } else {
-                        badge.className = "admin-status status-offline";
-                        dot.className = "dot dot-off";
-                        text.innerText = "Offline";
-                        notice.className = "dynamic-scrolling-text offline-text";
-                        notice.innerHTML = "⚠️ সতর্কতা: অ্যাডমিন অফলাইনে আছে! এখন অর্ডার করলে ডেলিভারি পেতে ৩০-৬০ মিনিট বা তার বেশি সময় লাগতে পারে।";
-                    }
-                })
-                .catch(() => {
-                    notice.innerText = "সার্ভার এরর! ইন্টারনেট চেক করুন।";
-                });
+            const badge = document.getElementById('adminBadge'), dot = document.getElementById('adminDot'), 
+                  text = document.getElementById('adminStatusText'), notice = document.getElementById('lalaNotice');
+            fetch(dbURL).then(res => res.json()).then(data => {
+                if (data && data.status === 'online') {
+                    badge.className = "admin-status status-online"; dot.className = "dot dot-on"; text.innerText = "Online";
+                    notice.className = "dynamic-scrolling-text online-text";
+                    notice.innerHTML = "✅ অ্যাডমিন অনলাইনে আছে। অর্ডার করার ৫-১০ মিনিটের মধ্যে ডেলিভারি সম্পন্ন হবে।";
+                } else {
+                    badge.className = "admin-status status-offline"; dot.className = "dot dot-off"; text.innerText = "Offline";
+                    notice.className = "dynamic-scrolling-text offline-text";
+                    notice.innerHTML = "⚠️ অ্যাডমিন অফলাইনে আছে! ডেলিভারি পেতে দেরি হতে পারে।";
+                }
+            }).catch(() => { notice.innerText = "সার্ভার এরর!"; });
         }
-        setInterval(syncStatus, 5000);
-        syncStatus();
+        setInterval(syncStatus, 5000); syncStatus();
 
-        document.addEventListener('click', function() {
-            var audio = document.getElementById("bgMusic");
+        document.addEventListener('click', () => {
+            const audio = document.getElementById("bgMusic");
             if (!sessionStorage.getItem('musicPlayed')) {
                 audio.play().then(() => sessionStorage.setItem('musicPlayed', 'true')).catch(() => {});
             }
         }, { once: true });
 
         const products = {
-            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, {name:"5 BASIC", price:"৳ 800"}, {name:"10 BASIC", price:"৳ 1400"}],
-            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 43"}, {name:"115 Diamond", price:"BDT 85"}, {name:"240 Diamond", price:"BDT 165"}, {name:"355 Diamond", price:"BDT 244"}, {name:"480 Diamond", price:"BDT 321"}, {name:"610 Diamond", price:"BDT 410"}, {name:"850 Diamond", price:"BDT 566"}, {name:"1240 Diamond", price:"BDT 805"}, {name:"2530 Diamond", price:"BDT 1600"}, {name:"5060 Diamond", price:"BDT 3200"}, {name:"10120 Diamond", price:"BDT 6399"}],
-            weekly_monthly: [{name:"WEEKLY", price:"BDT 160"}, {name:"2X WEEKLY", price:"BDT 320"}, {name:"3X WEEKLY", price:"BDT 480"}, {name:"MONTHLY", price:"BDT 770"}, {name:"2X MONTHLY", price:"BDT 1540"}],
+            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, {name:"5 BASIC", price:"৳ 800"}],
+            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"115 Diamond", price:"BDT 85"}, {name:"240 Diamond", price:"BDT 165"}, {name:"5060 Diamond", price:"BDT 3200"}],
+            weekly_monthly: [{name:"WEEKLY", price:"BDT 160"}, {name:"MONTHLY", price:"BDT 770"}],
             likes: [{ name: "200 FF LIKE", price: "BDT 45" }]
         };
 
@@ -300,15 +298,8 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() { 
-            document.getElementById('unifiedModal').style.display = 'none'; 
-            document.body.style.overflow = 'auto';
-        }
-
-        function copyNumber(num) { 
-            navigator.clipboard.writeText(num).then(() => alert("বিকাশ নাম্বার কপি হয়েছে!")); 
-        }
-
+        function closeModal() { document.getElementById('unifiedModal').style.display = 'none'; document.body.style.overflow = 'auto'; }
+        function copyNumber(num) { navigator.clipboard.writeText(num).then(() => alert("নাম্বার কপি হয়েছে!")); }
         window.onclick = e => { if (e.target == document.getElementById('unifiedModal')) closeModal(); }
 
         document.getElementById('topupForm').addEventListener('submit', e => {
@@ -317,9 +308,11 @@
             const trx = document.getElementById('payment').value.trim().toUpperCase();
             if (!pkg) return alert("প্যাকেজ সিলেক্ট করুন!");
             if (usedTrxIDs.includes(trx)) return alert("এই TrxID ব্যবহৃত হয়েছে!");
+            
             const btn = document.getElementById('submitBtn');
-            btn.disabled = true; btn.innerText = "অর্ডার সাবমিট হচ্ছে...";
+            btn.disabled = true; btn.innerText = "সাবমিট হচ্ছে...";
             const msg = `🚀 *NEW ORDER*\n📦 *Pkg:* ${pkg}\n🆔 *UID:* ${document.getElementById('player_id').value}\n📞 *Phone:* ${document.getElementById('phone').value}\n💳 *TrxID:* ${trx}`;
+            
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -327,9 +320,7 @@
             }).then(() => {
                 usedTrxIDs.push(trx); localStorage.setItem('lala_used_trx', JSON.stringify(usedTrxIDs));
                 alert("অর্ডার সফল হয়েছে!"); location.reload();
-            }).catch(() => {
-                alert("সমস্যা হয়েছে!"); btn.disabled = false;
-            });
+            }).catch(() => { alert("সমস্যা হয়েছে!"); btn.disabled = false; });
         });
     </script>
 </body>
