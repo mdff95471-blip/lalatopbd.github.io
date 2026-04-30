@@ -22,7 +22,7 @@
         .dot-off { background: #e74c3c; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        /* 🔥 DYNAMIC SCROLLING NOTICE BAR 🔥 */
+        /* DYNAMIC SCROLLING NOTICE BAR */
         .dynamic-notice-container { width: 100%; background: #2d3436; height: 40px; display: flex !important; align-items: center; position: relative; overflow: hidden; border-bottom: 2px solid #6c5ce7; z-index: 999; }
         .notice-label-fixed { position: absolute; left: 0; background: #6c5ce7; color: #fff; padding: 0 12px; height: 100%; display: flex; align-items: center; font-weight: bold; font-size: 13px; z-index: 1001; box-shadow: 4px 0 8px rgba(0,0,0,0.4); }
         .scrolling-wrapper { width: 100%; display: flex; align-items: center; }
@@ -52,10 +52,6 @@
         .product-card img, .icon-box { width: 100%; aspect-ratio: 1/1; border-radius: 15px 15px 0 0; object-fit: cover; background: #fff; margin-bottom: 5px; }
         .icon-box { display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #6c5ce7; }
         .product-name { font-size: 0.62rem; color: #333; font-weight: 700; line-height: 1.2; height: 2.4em; overflow: hidden; display: block; padding: 0 5px; }
-
-        /* Download Button Style */
-        .download-btn { display: inline-block; background: #6c5ce7; color: white; padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 10px; font-weight: bold; transition: 0.3s; border: none; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 5px; }
-        .download-btn:hover { background: #5541d8; transform: translateY(-2px); }
 
         /* Modal Styles */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); overflow-y: auto; padding-top: 30px; }
@@ -87,8 +83,6 @@
 </head>
 <body>
 
-    <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
-
     <div class="header">
         <div style="display: flex; align-items: center;">
             <div class="brand">LALA TOPUP</div>
@@ -119,7 +113,7 @@
         </div>
     </div>
 
-    <!-- 🔵 FREE FIRE SECTION -->
+    <!-- FREE FIRE SECTION -->
     <div class="section-header">FREE FIRE</div>
     <div class="card-grid">
         <div class="product-card" onclick="openPkgModal('UID TOPUP (BD)', 'offers', 'offer.jpg')">
@@ -136,10 +130,11 @@
         </div>
     </div>
 
-    <!-- 🔵 APPS PASSWORD UNLOCK SECTION -->
+    <!-- APPS PASSWORD UNLOCK SECTION -->
     <div class="section-header">APPS download APK</div>
     <div class="card-grid">
-        <div class="product-card" onclick="openSSModal('Free Fire Tool', 'AUTO')">
+        <!-- এখানে ফিক্সড পাসওয়ার্ড LALA999 সেট করা হলো -->
+        <div class="product-card" onclick="openSSModal('Free Fire Tool', 'LALA999')">
             <div class="icon-box" style="background: #e67e22; color: white;"><i class="fas fa-key"></i></div>
             <span class="product-name">password</span>
         </div>
@@ -150,20 +145,17 @@
         <div class="product-card">
             <div class="icon-box" style="background: #27ae60; color: white;"><i class="fas fa-file-archive"></i></div>
             <span class="product-name">download file ZIP</span>
-            <div style="padding: 5px; text-align: center;">
-                <p style="font-size: 8px; color: #d63031; font-weight: bold; margin-bottom: 2px;">⚠️ আনলক করতে পাসওয়ার্ড নিন</p>
-                <a href="https://www.mediafire.com/file/w22u8tx75vx4yyz/com.commsource.beautyplus_7.31.0.zip/file" target="_blank" class="download-btn">DOWNLOAD ZIP</a>
-            </div>
         </div>
     </div>
 
-    <!-- 🔵 TOOLS SECTION -->
+    <!-- TOOLS SECTION -->
     <div class="section-header">IMAGE TOOLS</div>
     <div class="card-grid">
         <div class="product-card" onclick="window.location.href='enhance.html'">
             <div class="icon-box" style="color: #ff78b0;"><i class="fas fa-magic"></i></div>
             <span class="product-name">PHOTO ENHANCER</span>
         </div>
+        <!-- টেলিগ্রামের জন্য অটো পাসওয়ার্ড জেনারেশন ফাংশন কল করা হবে -->
         <div class="product-card" onclick="openTelegramSystem()">
             <div class="icon-box" style="background: #0088cc; color: white;"><i class="fab fa-telegram-plane"></i></div>
             <span class="product-name">JOIN TELEGRAM VIP</span>
@@ -214,14 +206,12 @@
             <p id="ssDescription" style="font-size: 0.8rem; text-align: center; color: #666; margin-bottom: 10px;">ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।</p>
             
             <a href="https://youtube.com/@lalagamer100" target="_blank" class="social-btn yt-btn"><i class="fab fa-youtube"></i> Subscribe Youtube</a>
-            <a href="https://www.tiktok.com/@rdx_lala1" target="_blank" class="social-btn tk-btn">
-            <i class="fab fa-tiktok"></i> Follow TikTok
-            </a>
+            <a href="https://www.tiktok.com/@rdx_lala1" target="_blank" class="social-btn tk-btn"><i class="fab fa-tiktok"></i> Follow TikTok</a>
 
             <div id="uploadFormArea">
                 <label for="ssInput" class="ss-upload-label">
                     <i class="fas fa-image" style="font-size: 2rem; color: #6c5ce7;"></i>
-                    <p id="ssFileName">১ বা ২ টি স্ক্রিনশট ফাইল সিলেক্ট করুন</p>
+                    <p id="ssFileName">স্ক্রিনশট ফাইল সিলেক্ট করুন</p>
                 </label>
                 <input type="file" id="ssInput" accept="image/*" multiple style="display: none;" onchange="updateFileInfo(this)">
                 <button id="unlockBtn" class="submit-btn" disabled onclick="handleUnlock()">UPLOAD & GET PASS</button>
@@ -229,7 +219,7 @@
 
             <!-- পাসওয়ার্ড ইনপুট সেকশন (টেলিগ্রামের জন্য) -->
             <div id="passwordEntryArea" style="display: none; margin-top: 15px;">
-                <input type="text" id="userPassInput" placeholder="অ্যাডমিনের দেওয়া পাসওয়ার্ড দিন" style="text-align: center;">
+                <input type="text" id="userPassInput" placeholder="অ্যাডমিনের দেওয়া পাসওয়ার্ড দিন" style="text-align: center;">
                 <button class="submit-btn" onclick="verifyTelegramPass()">JOIN TELEGRAM</button>
             </div>
 
@@ -253,9 +243,9 @@
         let currentPass = "";
         let isTelegramTask = false;
 
-        // --- নতুন অটো পাসওয়ার্ড জেনারেশন ফাংশন ---
+        // অটো পাসওয়ার্ড জেনারেশন (প্রতি ঘণ্টার জন্য আলাদা)
         function generateAutoPass() {
-            const secret = "RDX_LALA_ADMIN"; // সিক্রেট কী
+            const secret = "RDX_LALA_ADMIN";
             const d = new Date();
             const timeKey = `${d.getFullYear()}${d.getMonth()+1}${d.getDate()}${d.getHours()}`;
             let hash = 0;
@@ -267,6 +257,7 @@
             return "LALA" + Math.abs(hash).toString().substring(0, 4);
         }
 
+        // অ্যাডমিন স্ট্যাটাস সিঙ্ক
         function syncStatus() {
             const badge = document.getElementById('adminBadge'), dot = document.getElementById('adminDot'), 
                   text = document.getElementById('adminStatusText'), notice = document.getElementById('lalaNotice');
@@ -274,20 +265,20 @@
                 if (data && data.status === 'online') {
                     badge.className = "admin-status status-online"; dot.className = "dot dot-on"; text.innerText = "Online";
                     notice.className = "dynamic-scrolling-text online-text";
-                    notice.innerHTML = "✅ অভিনন্দন! অ্যাডমিন অনলাইনে আছে। অর্ডার করার ৫-১০ মিনিটের মধ্যে ডেলিভারি সম্পন্ন করা হবে।";
+                    notice.innerHTML = "✅ অ্যাডমিন অনলাইনে আছে। অর্ডার ৫-১০ মিনিটে ডেলিভারি হবে।";
                 } else {
                     badge.className = "admin-status status-offline"; dot.className = "dot dot-off"; text.innerText = "Offline";
                     notice.className = "dynamic-scrolling-text offline-text";
-                    notice.innerHTML = "⚠️ সতর্কতা: অ্যাডমিন অফলাইনে আছে! ডেলিভারি পেতে কিছুটা সময় লাগতে পারে।";
+                    notice.innerHTML = "⚠️ অ্যাডমিন অফলাইনে আছে! ডেলিভারিতে দেরি হতে পারে।";
                 }
-            }).catch(() => { notice.innerText = "সার্ভার এরর!"; });
+            }).catch(() => { });
         }
         setInterval(syncStatus, 5000); syncStatus();
 
         const products = {
             guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, {name:"5 BASIC", price:"৳ 800"}, {name:"10 BASIC", price:"৳ 1400"}],
             offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 43"}, {name:"115 Diamond", price:"BDT 85"}, {name:"240 Diamond", price:"BDT 165"}, {name:"355 Diamond", price:"BDT 244"}, {name:"480 Diamond", price:"BDT 321"}, {name:"610 Diamond", price:"BDT 410"}, {name:"850 Diamond", price:"BDT 566"}, {name:"1240 Diamond", price:"BDT 805"}, {name:"2530 Diamond", price:"BDT 1600"}, {name:"5060 Diamond", price:"BDT 3200"}, {name:"10120 Diamond", price:"BDT 6399"}],
-            weekly_monthly: [{name:"WEEKLY", price:"BDT 160"}, {name:"2X WEEKLY", price:"BDT 320"}, {name:"3X WEEKLY", price:"BDT 480"}, {name:"MONTHLY", price:"BDT 770"}, {name:"2X MONTHLY", price:"BDT 1540"}],
+            weekly_monthly: [{name:"WEEKLY", price:"BDT 160"}, {name:"MONTHLY", price:"BDT 770"}],
             likes: [{ name: "200 FF LIKE", price: "BDT 45" }]
         };
 
@@ -298,7 +289,7 @@
             products[key].forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'package-item';
-                div.innerHTML = `<span class="pkg-name">${item.name}</span><span class="pkg-price">${item.price}</span>`;
+                div.innerHTML = `<span>${item.name}</span><span>${item.price}</span>`;
                 div.onclick = () => {
                     document.querySelectorAll('.package-item').forEach(el => el.classList.remove('active'));
                     div.classList.add('active');
@@ -310,6 +301,7 @@
         }
 
         function closeModal() { document.getElementById('unifiedModal').style.display = 'none'; }
+        function closeSSModal() { document.getElementById('ssModal').style.display = 'none'; }
         function copyNumber(num) { navigator.clipboard.writeText(num).then(() => alert("নাম্বার কপি হয়েছে!")); }
 
         function updateFileInfo(input) {
@@ -324,12 +316,12 @@
             }
         }
 
+        // অ্যাপস পাসওয়ার্ডের জন্য (ফিক্সড পাসওয়ার্ড LALA999)
         function openSSModal(title, pass) {
             isTelegramTask = false;
-            // যদি পাসওয়ার্ড 'AUTO' হয় তবে ডাইনামিক পাস জেনারেট হবে
-            currentPass = (pass === 'AUTO') ? generateAutoPass() : pass;
+            currentPass = pass; // এখানে HTML থেকে LALA999 আসবে
             document.getElementById('ssModalTitle').innerText = title;
-            document.getElementById('ssDescription').innerText = "ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।";
+            document.getElementById('ssDescription').innerText = "ফলো ও সাবস্ক্রাইব করে স্ক্রিনশট দিন, পাসওয়ার্ড পেয়ে যাবেন।";
             document.getElementById('ssModal').style.display = 'block';
             document.getElementById('uploadFormArea').style.display = 'block';
             document.getElementById('passwordEntryArea').style.display = 'none';
@@ -338,11 +330,12 @@
             updateFileInfo(document.getElementById('ssInput'));
         }
 
+        // টেলিগ্রামের জন্য (অটো পাসওয়ার্ড)
         function openTelegramSystem() {
             isTelegramTask = true;
-            currentPass = generateAutoPass(); // টেলিগ্রামের জন্যও অটো পাসওয়ার্ড
+            currentPass = generateAutoPass();
             document.getElementById('ssModalTitle').innerText = "Join Telegram VIP";
-            document.getElementById('ssDescription').innerText = "টেলিগ্রামে জয়েন করতে ইউটিউব ও টিকটক সাবস্ক্রাইব করে স্ক্রিনশট দিন।";
+            document.getElementById('ssDescription').innerText = "টেলিগ্রামে জয়েন করতে ইউটিউব ও টিকটক সাবস্ক্রাইব করে স্ক্রিনশট দিন।";
             document.getElementById('ssModal').style.display = 'block';
             document.getElementById('uploadFormArea').style.display = 'block';
             document.getElementById('passwordEntryArea').style.display = 'none';
@@ -350,8 +343,6 @@
             document.getElementById('ssInput').value = "";
             updateFileInfo(document.getElementById('ssInput'));
         }
-
-        function closeSSModal() { document.getElementById('ssModal').style.display = 'none'; }
 
         async function handleUnlock() {
             const fileInput = document.getElementById('ssInput');
@@ -365,7 +356,7 @@
                 const formData = new FormData();
                 formData.append('chat_id', chatId);
                 formData.append('photo', fileInput.files[i]);
-                formData.append('caption', `📸 নতুন স্ক্রিনশট (${i+1}/${fileInput.files.length})\nপ্রজেক্ট: ${document.getElementById('ssModalTitle').innerText}\nআইডি: ${reqId}`);
+                formData.append('caption', `📸 নতুন স্ক্রিনশট\nপ্রজেক্ট: ${document.getElementById('ssModalTitle').innerText}\nআইডি: ${reqId}`);
                 
                 if (i === fileInput.files.length - 1) {
                     formData.append('reply_markup', JSON.stringify({
@@ -375,17 +366,10 @@
                         ]]
                     }));
                 }
-
-                try {
-                    await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, { method: 'POST', body: formData });
-                } catch (err) { console.error("Upload error"); }
+                await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, { method: 'POST', body: formData });
             }
 
-            await fetch(`${fbRequestURL}/${reqId}.json`, {
-                method: 'PUT',
-                body: JSON.stringify({ status: "pending" })
-            });
-
+            await fetch(`${fbRequestURL}/${reqId}.json`, { method: 'PUT', body: JSON.stringify({ status: "pending" }) });
             document.getElementById('uploadFormArea').style.display = 'none';
             document.getElementById('passwordResult').style.display = 'block';
             document.getElementById('verificationStatus').innerText = "অপেক্ষা করুন... অ্যাডমিন চেক করছে।";
@@ -394,58 +378,35 @@
 
         function startStatusCheck(reqId) {
             const checkInterval = setInterval(async () => {
-                try {
-                    const response = await fetch(`${fbRequestURL}/${reqId}.json`);
-                    const data = await response.json();
-                    if (data && data.status === "approved") {
-                        clearInterval(checkInterval);
-                        window.serverPass = data.password; 
-                        
-                        if (isTelegramTask) {
-                            document.getElementById('verificationStatus').innerText = "অ্যাডমিন অনুমতি দিয়েছে!";
-                            document.getElementById('passwordEntryArea').style.display = "block";
-                            document.getElementById('passLabel').style.display = "none";
-                            document.getElementById('finalPassword').innerText = "পাসওয়ার্ডটি নিচে ইনপুট দিন";
-                        } else {
-                            document.getElementById('verificationStatus').innerText = "ভেরিফাই হয়েছে!";
-                            document.getElementById('passLabel').style.display = "block";
-                            document.getElementById('finalPassword').innerText = data.password;
-                        }
-                    } else if (data && data.status === "rejected") {
-                        clearInterval(checkInterval);
-                        alert("আপনার স্ক্রিনশট রিজেক্ট করা হয়েছে! আবার চেষ্টা করুন।");
-                        closeSSModal();
+                const response = await fetch(`${fbRequestURL}/${reqId}.json`);
+                const data = await response.json();
+                if (data && data.status === "approved") {
+                    clearInterval(checkInterval);
+                    window.serverPass = data.password; 
+                    if (isTelegramTask) {
+                        document.getElementById('verificationStatus').innerText = "অ্যাডমিন অনুমতি দিয়েছে!";
+                        document.getElementById('passwordEntryArea').style.display = "block";
+                        document.getElementById('finalPassword').innerText = "পাসওয়ার্ডটি ইনপুট দিন";
+                    } else {
+                        document.getElementById('verificationStatus').innerText = "ভেরিফাই হয়েছে!";
+                        document.getElementById('passLabel').style.display = "block";
+                        document.getElementById('finalPassword').innerText = data.password;
                     }
-                } catch (e) { }
+                } else if (data && data.status === "rejected") {
+                    clearInterval(checkInterval);
+                    alert("রিজেক্ট করা হয়েছে!"); closeSSModal();
+                }
             }, 3000);
         }
 
         function verifyTelegramPass() {
-            const inputVal = document.getElementById('userPassInput').value.trim();
-            // এখানে ডাইনামিক পাসের সাথে ইউজার ইনপুট চেক হবে
-            if (inputVal === window.serverPass) {
+            const val = document.getElementById('userPassInput').value.trim();
+            if (val === window.serverPass) {
                 document.getElementById('passwordEntryArea').style.display = "none";
                 document.getElementById('telegramLinkArea').style.display = "block";
-                document.getElementById('finalPassword').innerText = "পাসওয়ার্ড সঠিক!";
-            } else {
-                alert("ভুল পাসওয়ার্ড! সঠিক পাসওয়ার্ডটি দিন।");
-            }
+                document.getElementById('finalPassword').innerText = "পাসওয়ার্ড সঠিক!";
+            } else { alert("ভুল পাসওয়ার্ড!"); }
         }
-
-        document.getElementById('topupForm').addEventListener('submit', e => {
-            e.preventDefault();
-            const pkg = document.getElementById('selectedPackage').value;
-            const trx = document.getElementById('payment').value.trim().toUpperCase();
-            if (!pkg) return alert("প্যাকেজ সিলেক্ট করুন!");
-            const btn = document.getElementById('submitBtn');
-            btn.disabled = true; btn.innerText = "সাবমিট হচ্ছে...";
-            const msg = `🚀 *NEW ORDER*\n📦 *Pkg:* ${pkg}\n🆔 *UID:* ${document.getElementById('player_id').value}\n💳 *TrxID:* ${trx}`;
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'Markdown' })
-            }).then(() => { alert("অর্ডার সফল হয়েছে!"); location.reload(); });
-        });
 
         window.onclick = e => { 
             if (e.target == document.getElementById('unifiedModal')) closeModal(); 
