@@ -6,7 +6,7 @@
     <title>LALA TOPUP - Download Center</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #f8f9fa; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 70px; overflow-x: hidden; }
+        body { background-color: #f8f9fa; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 80px; overflow-x: hidden; }
         
         /* Header */
         .header { background: #fff; padding: 15px; display: flex; align-items: center; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
@@ -15,16 +15,26 @@
 
         .section-header { padding: 0 15px; margin: 25px 0 12px; font-size: 1rem; font-weight: bold; color: #1e3799; text-align: center; text-transform: uppercase; }
 
-        /* Download Card Grid */
+        /* Single App Card Grid */
         .download-grid { padding: 0 15px; display: flex; flex-direction: column; gap: 15px; }
-        .download-item { background: #fff; border-radius: 15px; padding: 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
-        .file-info { display: flex; align-items: center; gap: 15px; }
-        .file-icon { width: 50px; height: 50px; background: #f0edff; color: #6c5ce7; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
-        .file-details h4 { margin: 0; font-size: 0.9rem; color: #333; }
-        .file-details p { margin: 2px 0 0; font-size: 0.75rem; color: #888; }
         
-        .dl-btn { background: #6c5ce7; color: white; border: none; padding: 8px 15px; border-radius: 8px; font-size: 0.85rem; font-weight: bold; cursor: pointer; text-decoration: none; transition: 0.3s; }
-        .dl-btn:active { transform: scale(0.9); }
+        /* Individual Card Design */
+        .app-card { background: #fff; border-radius: 20px; padding: 15px; display: flex; align-items: center; gap: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; transition: 0.3s; }
+        .app-card:active { transform: scale(0.97); }
+        
+        /* App Icon/Thumbnail */
+        .app-icon-box { width: 65px; height: 65px; border-radius: 15px; overflow: hidden; background: #f8f9fa; flex-shrink: 0; border: 1px solid #eee; }
+        .app-icon-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* App Details */
+        .app-info { flex-grow: 1; }
+        .app-info h4 { margin: 0; font-size: 0.95rem; color: #2d3436; font-weight: 700; }
+        .app-info p { margin: 3px 0 0; font-size: 0.75rem; color: #636e72; display: flex; align-items: center; gap: 5px; }
+        .app-tag { background: #e0edff; color: #0984e3; padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; font-weight: bold; text-transform: uppercase; }
+
+        /* Download Action Button */
+        .download-action { display: flex; align-items: center; }
+        .dl-circle-btn { width: 42px; height: 42px; background: #6c5ce7; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3); }
 
         /* Footer & Nav */
         .footer-dark { background: #0a1128; color: white; padding: 40px 20px; text-align: center; margin-top: 30px; font-size: 0.75rem; opacity: 0.5; }
@@ -37,35 +47,59 @@
 
     <div class="header">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-        <div class="brand">DOWNLOAD CENTER</div>
+        <div class="brand">LALA APP STORE</div>
     </div>
 
-    <div class="section-header">Available Files</div>
+    <div class="section-header">Exclusive Apps & Files</div>
 
     <div class="download-grid">
-        <!-- ফাইল ১: জিপ ফাইল -->
-        <div class="download-item">
-            <div class="file-info">
-                <div class="file-icon"><i class="fas fa-file-archive"></i></div>
-                <div class="file-details">
-                    <h4>Main Script ZIP</h4>
-                    <p>Size: 1.2 MB | Type: ZIP</p>
-                </div>
+        
+        <!-- App Card 1: Free Fire Tool -->
+        <div class="app-card">
+            <div class="app-icon-box">
+                <!-- তোমার অ্যাপের ছবি এখানে দাও -->
+                <img src="ff_tool.jpg" alt="App 1">
             </div>
-            <a href="files/script.zip" download class="dl-btn"><i class="fas fa-download"></i></a>
+            <div class="app-info">
+                <h4>FF VIP TOOL</h4>
+                <p><span class="app-tag">v1.0</span> <span>Size: 4.2 MB</span></p>
+                <p style="color: #2ecc71; font-size: 0.7rem;"><i class="fas fa-check-circle"></i> Safe & Secure</p>
+            </div>
+            <div class="download-action">
+                <a href="files/ff_tool.apk" download class="dl-circle-btn"><i class="fas fa-arrow-down"></i></a>
+            </div>
         </div>
 
-        <!-- ফাইল ২: এপিকে ফাইল -->
-        <div class="download-item">
-            <div class="file-info">
-                <div class="file-icon" style="background: #e7f9ed; color: #2ecc71;"><i class="fab fa-android"></i></div>
-                <div class="file-details">
-                    <h4>LALA TopUp App</h4>
-                    <p>Size: 5.5 MB | Type: APK</p>
-                </div>
+        <!-- App Card 2: LALA TopUp Official -->
+        <div class="app-card">
+            <div class="app-icon-box">
+                <img src="lala_app.png" alt="App 2">
             </div>
-            <a href="files/lala_topup.apk" download class="dl-btn" style="background: #2ecc71;"><i class="fas fa-download"></i></a>
+            <div class="app-info">
+                <h4>LALA TOPUP APP</h4>
+                <p><span class="app-tag">Official</span> <span>Size: 5.8 MB</span></p>
+                <p style="color: #2ecc71; font-size: 0.7rem;"><i class="fas fa-shield-alt"></i> Verified App</p>
+            </div>
+            <div class="download-action">
+                <a href="files/lala_topup.apk" download class="dl-circle-btn" style="background: #27ae60; box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);"><i class="fas fa-download"></i></a>
+            </div>
         </div>
+
+        <!-- App Card 3: New Script File -->
+        <div class="app-card">
+            <div class="app-icon-box">
+                <img src="python_icon.jpg" alt="File">
+            </div>
+            <div class="app-info">
+                <h4>AUTO TOPUP SCRIPT</h4>
+                <p><span class="app-tag">Python</span> <span>Size: 1.2 MB</span></p>
+                <p style="color: #f39c12; font-size: 0.7rem;"><i class="fas fa-star"></i> VIP Access Only</p>
+            </div>
+            <div class="download-action">
+                <a href="files/script.zip" download class="dl-circle-btn" style="background: #f39c12; box-shadow: 0 4px 10px rgba(243, 156, 18, 0.3);"><i class="fas fa-file-archive"></i></a>
+            </div>
+        </div>
+
     </div>
 
     <footer class="footer-dark">
