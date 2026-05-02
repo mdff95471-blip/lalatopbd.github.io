@@ -145,7 +145,7 @@
             <div class="icon-box"><i class="fas fa-cut"></i></div>
             <span class="product-name">IMAGE SPLITTER</span>
         </div>
-        <!-- এডিট করা অংশ: এখানে ক্লিক করলে download.html ওপেন হবে -->
+        <!-- কানেকশন চেক: এখানে ক্লিক করলে download.html ওপেন হবে -->
         <div class="product-card" onclick="window.location.href='download.html'">
             <div class="icon-box" style="background: #27ae60; color: white;"><i class="fas fa-file-archive"></i></div>
             <span class="product-name">download file ZIP</span>
@@ -172,10 +172,11 @@
     <a href="tel:01794327542" class="float-call"><i class="fas fa-phone-alt"></i></a>
 
     <div class="bottom-nav">
-        <a href="#" class="nav-item active"><i class="fas fa-home"></i>Home</a>
-        <a href="#" class="nav-item"><i class="fas fa-play-circle"></i>Tutorial</a>
-        <a href="#" class="nav-item"><i class="fas fa-bolt"></i>TopUp</a>
-        <a href="#" class="nav-item"><i class="fas fa-th-large"></i>Contact Us</a>
+        <a href="index.html" class="nav-item active"><i class="fas fa-home"></i><br>Home</a>
+        <!-- আপডেট: এখানেও ডাউনলোড পেজের লিংক এড করা হয়েছে -->
+        <a href="download.html" class="nav-item"><i class="fas fa-download"></i><br>Download</a>
+        <a href="#" class="nav-item"><i class="fas fa-bolt"></i><br>TopUp</a>
+        <a href="#" class="nav-item"><i class="fas fa-th-large"></i><br>Contact Us</a>
     </div>
 
     <!-- Diamond Modal -->
@@ -267,9 +268,9 @@
         setInterval(syncStatus, 5000); syncStatus();
 
         const products = {
-            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}],
-            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"115 Diamond", price:"BDT 85"}],
-            weekly_monthly: [{name:"WEEKLY", price:"BDT 160"}, {name:"MONTHLY", price:"BDT 770"}],
+            guild: [{name:"1 BASIC", price:"৳ 250"}, {name:"2 BASIC", price:"৳ 420"}, {name:"5 BASIC", price:"৳ 800"}, {name:"10 BASIC", price:"৳ 1400"}],
+            offers: [{name:"25 Diamond", price:"BDT 24"}, {name:"50 Diamond", price:"BDT 43"}, {name:"115 Diamond", price:"BDT 85"}, {name:"240 Diamond", price:"BDT 165"}, {name:"355 Diamond", price:"BDT 244"}, {name:"480 Diamond", price:"BDT 321"}, {name:"610 Diamond", price:"BDT 410"}, {name:"850 Diamond", price:"BDT 566"}, {name:"1240 Diamond", price:"BDT 805"}, {name:"2530 Diamond", price:"BDT 1600"}, {name:"5060 Diamond", price:"BDT 3200"}, {name:"10120 Diamond", price:"BDT 6399"}],
+            weekly_monthly: [{name:"WEEKLY", price:"BDT 160"}, {name:"2X WEEKLY", price:"BDT 320"}, {name:"3X WEEKLY", price:"BDT 480"}, {name:"MONTHLY", price:"BDT 770"}, {name:"2X MONTHLY", price:"BDT 1540"}],
             likes: [{ name: "200 FF LIKE", price: "BDT 45" }]
         };
 
